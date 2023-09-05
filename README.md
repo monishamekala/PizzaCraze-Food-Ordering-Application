@@ -1,4 +1,4 @@
-# CSC648-fa23-SectionName-teamNN Repository
+# CSC648-fa23-04-team07 Repository
 
 **Application URL: <https://example.com>**
 
@@ -18,7 +18,7 @@
 
 | Student Name | Student Email | GitHub Username | Student's role |
 | :----------: | :-----------: | :-------------: | :------------: |
-|   John Doe   | jdoe@sfsu.edu |      jdoe       |  Team Leader   |
+| Joey Palanca | jpalanca@sfsu.edu |  JoeyDaPal  | GitHub Master  |
 
 **NO code should be stored in the root of your repository. You may rename the
 `application/` folder to your team's application name if you'd like, but all the
