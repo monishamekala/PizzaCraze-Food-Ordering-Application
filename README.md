@@ -10,7 +10,7 @@
      10, please pad with a 0 (e.g. team 1 is Team01 team 11 is Team11). Please
      make sure to also **remove the username from the repository as well**!
      Teams with an incorrectly named repository will have points deducted from
-     their milestone 0 grades.
+     their milestone 0 grades. 
    - Examples: `csc648-fa23-04-Team01`, `csc648-fa23-01-Team05`
 2. Add ALL members of your team to this repository. For it to count, **they must
    ACCEPT the invite**.
