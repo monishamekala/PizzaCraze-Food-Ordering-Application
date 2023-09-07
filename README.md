@@ -21,7 +21,7 @@
 |Monisha Mekala|mmekala@sfsu.edu| monishamekala  |Team Leader/co-Back-end Leader|
 |Aishwarya Magar|amagar@sfsu.edu| AishwaryaMagar |Front-end Leader|
 |Malieka Sutaria|msutaria@sfsu.edu|  Sutaria01   |  Scrum Master  |
-|Nicholas Pagcanlungan|npagcanlungan@sfsu.edu|   |co-Back-end Leader |
+|Nicholas Pagcanlungan|npagcanlungan@sfsu.edu|TheNepper|co-Back-end Leader |
 | Joey Palanca | jpalanca@sfsu.edu |  JoeyDaPal  |  GitHub Master |
 
 **NO code should be stored in the root of your repository. You may rename the
