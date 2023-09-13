@@ -1,10 +1,17 @@
-import React from 'react'
+import React from 'react';
+import Pic from '../Assests/Monisha.jpeg';
 
 function Teamlead() {
   return (
     <div className='my-3 teamlead'>
-        <h1>Team Lead : Monisha Mekala</h1>
+        <h1>Team Lead : Monisha </h1>
         <br></br>
+        
+        <img src={Pic} height={300}/>
+
+        <br/>
+        <br/>
+
         
         
         <p>
