@@ -27,3 +27,9 @@
 **NO code should be stored in the root of your repository. You may rename the
 `application/` folder to your team's application name if you'd like, but all the
 source code should be stored inside that folder.**
+
+## How to Run
+1. Open repository in terminal
+2. cd application/pizza
+3. npm install
+4. npm start
