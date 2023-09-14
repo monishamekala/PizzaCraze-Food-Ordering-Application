@@ -1,6 +1,6 @@
 # CSC648-fa23-04-team07 Repository
 
-**Application URL: <18.224.38.219>**
+**Application URL: <http://18.224.38.219>**
 
 ## Before completing Milestone 0
 
