@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import BannerImage from '../Assests/pizza.jpeg';
 import '../styles/Login.css';
 
 function Login() {
+  
+  const [users, setusers] = useState( [] )
+
+  useEffect( () => {
+    const fetchAllusers = async () => {
+      try{
+        const res = await axios.get("http://localhost:8800/users");
+        setusers(res.data);
+      }catch(err){
+        console.log(err);
+      }
+    }
+    fetchAllusers()
+  }, [])
+
   return (
     <div className='contact'>
         <div className='leftSide' style={{backgroundImage: `url(${BannerImage})`}}>
@@ -20,7 +36,20 @@ function Login() {
             </form>
 
         </div>
-      
+      {/* <h1>
+        My Users
+      </h1>
+
+      <div>
+        {users.map (eachuser => (
+          <div key = {eachuser.username}>
+            <h2>{eachuser.username}</h2>
+            <p>{eachuser.password}</p>
+            <p>{eachuser.email}</p>
+            <span>{eachuser.phone}</span>
+          </div>
+        ))}
+      </div> */}
     </div>
   )
 }

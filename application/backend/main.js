@@ -1,5 +1,6 @@
-import express from "express"
-import mysql from "mysql"
+import express from "express";
+import mysql from "mysql";
+import cors from "cors";
 
 const app = express()
 
@@ -10,14 +11,35 @@ const db = mysql.createConnection({
     database: "FoodOrderSys"
 })
 
+app.use(express.json())
+app.use(cors())
+
 app.get("/", (req, res) => {
     res.json("hello this is backend")
 })
+
+
 app.get("/users", (req, res) => {
     const q = "SELECT * FROM FoodOrderSys.LoginDetails"
     db.query(q, (err, data) =>{
         if(err) return res.json(err)
         return res.json(data)
+    })
+})
+
+app.post("/users", (req, res) => {
+    const q = "INSERT INTO FoodOrderSys.LoginDetails (`username`, `password`, `phone`, `email`) VALUES (?)";
+
+    const values = [
+        req.body.uname,
+        req.body.password,
+        req.body.phone,
+        req.body.email
+    ];
+
+    db.query(q, [values], (err, data) =>{
+        if(err) return res.json(err);
+        return res.json("User has been registered successfully");
     })
 })
 
