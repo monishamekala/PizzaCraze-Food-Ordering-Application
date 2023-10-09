@@ -27,6 +27,14 @@ app.get("/users", (req, res) => {
     })
 })
 
+app.get("/menu", (req, res) => {
+    const q = "SELECT * FROM FoodOrderSys.MenuTable"
+    db.query(q, (err, data) =>{
+        if(err) return res.json(err)
+        return res.json(data)
+    })
+})
+
 app.post("/users", (req, res) => {
     const q = "INSERT INTO FoodOrderSys.LoginDetails (`username`, `password`, `phone`, `email`) VALUES (?)";
 
