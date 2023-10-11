@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const PORT = process.env.PORT || 3001;
 
 //import express from "express";
 //import mysql from "mysql";
@@ -78,6 +79,6 @@ app.use('/api/MenuController', menuRoute);
 //     })
 // })
 
-app.listen(8800, () => {
-    console.log("Connected to backend!")
+app.listen(PORT, () => {
+    console.log("Connected to backend! PORT:", PORT)
 });
