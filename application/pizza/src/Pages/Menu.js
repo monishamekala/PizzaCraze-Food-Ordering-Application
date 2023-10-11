@@ -9,7 +9,7 @@ function Menu() {
   useEffect( () => {
     const fetchMentuDetails = async () => {
       try{
-        const urlMenu = "/api/menu"
+        const urlMenu = "/api/MenuController/GetMenu";
         const res = await axios.get(process.env.REACT_APP_API_URL.concat(urlMenu));
         setmenu(res.data);
       }catch(err){
