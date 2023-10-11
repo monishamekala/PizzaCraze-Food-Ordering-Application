@@ -14,12 +14,12 @@ const db = mysql.createConnection({
 app.use(express.json())
 app.use(cors())
 
-app.get("/", (req, res) => {
+app.get("/api/", (req, res) => {
     res.json("hello this is backend")
 })
 
 
-app.get("/users", (req, res) => {
+app.get("/api/users", (req, res) => {
     const q = "SELECT * FROM FoodOrderSys.LoginDetails"
     db.query(q, (err, data) =>{
         if(err) return res.json(err)
@@ -27,7 +27,7 @@ app.get("/users", (req, res) => {
     })
 })
 
-app.get("/menu", (req, res) => {
+app.get("/api/menu", (req, res) => {
     const q = "SELECT * FROM FoodOrderSys.MenuTable"
     db.query(q, (err, data) =>{
         if(err) return res.json(err)
@@ -35,7 +35,7 @@ app.get("/menu", (req, res) => {
     })
 })
 
-app.get("/searchBar/:query", (req, res) => {
+app.get("/api/searchBar/:query", (req, res) => {
     const searchTerm = req.params.query;
     const q = "SELECT * FROM FoodOrderSys.MenuTable WHERE name LIKE ? OR category LIKE ?";
 
@@ -47,7 +47,7 @@ app.get("/searchBar/:query", (req, res) => {
     });
 });
 
-app.post("/users", (req, res) => {
+app.post("/api/users", (req, res) => {
     const q = "INSERT INTO FoodOrderSys.LoginDetails (`username`, `password`, `phone`, `email`) VALUES (?)";
 
     const values = [

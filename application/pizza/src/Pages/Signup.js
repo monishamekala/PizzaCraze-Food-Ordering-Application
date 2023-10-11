@@ -21,7 +21,9 @@ const handleChange = (e) => {
 const handleClick = async e => {
   e.preventDefault()
   try{
-    await axios.post("http://localhost:8800/users", user)
+    const urlHI = `/api/users`;
+    await axios.post(process.env.REACT_APP_API_URL.concat(urlHI),user);
+    // await axios.post("http://localhost:8800/users", user)
     navigate("/login")
   }
   catch(err){

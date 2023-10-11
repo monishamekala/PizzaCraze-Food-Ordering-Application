@@ -10,7 +10,8 @@ function Login() {
   useEffect( () => {
     const fetchAllusers = async () => {
       try{
-        const res = await axios.get("http://localhost:8800/users");
+        const urlLogin = "/api/users"
+        const res = await axios.get(process.env.REACT_APP_API_URL.concat(urlLogin));
         setusers(res.data);
       }catch(err){
         console.log(err);

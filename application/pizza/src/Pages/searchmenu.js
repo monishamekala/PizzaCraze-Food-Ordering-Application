@@ -10,7 +10,8 @@ function SearchMenu() {
     useEffect( () => {
         const fetchSearchResults = async () => {
           try{
-            const res = await axios.get(`http://localhost:8800/searchBar/${searchTerm}`);
+            const urlHI = `/api/searchBar/${searchTerm}`;
+            const res = await axios.get(process.env.REACT_APP_API_URL.concat(urlHI));
             setResult(res.data);
           }catch(err){
             console.log(err);
