@@ -1,20 +1,23 @@
 import express from "express";
 import mysql from "mysql";
 import cors from "cors";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express()
 
 const db = mysql.createConnection({
-    host:"csc648-848-team07.clcqreadezd8.us-east-2.rds.amazonaws.com",
-    user: "admin",
-    password: "CSCTeam07",
-    database: "FoodOrderSys"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSW,
+    database: process.env.DB_SCHEMA,
+    port: process.env.DB_PORT
 })
 
 app.use(express.json())
 app.use(cors())
 
-app.get("/api/", (req, res) => {
+app.get("/api", (req, res) => {
     res.json("hello this is backend")
 })
 
