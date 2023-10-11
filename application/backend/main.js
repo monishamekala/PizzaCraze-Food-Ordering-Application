@@ -35,6 +35,18 @@ app.get("/menu", (req, res) => {
     })
 })
 
+app.get("/searchBar/:query", (req, res) => {
+    const searchTerm = req.params.query;
+    const q = "SELECT * FROM FoodOrderSys.MenuTable WHERE name LIKE ? OR category LIKE ?";
+
+    const values = [`%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`];
+
+    db.query(q, values, (err, data) =>{
+        if(err) return res.json(err)
+        return res.json(data)
+    });
+});
+
 app.post("/users", (req, res) => {
     const q = "INSERT INTO FoodOrderSys.LoginDetails (`username`, `password`, `phone`, `email`) VALUES (?)";
 

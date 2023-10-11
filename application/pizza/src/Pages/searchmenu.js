@@ -1,34 +1,32 @@
-// import React from 'react'
-import Menuitem from './Menuitem'
-import React, { useEffect, useState } from 'react';
+import React, {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-function Menu() {
-  const [menuItems, setmenu] = useState( [] )
+function SearchMenu() {
+    let { searchTerm } = useParams();
 
-  useEffect( () => {
-    const fetchMentuDetails = async () => {
-      try{
-        const res = await axios.get("http://localhost:8800/menu");
-        setmenu(res.data);
-      }catch(err){
-        console.log(err);
-      }
-    }
-    fetchMentuDetails()
-  }, [])
+    const [searchresults, setResult] = useState( [] );
 
+    useEffect( () => {
+        const fetchSearchResults = async () => {
+          try{
+            const res = await axios.get(`http://localhost:8800/searchBar/${searchTerm}`);
+            setResult(res.data);
+          }catch(err){
+            console.log(err);
+          }
+        }
+        fetchSearchResults()
+      }, [searchTerm]);
 
-      
   return (
     <div>
-      
-      <h2 style={{marginTop: "10px"}}>
-        Menu List
-      </h2>
-      <hr></hr>
+        <h1>Search results for '{searchTerm}'</h1>
 
-      <table style={{marginLeft: "10px"}}>
+      {searchresults.length === 0 ? (
+        <p>No such items</p>
+      ) : (
+        <table style={{marginLeft: "10px"}}>
         <thead>
           <tr>
             <th>Name</th>
@@ -39,11 +37,11 @@ function Menu() {
             <th>Ingredients</th>
             <th>Veg</th>
             <th>Vegan</th>
-            <th>Non Veg</th>
+            <th>Non-Veg</th>
           </tr>
         </thead>
         <tbody>
-          {menuItems.map(eachItem => (
+          {searchresults.map(eachItem => (
             <tr key={eachItem.menu_id}>
               <td>{eachItem.name}</td>
               <td>{eachItem.category}</td>
@@ -58,11 +56,11 @@ function Menu() {
           ))}
         </tbody>
       </table>
-      <hr></hr>
-      <Menuitem></Menuitem>
-      
+      )}
+
+     
     </div>
   )
 }
 
-export default Menu
+export default SearchMenu;
