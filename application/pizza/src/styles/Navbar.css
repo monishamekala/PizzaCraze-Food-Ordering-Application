@@ -7,7 +7,7 @@
   }
   
   .navbar .leftSide {
-    flex: 50%;
+    flex: 40%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -19,7 +19,7 @@
   }
   
   .navbar .rightSide {
-    flex: 50%;
+    flex: 60%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -32,12 +32,12 @@
     margin: 20px;
   }
   
-  .navbar .rightSide button {
+  /* .navbar .rightSide button {
     background-color: transparent;
     border: none;
     color: white;
     cursor: pointer;
-  }
+  } */
   
   .navbar .rightSide svg {
     font-size: 40px;
@@ -86,15 +86,15 @@
       padding-right: 50px;
     }
   
-    .navbar .rightSide button {
+    /* .navbar .rightSide button {
       display: inherit;
-    }
+    } */
   }
   
   @media only screen and (min-width: 600px) {
-    .navbar .rightSide button {
+    /* .navbar .rightSide button {
       display: none;
-    }
+    } */
   
     .hiddenLinks {
       display: none;
