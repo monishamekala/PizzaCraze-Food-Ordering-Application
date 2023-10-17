@@ -21,7 +21,7 @@ const handleChange = (e) => {
 const handleClick = async e => {
   e.preventDefault()
   try{
-    const urlHI = `/api/users`;
+    const urlHI = "/api/UserController/PostUsers";
     await axios.post(process.env.REACT_APP_API_URL.concat(urlHI),user);
     // await axios.post("http://localhost:8800/users", user)
     navigate("/login")
@@ -39,24 +39,24 @@ console.log(user)
 
         </div>
         <div className='rightSide'>
-            <form>
+            <form onSubmit={handleClick}>
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
-                <label htmlFor='mail'>Email</label>
-                <input id='email' placeholder='Enter Email' onChange={handleChange}></input>
+                <label for ='email'>Email</label>
+                <input id='email' type = 'email' placeholder='Enter Email' onChange={handleChange} required></input>
 
-                <label htmlFor='uname'>Username</label>
-                <input id='uname' placeholder='Enter Username' onChange={handleChange}></input>
+                <label for='uname'>Username</label>
+                <input id='uname' placeholder='Enter Username' onChange={handleChange} required></input>
 
-                <label htmlFor='phone'>Phone Number</label>
-                <input id='phone' placeholder='Enter Phone Number' onChange={handleChange}></input>
+                <label for='phone'>Phone Number</label>
+                <input id='phone' placeholder='Enter Phone Number' onChange={handleChange} required></input>
 
-                <label htmlFor='password'>Password</label>
-                <input type='Password' id='password' placeholder='Enter Password' onChange={handleChange}></input>
+                <label for ='password'>Password</label>
+                <input type='Password' id='password' placeholder='Enter Password' onChange={handleChange} required></input>
 
                 <br></br>
         
-                <button type='submit' onClick={handleClick}>Submit</button>
+                <button type='submit'>Submit</button>
             </form>
         </div>      
     </div>

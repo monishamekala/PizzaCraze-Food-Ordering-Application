@@ -18,20 +18,20 @@ router.get('/GetUsers', async (request, response) => {
     response.status(200).send(results[0]);
 });
 
-router.post("/api/users", (req, res) => {
-    const q = "INSERT INTO FoodOrderSys.LoginDetails (`username`, `password`, `phone`, `email`) VALUES (?)";
+router.post("/PostUsers", async (request, response) => {
+    const username = request.body.uname;
+    const password = request.body.password;
+    const phone = request.body.phone;
+    const email = request.body.email;
+    const q = `INSERT INTO FoodOrderSys.LoginDetails (username, password, phone, email) VALUES ('${username}', '${password}', '${phone}', '${email}')`;
 
-    const values = [
-        req.body.uname,
-        req.body.password,
-        req.body.phone,
-        req.body.email
-    ];
+    const insertUser = await db.promise().query(q);
+    response.status(200).send(insertUser[0]);
 
-    db.query(q, [values], (err, data) =>{
-        if(err) return res.json(err);
-        return res.json("User has been registered successfully");
-    })
+    // db.query(q, [values], (err, data) =>{
+    //     if(err) return res.json(err);
+    //     return res.json("User has been registered successfully");
+    // })
 })
 
 module.exports = router;
