@@ -23,7 +23,6 @@ const handleClick = async e => {
   try{
     const urlHI = "/api/UserController/PostUsers";
     await axios.post(process.env.REACT_APP_API_URL.concat(urlHI),user);
-    // await axios.post("http://localhost:8800/users", user)
     navigate("/login")
   }
   catch(err){
