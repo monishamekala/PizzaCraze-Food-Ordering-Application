@@ -2,6 +2,7 @@ import React from 'react'
 import logo from './logo.svg';
 import './App.css';
 import Navbar from './Components/Navbar';
+import Admin from './Pages/Admin';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
@@ -23,6 +24,7 @@ function App() {
       <Router>
       <Navbar/>
       <Routes>
+        <Route path='/foradmin' exact Component={Admin}/>
         <Route path='/' exact Component = {Home}/>
         <Route path='/menu' exact Component = {Menu}/>
         <Route path='/about' exact Component = {About}/>
