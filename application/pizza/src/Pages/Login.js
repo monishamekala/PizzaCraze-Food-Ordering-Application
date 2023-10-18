@@ -28,8 +28,8 @@ function Login() {
         <div className='rightSide'>
             <form>
             <h1>Login</h1>
-                <label htmlFor='uname'>Username</label>
-                <input id='uname' placeholder='Enter Username'></input>
+                <label htmlFor='email'>Email</label>
+                <input id='email' placeholder='Enter Email'></input>
                 <label htmlFor='password'>Password</label>
                 <input type='Password' id='password' placeholder='Enter Password'></input>
                 <button type='submit'>Submit</button>

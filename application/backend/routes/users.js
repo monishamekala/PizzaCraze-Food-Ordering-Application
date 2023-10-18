@@ -14,14 +14,34 @@ router.get('/GetUsers', async (request, response) => {
 });
 
 router.post("/PostUsers", async (request, response) => {
-    const username = request.body.uname;
     const password = request.body.password;
     const phone = request.body.phone;
-    const email = request.body.email;
-    const q = `INSERT INTO FoodOrderSys.LoginDetails (username, password, phone, email) VALUES ('${username}', '${password}', '${phone}', '${email}')`;
+    const email = request.body.email.toLowerCase();
+    const checkEmail = `SELECT COUNT(*) AS count FROM FoodOrderSys.LoginDetails WHERE email = '${email}'`;
+    const q = `INSERT INTO FoodOrderSys.LoginDetails (password, phone, email) VALUES ('${password}', '${phone}', '${email}')`;
 
-    const insertUser = await db.promise().query(q);
-    response.status(200).send(insertUser[0]);
+    try {
+
+        const countOfEmail = await db.promise().query(checkEmail);
+        const countNum = countOfEmail[0][0].count;
+
+        //if the email given by the user does not exist in the database then insert
+        if (countNum === 0){
+
+            const insertUser = await db.promise().query(q);
+            response.status(200).json({ message: "You have registered successfully" });
+
+        }
+        //if email is already there in the database then say so to the user
+        else{
+            response.status(200).json({ message: "Email is already used." });
+            return;
+        }
+
+    } catch (error) {
+        response.status(500).json({ error: "Internal Server Error" });
+    }
 })
+
 
 module.exports = router;
