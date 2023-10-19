@@ -63,7 +63,11 @@ function Signup() {
     const containsSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password);
     const isLengthValid = password.length >= 8;
 
-    if (containsUpperCase && containsLowerCase && containsNumbers && containsSpecialChars && isLengthValid) {
+    //validating phone number
+    const phoneNo = user.phone;
+    const checkPhone = /^[0-9]{10}$/.test(phoneNo);
+
+    if (checkPhone && containsUpperCase && containsLowerCase && containsNumbers && containsSpecialChars && isLengthValid) {
       try{
         const urlHI = "/api/UserController/PostUsers";
         const response = await axios.post(process.env.REACT_APP_API_URL.concat(urlHI),user);
@@ -87,7 +91,10 @@ function Signup() {
           console.error(err);
         }
       }
-    } else {
+    } else if (!checkPhone){
+      alert("Please enter valid phone number");
+    }
+    else {
       alert("Password does not meet the required criteria.");
     }
   };
