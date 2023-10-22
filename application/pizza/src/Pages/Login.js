@@ -5,20 +5,48 @@ import '../styles/Login.css';
 
 function Login() {
   
-  const [users, setusers] = useState( [] )
+  //const [users, setusers] = useState( [] )
+  const [users, setusers] = useState({
+    email: "",
+    password: ""
+  });
 
-  useEffect( () => {
-    const fetchAllusers = async () => {
+  const handleChange = (e) => {
+    setusers(prev => ({...prev, [e.target.id]: e.target.value}))
+  };
+
+  const handleClick = async e => {
+    e.preventDefault()
+
+    // Check password strength before submitting
+    
       try{
-        const urlLogin = "/api/UserController/GetUsers"
-        const res = await axios.get(process.env.REACT_APP_API_URL.concat(urlLogin));
-        setusers(res.data);
-      }catch(err){
-        console.log(err);
+        const urlLogin = "/api/UserController/login"
+        const response = await axios.post(process.env.REACT_APP_API_URL.concat(urlLogin),users);
+        
+        //To display the result of registration
+        if (response.data.message) {
+          const successMessageElement = document.getElementById("success-message");
+  
+          if (successMessageElement) {
+            successMessageElement.textContent = response.data.message;
+          }
+  
+        }
       }
-    }
-    fetchAllusers()
-  }, [])
+      catch(err){
+        if (err.response && err.response.data && err.response.data.error) {
+          // The error message is in err.response.data.error
+          alert(err.response.data.error);
+        } else {
+          // If there's any other type of error
+          console.error(err);
+        }
+      }
+    } 
+
+
+
 
   return (
     <div className='contact'>
@@ -26,33 +54,20 @@ function Login() {
 
         </div>
         <div className='rightSide'>
-            <form>
+            <form onSubmit = {handleClick}>
             <h1>Login</h1>
                 <label htmlFor='email'>Email</label>
-                <input id='email' placeholder='Enter Email'></input>
+                <input id='email' placeholder='Enter Email' onChange={handleChange} type = 'email' required></input>
                 <label htmlFor='password'>Password</label>
-                <input type='Password' id='password' placeholder='Enter Password'></input>
+                <input type='Password' id='password' placeholder='Enter Password' onChange={handleChange} required></input>
                 <button type='submit'>Submit</button>
                 
             </form>
+            <div id="success-message"></div>
 
         </div>
-      {/* <h1>
-        My Users
-      </h1>
-
-      <div>
-        {users.map (eachuser => (
-          <div key = {eachuser.username}>
-            <h2>{eachuser.username}</h2>
-            <p>{eachuser.password}</p>
-            <p>{eachuser.email}</p>
-            <span>{eachuser.phone}</span>
-          </div>
-        ))}
-      </div> */}
     </div>
   )
-}
+};
 
 export default Login
