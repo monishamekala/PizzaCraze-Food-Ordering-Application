@@ -15,6 +15,12 @@ function Login() {
     setusers(prev => ({...prev, [e.target.id]: e.target.value}))
   };
 
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(prev => !prev);
+  };
+
   const handleClick = async e => {
     e.preventDefault()
 
@@ -59,7 +65,8 @@ function Login() {
                 <label htmlFor='email'>Email</label>
                 <input id='email' placeholder='Enter Email' onChange={handleChange} type = 'email' required></input>
                 <label htmlFor='password'>Password</label>
-                <input type='Password' id='password' placeholder='Enter Password' onChange={handleChange} required></input>
+                <input type={showPassword ? 'text' : 'password'} id='password' placeholder='Enter Password' onChange={handleChange} required></input>
+                <input type="checkbox" onChange={togglePasswordVisibility}></input>Show Password
                 <button type='submit'>Submit</button>
                 
             </form>
