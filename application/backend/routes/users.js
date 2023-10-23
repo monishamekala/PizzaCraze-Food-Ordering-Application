@@ -1,7 +1,16 @@
 const { Router } = require('express');
 const db = require('../database');
 
+const session = require('express-session');
+
 const router = Router();
+
+router.use(session({
+    secret: 'OurPizzaCrazeApplicationTeam07Section04CSC848648',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 3600000}
+}));
 
 router.use((request, response, next) => {
     console.log('Request made to /Users route');
@@ -45,25 +54,29 @@ router.post("/PostUsers", async (request, response) => {
 
 router.post('/login',async (request, response) => {
     
-    const email = request.body.email.toLowerCase(); //uname will be email
+    const email = request.body.email.toLowerCase(); 
     const password = request.body.password;
-    console.log(email);
+
     //query to return the row with correct email and pass from db
-    const query = `SELECT COUNT(*) as count FROM FoodOrderSys.LoginDetails WHERE email = '${email}' AND password = '${password}'`
-    const update = `UPDATE FoodOrderSys.LoginDetails SET loggedIn = 1 WHERE email = '${email}'`
+    const query = `SELECT *, COUNT(*) as count FROM FoodOrderSys.LoginDetails WHERE email = '${email}' AND password = '${password}'`;
+    //query to update the loggenIN row for the loggedIn user
+    const update = `UPDATE FoodOrderSys.LoginDetails SET loggedIn = 1 WHERE email = '${email}'`;
 
         try
         {    
-            const validation = await db.promise().query(query)
-            const emailExists = validation[0][0].count
-            console.log(emailExists);
-            if(emailExists > 0) //change to validation
+            const validation = await db.promise().query(query);
+            const emailExists = validation[0][0].count;
+
+            if(emailExists > 0) 
             {
                 // query to update the login status of a user 
                 await db.promise().query(update);
-                console.log("logged in successfull");
-                return response.status(200).json({message: "Login successful"});
-                response.redirect('/menu');
+                //assigning session
+                request.session.user = validation[0][0].userID;
+                request.session.username = validation[0][0].username;
+                console.log(validation[0][0]);
+                console.log(request.session.user, ": logged in successfull");
+                return response.status(200).json({message: "Login successful", userID: request.session.user, username: request.session.username});
             }
             else
             {
@@ -73,16 +86,9 @@ router.post('/login',async (request, response) => {
         }
         catch (error)
         {
+            console.log(error);
             response.status(500).json({ error: "Internal Server Error" });
         }            
-
-    
 });  
-/*
-logout:
-
-router.post('/logout')
-*/
-
 
 module.exports = router;
