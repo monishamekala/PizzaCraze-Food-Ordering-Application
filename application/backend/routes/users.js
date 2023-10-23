@@ -25,9 +25,13 @@ router.get('/GetUsers', async (request, response) => {
 router.post("/PostUsers", async (request, response) => {
     const password = request.body.password;
     const phone = request.body.phone;
+    const username = request.body.username;
     const email = request.body.email.toLowerCase();
+
+    //to check if the email exists
     const checkEmail = `SELECT COUNT(*) AS count FROM FoodOrderSys.LoginDetails WHERE email = '${email}'`;
-    const q = `INSERT INTO FoodOrderSys.LoginDetails (password, phone, email) VALUES ('${password}', '${phone}', '${email}')`;
+    //if new user, then insert the users data
+    const q = `INSERT INTO FoodOrderSys.LoginDetails (password, phone, email, username) VALUES ('${password}', '${phone}', '${email}', '${username}')`;
 
     try {
 
@@ -50,7 +54,7 @@ router.post("/PostUsers", async (request, response) => {
     } catch (error) {
         response.status(500).json({ error: "Internal Server Error" });
     }
-})
+});
 
 router.post('/login',async (request, response) => {
     
@@ -74,8 +78,8 @@ router.post('/login',async (request, response) => {
                 //assigning session
                 request.session.user = validation[0][0].userID;
                 request.session.username = validation[0][0].username;
-                console.log(validation[0][0]);
-                console.log(request.session.user, ": logged in successfull");
+                // console.log(validation[0][0]);
+                // console.log(request.session.user,"->", request.session.username, ": logged in successfull");
                 return response.status(200).json({message: "Login successful", userID: request.session.user, username: request.session.username});
             }
             else

@@ -7,6 +7,7 @@ import '../styles/Login.css';
 function Signup() {
   const [user, setUser] = useState({
     email: "",
+    username:"",
     phone: "",
     password: ""
   });
@@ -67,7 +68,12 @@ function Signup() {
     const phoneNo = user.phone;
     const checkPhone = /^[0-9]{10}$/.test(phoneNo);
 
-    if (checkPhone && containsUpperCase && containsLowerCase && containsNumbers && containsSpecialChars && isLengthValid) {
+    //validating Full name field
+    const name = user.username;
+    const checkName = /^[A-Za-z\s]{3,}$/.test(name);
+
+    //if full name, password and phone number are in correct format
+    if (checkName && checkPhone && containsUpperCase && containsLowerCase && containsNumbers && containsSpecialChars && isLengthValid) {
       try{
         const urlHI = "/api/UserController/PostUsers";
         const response = await axios.post(process.env.REACT_APP_API_URL.concat(urlHI),user);
@@ -93,6 +99,8 @@ function Signup() {
       }
     } else if (!checkPhone){
       alert("Please enter valid phone number");
+    } else if(!checkName){
+      alert("Please give a valid name");
     }
     else {
       alert("Password does not meet the required criteria.");
@@ -111,13 +119,13 @@ function Signup() {
                 <label for ='email'>Email</label>
                 <input id='email' type = 'email' placeholder='Enter Email' onChange={handleChange} required></input>
 
+                <label for ='username'>Full Name</label>
+                <input id='username' type = 'text' placeholder='Enter Full Name' onChange={handleChange} required></input>
+
                 <label for='phone'>Phone Number</label>
                 <input id='phone' placeholder='Enter Phone Number' onChange={handleChange} required></input>
 
                 <label for ='password'>Password</label>
-                {/* <input type='Password' id='password' placeholder='Enter Password' onChange={handleChangeForPassword} required></input>
-                */}
-
                 <input type={showPassword ? 'text' : 'password'} id='password' placeholder='Enter Password' onChange={handleChangeForPassword} required></input>
 
                 <input type="checkbox" onChange={togglePasswordVisibility}></input>Show Password

@@ -37,8 +37,12 @@ function Login() {
           if (successMessageElement) {
             successMessageElement.textContent = response.data.message;
           }
-  
         }
+
+        // const sessionUserID = response.data.userID;
+        const sessionUserName = response.data.username;
+
+        alert("Hi " + sessionUserName);
       }
       catch(err){
         if (err.response && err.response.data && err.response.data.error) {
@@ -49,7 +53,7 @@ function Login() {
           console.error(err);
         }
       }
-    } 
+  }; 
 
 
 
