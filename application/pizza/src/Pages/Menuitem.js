@@ -27,7 +27,8 @@ function Menuitem() {
 <label htmlFor="meat" >Meat</label>
   <input type="range" min="0" max="3" className="slider" id="meat"  />
 </div>
-    <a href="#" className="btn btn-primary" style={{background:"#e65f20", border:"none"}}>Add</a>
+<b id='price'>40 $</b>
+    <a href="#" className="btn btn-primary" style={{background:"#e65f20", border:"none",marginTop:"5px", display:"block"}}>Add to Cart</a>
   </div>
 </div>
 

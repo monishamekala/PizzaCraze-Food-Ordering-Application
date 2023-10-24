@@ -12,7 +12,7 @@ function Home() {
         <p>We serve the most cheesiest pizzas</p>
 
         <Link to={'/menu'}>
-        <button>Order NOW</button></Link>
+        <button>Order Now</button></Link>
 
         
 
