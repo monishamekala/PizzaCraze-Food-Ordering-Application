@@ -32,7 +32,7 @@ router.post("/PostUsers", async (request, response) => {
     const checkEmail = `SELECT COUNT(*) AS count FROM FoodOrderSys.LoginDetails WHERE email = '${email}'`;
     //if new user, then insert the users data
     const q = `INSERT INTO FoodOrderSys.LoginDetails (password, phone, email, username) VALUES ('${password}', '${phone}', '${email}', '${username}')`;
-
+    
     try {
 
         const countOfEmail = await db.promise().query(checkEmail);
