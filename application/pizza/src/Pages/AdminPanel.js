@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/Panel.css';
 function AdminPanelUsers() {
-    const [Users, setusers] = useState( [] )
-  
-    useEffect( () => {
-      const fetchDataDetails = async () => {
-        try{
-          const urlAdminPanel = "/api/UsersController/GetUsers";
-          const res = await axios.get(process.env.REACT_APP_API_URL.concat(urlAdminPanel));
-          setusers(res.data);
-        }catch(err){
-          console.log(err);
+    const [Users, setusers] = useState([])
+
+    useEffect(() => {
+        const fetchDataDetails = async () => {
+            try {
+                const urlAdminPanel = "/api/UsersController/GetUsers";
+                const res = await axios.get(process.env.REACT_APP_API_URL.concat(urlAdminPanel));
+                setusers(res.data);
+            } catch (err) {
+                console.log(err);
+            }
         }
-      }
-      fetchDataDetails()
+        fetchDataDetails()
     }, [])
     return (
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>

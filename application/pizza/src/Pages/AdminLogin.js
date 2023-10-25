@@ -4,7 +4,7 @@ import BannerImage from '../Assests/pizza.jpeg';
 import '../styles/Login.css';
 import { Link } from 'react-router-dom';
 
-function Admin() {
+function AdminLogin() {
 
     const [users, setusers] = useState([])
 
@@ -58,4 +58,4 @@ function Admin() {
     )
 }
 
-export default Admin
+export default AdminLogin
