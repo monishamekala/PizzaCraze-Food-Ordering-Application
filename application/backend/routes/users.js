@@ -1,20 +1,36 @@
 const { Router } = require('express');
 const db = require('../database');
-
-const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 
 const router = Router();
-
-router.use(session({
-    secret: 'OurPizzaCrazeApplicationTeam07Section04CSC848648',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 3600000}
-}));
 
 router.use((request, response, next) => {
     console.log('Request made to /Users route');
     next();
+});
+
+router.use(cookieParser());
+
+const verifyUser = (request, response, next) => {
+    const token = request.cookies.token;
+    if(!token){
+        return response.status(200).json({message: 'Token needed!'});
+    }else{
+        jwt.verify(token, "OurPizzaCrazeApplicationTeam07Section04CSC848648", (err, decoded) => {
+            if(err){
+                return response.json({message: "Authentication Error!"});
+            }else{
+                request.username = decoded.username;
+                request.userID = decoded.userID;
+                next();
+            }
+        })
+    }
+}
+
+router.get('/CurrentUser', verifyUser, async (request, response) => {
+    return response.status(200).json({Status: "Success", userID: request.userID, username: request.username});
 });
 
 router.get('/GetUsers', async (request, response) => {
@@ -75,16 +91,18 @@ router.post('/login',async (request, response) => {
             {
                 // query to update the login status of a user 
                 await db.promise().query(update);
-                //assigning session
-                request.session.user = validation[0][0].userID;
-                request.session.username = validation[0][0].username;
-                // console.log(validation[0][0]);
-                // console.log(request.session.user,"->", request.session.username, ": logged in successfull");
-                return response.status(200).json({message: "Login successful", userID: request.session.user, username: request.session.username});
+
+                //cookie-token
+                const username = validation[0][0].username;
+                const userID = validation[0][0].userID;
+                const token = jwt.sign({userID, username}, "OurPizzaCrazeApplicationTeam07Section04CSC848648", {expiresIn : '1d'});
+                response.cookie('token', token);
+
+                return response.status(200).json({message: "Login successful"});
             }
             else
             {
-                return response.status(200).json({message: "Either Email or Password is invalid"});
+                return response.status(200).json({Failmessage: "Either Email or Password is invalid"});
             }
 
         }
