@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import BannerImage from '../Assests/pizza.jpeg';
 import '../styles/Login.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
-  
-  //const [users, setusers] = useState( [] )
+
+  const navigte = useNavigate();
+
   const [users, setusers] = useState({
     email: "",
     password: ""
@@ -23,26 +25,27 @@ function Login() {
 
   const handleClick = async e => {
     e.preventDefault()
-
-    // Check password strength before submitting
-    
       try{
         const urlLogin = "/api/UserController/login"
-        const response = await axios.post(process.env.REACT_APP_API_URL.concat(urlLogin),users);
+        const response = await axios.post(process.env.REACT_APP_API_URL.concat(urlLogin),users, {withCredentials: true});
         
-        //To display the result of registration
-        if (response.data.message) {
+        if (response.data.message === "Login successful") {
+
           const successMessageElement = document.getElementById("success-message");
-  
+          navigte("/");
+          window.location.reload();
+          
           if (successMessageElement) {
             successMessageElement.textContent = response.data.message;
           }
+
+        }else{
+          const successMessageElement = document.getElementById("success-message");
+          
+          if (successMessageElement) {
+            successMessageElement.textContent = response.data.Failmessage;
+          }
         }
-
-        // const sessionUserID = response.data.userID;
-        const sessionUserName = response.data.username;
-
-        alert("Hi " + sessionUserName);
       }
       catch(err){
         if (err.response && err.response.data && err.response.data.error) {
@@ -55,9 +58,6 @@ function Login() {
       }
   }; 
 
-
-
-
   return (
     <div className='contact'>
         <div className='leftSide' style={{backgroundImage: `url(${BannerImage})`}}>
@@ -65,17 +65,16 @@ function Login() {
         </div>
         <div className='rightSide'>
             <form onSubmit = {handleClick}>
-            <h1>Login</h1>
+              <h1>Login</h1>
                 <label htmlFor='email'>Email</label>
                 <input id='email' placeholder='Enter Email' onChange={handleChange} type = 'email' required></input>
                 <label htmlFor='password'>Password</label>
                 <input type={showPassword ? 'text' : 'password'} id='password' placeholder='Enter Password' onChange={handleChange} required></input>
                 <input type="checkbox" onChange={togglePasswordVisibility}></input>Show Password
-                <button type='submit'>Submit</button>
-                
+                <button type='submit'>Submit</button>  
             </form>
+            <Link to = '/signup'>Create an account?</Link>
             <div id="success-message"></div>
-
         </div>
     </div>
   )
