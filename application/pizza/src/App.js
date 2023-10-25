@@ -25,6 +25,7 @@ function App() {
       <Router>
       <Navbar/>
       <Routes>
+        <Route path='/foradmin' exact Component={Admin}/>
         <Route path='/' exact Component = {Home}/>
         <Route path='/adminlogin' exact Component = {AdminLogin}/>
         <Route path='/adminpanel' exact Component = {AdminPanel}/>

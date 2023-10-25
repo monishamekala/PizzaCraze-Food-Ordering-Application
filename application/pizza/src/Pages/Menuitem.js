@@ -1,5 +1,6 @@
 import React from 'react';
 import Pizzaimg from '../Assests/pizza.jpeg';
+import '../styles/menuitem.css';
 
 function Menuitem() {
   return (
@@ -11,14 +12,23 @@ function Menuitem() {
     <h5 className="card-title">Margerita</h5>
     <p className="card-text">Thin crust pizza with lots of cheese, along with the toppings of olives and jalepeno</p>
     <div className="slidecontainer">
-        <label htmlFor="spice" style={{marginRight: "15px"}}>Spice</label>
-  <input type="range" min="1" max="4" value="2" className="slider" id="spice"/>
+        <label htmlFor="spice" >Spice</label>
+  <input type="range" min="0" max="3" className="slider" id="spice" />
 </div>
 <div className="slidecontainer">
-<label htmlFor="cheese" style={{marginRight: "10px"}}>Cheese</label>
-  <input type="range" min="1" max="4" value="4" className="slider" id="cheese" style={{background: "black", color: "black"}}/>
+<label htmlFor="cheese" >Cheese</label>
+  <input type="range" min="0" max="3" className="slider" id="cheese" />
 </div>
-    <a href="#" className="btn btn-primary" style={{background:"#e65f20", border:"none"}}>Add</a>
+<div className="slidecontainer">
+<label htmlFor="sauce" >Sauce</label>
+  <input type="range" min="0" max="3" className="slider" id="sauce" />
+</div>
+<div className="slidecontainer">
+<label htmlFor="meat" >Meat</label>
+  <input type="range" min="0" max="3" className="slider" id="meat"  />
+</div>
+<b id='price'>40 $</b>
+    <a href="#" className="btn btn-primary" style={{background:"#e65f20", border:"none",marginTop:"5px", display:"block"}}>Add to Cart</a>
   </div>
 </div>
 

@@ -1,24 +1,62 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import BannerImage from '../Assests/pizza.jpeg';
 import '../styles/Login.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
-  
-  const [users, setusers] = useState( [] )
 
-  useEffect( () => {
-    const fetchAllusers = async () => {
+  const navigte = useNavigate();
+
+  const [users, setusers] = useState({
+    email: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+    setusers(prev => ({...prev, [e.target.id]: e.target.value}))
+  };
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(prev => !prev);
+  };
+
+  const handleClick = async e => {
+    e.preventDefault()
       try{
-        const urlLogin = "/api/UserController/GetUsers"
-        const res = await axios.get(process.env.REACT_APP_API_URL.concat(urlLogin));
-        setusers(res.data);
-      }catch(err){
-        console.log(err);
+        const urlLogin = "/api/UserController/login"
+        const response = await axios.post(process.env.REACT_APP_API_URL.concat(urlLogin),users, {withCredentials: true});
+        
+        if (response.data.message === "Login successful") {
+
+          const successMessageElement = document.getElementById("success-message");
+          navigte("/");
+          window.location.reload();
+          
+          if (successMessageElement) {
+            successMessageElement.textContent = response.data.message;
+          }
+
+        }else{
+          const successMessageElement = document.getElementById("success-message");
+          
+          if (successMessageElement) {
+            successMessageElement.textContent = response.data.Failmessage;
+          }
+        }
       }
-    }
-    fetchAllusers()
-  }, [])
+      catch(err){
+        if (err.response && err.response.data && err.response.data.error) {
+          // The error message is in err.response.data.error
+          alert(err.response.data.error);
+        } else {
+          // If there's any other type of error
+          console.error(err);
+        }
+      }
+  }; 
 
   return (
     <div className='contact'>
@@ -26,33 +64,20 @@ function Login() {
 
         </div>
         <div className='rightSide'>
-            <form>
-            <h1>Login</h1>
-                <label htmlFor='uname'>Username</label>
-                <input id='uname' placeholder='Enter Username'></input>
+            <form onSubmit = {handleClick}>
+              <h1>Login</h1>
+                <label htmlFor='email'>Email</label>
+                <input id='email' placeholder='Enter Email' onChange={handleChange} type = 'email' required></input>
                 <label htmlFor='password'>Password</label>
-                <input type='Password' id='password' placeholder='Enter Password'></input>
-                <button type='submit'>Submit</button>
-                
+                <input type={showPassword ? 'text' : 'password'} id='password' placeholder='Enter Password' onChange={handleChange} required></input>
+                <input type="checkbox" onChange={togglePasswordVisibility}></input>Show Password
+                <button type='submit'>Submit</button>  
             </form>
-
+            <Link to = '/signup'>Create an account?</Link>
+            <div id="success-message"></div>
         </div>
-      {/* <h1>
-        My Users
-      </h1>
-
-      <div>
-        {users.map (eachuser => (
-          <div key = {eachuser.username}>
-            <h2>{eachuser.username}</h2>
-            <p>{eachuser.password}</p>
-            <p>{eachuser.email}</p>
-            <span>{eachuser.phone}</span>
-          </div>
-        ))}
-      </div> */}
     </div>
   )
-}
+};
 
 export default Login
