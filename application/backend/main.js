@@ -26,7 +26,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-app.use('/api/UserController', usersRoute);
+app.use('/api/UsersController', usersRoute);
 app.use('/api/MenuController', menuRoute);
 
 
