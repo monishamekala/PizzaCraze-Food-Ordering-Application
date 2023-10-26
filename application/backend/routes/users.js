@@ -113,4 +113,21 @@ router.post('/login',async (request, response) => {
         }            
 });  
 
+<<<<<<< Updated upstream
 module.exports = router;
+=======
+router.get("/profile/:userID", async (request, response) => {
+    const user = request.params.userID;
+    const q = `SELECT * FROM FoodOrderSys.LoginDetails WHERE userID = '${user}'`;
+    const results = await db.promise().query(q);
+    response.status(200).send(results[0][0]);
+});
+
+router.get("/logout", async (request, response) => {
+    console.log("Executing");
+    response.clearCookie('token');
+    return response.json({Message: "Logged out successfully"});
+});
+
+module.exports = router;
+>>>>>>> Stashed changes
