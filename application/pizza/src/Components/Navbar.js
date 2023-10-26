@@ -55,13 +55,8 @@ function Navbar() {
         
         <Link to="/"><img src={logo}/></Link>
         </div>
-        <div id='centerside'>
-        
-            <Link to="/menu"> Menu</Link>
-            {/* {auth ? <Link to="/logout">{username}</Link> : <Link to="/login"> Log In</Link> } */}
-
-            {/* {auth && (<Link to = '/' onClick={handleLogout}>Logout</Link>)} */}
-
+        <div id='centerside'> 
+            <Link to='/menu'>Menu</Link>
             <Link to="/contact"> Contact</Link>
             <Link to="/about"> About</Link>
         </div>

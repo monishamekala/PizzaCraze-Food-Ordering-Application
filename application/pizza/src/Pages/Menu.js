@@ -19,8 +19,6 @@ function Menu() {
     fetchMentuDetails()
   }, [])
 
-
-      
   return (
     <div>
       
