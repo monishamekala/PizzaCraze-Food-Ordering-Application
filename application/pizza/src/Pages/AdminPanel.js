@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/Panel.css';
-function AdminPanelUsers() {
+
+function AdminPanel() {
     const [Users, setusers] = useState([])
 
     useEffect(() => {
         const fetchDataDetails = async () => {
             try {
-                const urlAdminPanel = "/api/UsersController/GetUsers";
+                const urlAdminPanel = "/api/AdminController/GetUsers";
                 const res = await axios.get(process.env.REACT_APP_API_URL.concat(urlAdminPanel));
                 setusers(res.data);
             } catch (err) {
@@ -41,4 +42,4 @@ function AdminPanelUsers() {
         </div>
     );
 }
-export default AdminPanelUsers;
+export default AdminPanel

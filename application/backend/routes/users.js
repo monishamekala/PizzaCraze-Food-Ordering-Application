@@ -113,9 +113,6 @@ router.post('/login',async (request, response) => {
         }            
 });  
 
-<<<<<<< Updated upstream
-module.exports = router;
-=======
 router.get("/profile/:userID", async (request, response) => {
     const user = request.params.userID;
     const q = `SELECT * FROM FoodOrderSys.LoginDetails WHERE userID = '${user}'`;
@@ -130,4 +127,3 @@ router.get("/logout", async (request, response) => {
 });
 
 module.exports = router;
->>>>>>> Stashed changes
