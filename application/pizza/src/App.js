@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import Navbar from './Components/Navbar';
 import Admin from './Pages/Admin';
+import AdminLogin from './Pages/AdminLogin';
+import AdminPanel from './Pages/AdminPanel';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
@@ -24,8 +26,10 @@ function App() {
       <Router>
       <Navbar/>
       <Routes>
-        <Route path='/foradmin' exact Component={Admin}/>
+        <Route path='/admin' exact Component = {Admin}/>
         <Route path='/' exact Component = {Home}/>
+        <Route path='/adminlogin' exact Component = {AdminLogin}/>
+        <Route path='/adminpanel' exact Component = {AdminPanel}/>
         <Route path='/menu' exact Component = {Menu}/>
         <Route path='/about' exact Component = {About}/>
         <Route path='/signup' exact Component = {Signup}/>
