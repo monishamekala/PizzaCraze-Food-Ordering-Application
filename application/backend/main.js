@@ -17,7 +17,7 @@ app.use(cors({
     }
 ));
 
-app.use('/api/UsersController', usersRoute);
+app.use('/api/UserController', usersRoute);
 app.use('/api/MenuController', menuRoute);
 
 app.listen(PORT, () => {
