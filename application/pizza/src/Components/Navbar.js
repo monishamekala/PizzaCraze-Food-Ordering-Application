@@ -8,7 +8,6 @@ import userlogo from '../Assests/person-circle.svg';
 import loginlogo from '../Assests/add-profile.svg';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import handleLogout from '../Pages/ProfilePage';
 import '../styles/Navbar.css';
 
 function Navbar() {
@@ -51,25 +50,29 @@ function Navbar() {
 
   return (
     <div className='navbar'>
+
         <div className='leftSide'>
-        
         <Link to="/"><img src={logo}/></Link>
         </div>
-        <div id='centerside'> 
+
+        <div className='centerside'> 
             <Link to='/menu'>Menu</Link>
-            <Link to="/contact"> Contact</Link>
-            <Link to="/about"> About</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/about">About</Link>
         </div>
         
         <div className='rightSide'>
+
           <div class="search">
             <input type="text" placeholder="Type.." ref={searchFor} value={inputValue} onChange={handleChange}/>
             <Link to={`/searchmenu/${inputValue}`}>
             <button onClick={handleSearch}><img src={serachlogo}/></button>
             </Link>
           </div>
+
             <Link to="/contact"><img src={cartlogo}/></Link>
             {auth ? <Link to={`/profile/${userID}`}><img src={userlogo} alt={username}/></Link> : <Link to="/login"> <img src={loginlogo} alt='profile'/></Link> }
+       
         </div>
     </div>
   )
