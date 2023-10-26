@@ -71,10 +71,14 @@ function Login() {
                 <label htmlFor='password'>Password</label>
                 <input type={showPassword ? 'text' : 'password'} id='password' placeholder='Enter Password' onChange={handleChange} required></input>
                 <input type="checkbox" onChange={togglePasswordVisibility}></input>Show Password
+                <Link to = '/forgotPassword'>Forgot Password?</Link>
                 <button type='submit'>Submit</button>  
             </form>
             <Link to = '/signup'>Create an account?</Link>
             <div id="success-message"></div>
+
+
+            {/* id, name, value */}
         </div>
     </div>
   )

@@ -11,7 +11,7 @@ function AdminLogin() {
     useEffect(() => {
         const fetchAllusers = async () => {
             try {
-                const urlAdmin = "/api/UserController/GetUsers"
+                const urlAdmin = "/api/AdminController/GetUsers"
                 const res = await axios.get(process.env.REACT_APP_API_URL.concat(urlAdmin));
                 setusers(res.data);
             } catch (err) {
