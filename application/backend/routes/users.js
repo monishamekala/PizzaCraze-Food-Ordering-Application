@@ -120,6 +120,36 @@ router.get("/profile/:userID", async (request, response) => {
     response.status(200).send(results[0][0]);
 });
 
+router.post("/forgot-password", async (request, response) => {
+    const email = request.body.email.toLowerCase();
+    //to check if the email exists
+    const checkEmail = `SELECT COUNT(*) AS count FROM FoodOrderSys.LoginDetails WHERE email = '${email}'`;
+    //if new user, then insert the users data
+    const getPassword = `SELECT password FROM FoodOrderSys.LoginDetails WHERE email = '${email}'`;
+    
+    try {
+
+        const countOfEmail = await db.promise().query(checkEmail);
+        const countNum = countOfEmail[0][0].count;
+
+        //if the email given by the user does not exist in the database then say "Please register"
+        if (countNum === 0){
+            response.status(200).json({ message: "Please register/Sign up" });
+        }
+        //if email is already there in the database then send a mail with the password in the mail
+        else{
+            //query to get the password
+            const thePassword = await db.promise().query(getPassword);
+            const passwordString = thePassword[0][0].password;
+            //send a mail with password as its content
+            
+            return response.status(200).json({ message: "Your password has been sent to the registered email id"});
+        }
+    } catch (error) {
+        response.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
 router.get("/logout", async (request, response) => {
     console.log("Executing");
     response.clearCookie('token');
