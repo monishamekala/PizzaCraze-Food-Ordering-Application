@@ -1,5 +1,7 @@
 // import React from 'react'
 import Menuitem from './Menuitem'
+import Pizzaimg from '../Assests/pizza.jpeg';
+import '../styles/menuitem.css';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -22,9 +24,9 @@ function Menu() {
   return (
     <div>
       
-      <h2 style={{marginTop: "10px"}}>
+      {/* <h2 style={{marginTop: "10px"}}>
         Menu List
-      </h2>
+      </h2> */}
       <hr></hr>
 
       <table style={{marginLeft: "10px"}}>
@@ -58,7 +60,20 @@ function Menu() {
         </tbody>
       </table>
       <hr></hr>
-      <Menuitem></Menuitem>
+
+      <div className='container my-4' >
+        
+        <div className='row'>
+        {menuItems.map(eachItem => (
+            <div className='col-md-4' key={eachItem.menu_id} >
+          <Menuitem name = {eachItem.name} price = {eachItem.price} image_url = {eachItem.image_url} description = {eachItem.description}></Menuitem>
+          </div>
+            
+          ))}
+          
+        </div>
+      </div>
+      
       
     </div>
   )
