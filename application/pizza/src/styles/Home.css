@@ -13,7 +13,7 @@
   
   .headerContainer {
     width: auto;
-    margin-right: 850px;
+    /* margin-right: 850px; */
   }
   
   .headerContainer h1 {
@@ -96,4 +96,11 @@
       color: #121619;
     }
   }
-  
+
+  .backvideo{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+
+}
