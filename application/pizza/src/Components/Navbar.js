@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import logo from '../Assests/pizzaLogo.png';
-import serachlogo from '../Assests/search.png';
-// import cartlogo from '../Assests/whitecart.png';
-// import userlogo from '../Assests/whiteuser.png';
+import serachlogo from '../Assests/search-icon.svg';
 import cartlogo from '../Assests/cart-fill.svg';
 import userlogo from '../Assests/person-circle.svg';
 import loginlogo from '../Assests/add-profile.svg';
@@ -30,29 +28,34 @@ function Navbar() {
   }
 
   //to get the user assigned to the token
-  useEffect(() => {
-    const lookForAuth = async () => {
-      try{
-        const urlCurrentUser = "/api/UserController/CurrentUser";
-        const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlCurrentUser), {withCredentials: true});
-        if (response.data.Status === "Success"){
-          //if the token is created (i.e., user is autherised then set auth to true)
-          setAuth(true);
-          setUsername(response.data.username);
-          setUserID(response.data.userID);
-        }
-      }catch(err){
-        console.error(err);
+  const lookForAuth = async () => {
+    try{
+      const urlCurrentUser = "/api/UserController/CurrentUser";
+      const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlCurrentUser), {withCredentials: true});
+      if (response.data.Status === "Success"){
+        //if the token is created (i.e., user is autherised then set auth to true)
+        setAuth(true);
+        setUsername(response.data.username);
+        setUserID(response.data.userID);
       }
-    };
+    }catch(err){
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
     lookForAuth();
   }, []);
+
+  const AskToLogin = () => {
+    alert("Please log in");
+  };
 
   return (
     <div className='navbar'>
 
         <div className='leftSide'>
-        <Link to="/"><img src={logo}/></Link>
+        <Link to="/">PizzaCraze</Link>
         </div>
 
         <div className='centerside'> 
@@ -64,14 +67,19 @@ function Navbar() {
         <div className='rightSide'>
 
           <div class="search">
-            <input type="text" placeholder="Type.." ref={searchFor} value={inputValue} onChange={handleChange}/>
+
+            <input type="text" placeholder="Search.." ref={searchFor} value={inputValue} onChange={handleChange}/>
+
             <Link to={`/searchmenu/${inputValue}`}>
             <button onClick={handleSearch}><img src={serachlogo}/></button>
             </Link>
-          </div>
 
-            <Link to="/contact"><img src={cartlogo}/></Link>
+          </div>
+          <div className='rightbuttons'>
+            {auth ? <Link to={`/mycart/${userID}`}><img src={cartlogo} alt={username}/></Link> : <Link to= '/'> <img onClick = {AskToLogin} src={cartlogo} alt='profile'/></Link> }
+
             {auth ? <Link to={`/profile/${userID}`}><img src={userlogo} alt={username}/></Link> : <Link to="/login"> <img src={loginlogo} alt='profile'/></Link> }
+          </div>
        
         </div>
     </div>

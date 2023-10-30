@@ -1,66 +1,44 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Menuitem from './Menuitem'
+
 
 function SearchMenu() {
     let { searchTerm } = useParams();
 
     const [searchresults, setResult] = useState( [] );
 
+    // const navigate = useNavigate();
+
     useEffect( () => {
         const fetchSearchResults = async () => {
           try{
             const urlHI = `/api/MenuController/searchBar/${searchTerm}`;
             const res = await axios.get(process.env.REACT_APP_API_URL.concat(urlHI));
-            setResult(res.data);
+            setResult(res.data);              
           }catch(err){
             console.log(err);
           }
         }
-        fetchSearchResults()
+        fetchSearchResults();
       }, [searchTerm]);
 
   return (
     <div>
-        <h1>Search results for '{searchTerm}'</h1>
-
-      {searchresults.length === 0 ? (
-        <p>No such items</p>
-      ) : (
-        <table style={{marginLeft: "10px"}}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Calories</th>
-            <th>Ingredients</th>
-            <th>Veg</th>
-            <th>Vegan</th>
-            <th>Non-Veg</th>
-          </tr>
-        </thead>
-        <tbody>
-          {searchresults.map(eachItem => (
-            <tr key={eachItem.menu_id}>
-              <td>{eachItem.name}</td>
-              <td>{eachItem.category}</td>
-              <td>{eachItem.description}</td>
-              <td>{eachItem.price}</td>
-              <td>{eachItem.calories}</td>
-              <td>{eachItem.ingredients}</td>
-              <td>{eachItem.is_veg}</td>
-              <td>{eachItem.is_vegan}</td>
-              <td>{eachItem.is_nonveg}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      )}
-
-     
+      <div className='container my-4' >
+        <div className='row'>
+          {searchresults.length === 0 ? (<p>No such items</p>) : (
+          searchresults.map(eachItem => (
+          <div className='col-md-4' key={eachItem.menu_id} >
+            <Menuitem itemID = {eachItem.menu_id} name = {eachItem.name} price = {eachItem.price} image_url = {eachItem.image_url} description = {eachItem.description}></Menuitem>
+          </div> 
+          )))}
+        </div>
+      </div>
+      {/* <button className="btn btn-primary custom-button" onClick={CheckLogin}>Go to Cart</button> */}
     </div>
+
   )
 }
 

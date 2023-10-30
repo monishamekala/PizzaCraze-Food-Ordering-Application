@@ -4,17 +4,13 @@ const db = require('../database');
 const router = Router();
 
 router.use((request, response, next) => {
-    console.log('Request made to /Users route');
+    console.log('Request made to /Admin route');
     next();
 });
 
 router.get('/GetUsers', async (request, response) => {
-    // const q = "SELECT * FROM FoodOrderSys.LoginDetails";
-    // db.query(q, (err, data) =>{
-    //     if(err) return res.json(err)
-    //     return res.json(data)
-    // })
-    const results = await db.promise().query('SELECT * FROM FoodOrderSys.LoginDetails');
+    const q = "SELECT * FROM FoodOrderSys.LoginDetails";
+    const results = await db.promise().query(q);
     response.status(200).send(results[0]);
 });
 

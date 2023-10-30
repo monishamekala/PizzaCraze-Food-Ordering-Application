@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function ProfilePage() {
@@ -45,8 +45,11 @@ function ProfilePage() {
         <div>
             <h1>Hi {currentUser.username}!</h1>
             <h2>Your Password: {currentUser.password}</h2>
+            <h3>Phone Number: {currentUser.phone}</h3>
+            <h4>Addresses</h4>
+            <h5>Order history</h5>
 
-            <button type='button' onClick={handleLogout}>Logout</button>
+            <button type='button' className = "btn btn-primary" onClick={handleLogout}>Logout</button>
         </div>
     )
 }

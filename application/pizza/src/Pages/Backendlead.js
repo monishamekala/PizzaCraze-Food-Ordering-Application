@@ -7,7 +7,7 @@ function Backendlead() {
         <h1>Backend Lead : Nicholas </h1>
         <br></br>
 
-        <img src={Pic} height={300}/>
+        <img src={Pic} height={300} alt = "Nich"/>
 
         <br/>
         <br/>

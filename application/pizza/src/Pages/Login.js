@@ -32,8 +32,9 @@ function Login() {
         if (response.data.message === "Login successful") {
 
           const successMessageElement = document.getElementById("success-message");
-          navigte("/");
+          navigte("/menu");
           window.location.reload();
+          alert("You can now add to your cart");
           
           if (successMessageElement) {
             successMessageElement.textContent = response.data.message;

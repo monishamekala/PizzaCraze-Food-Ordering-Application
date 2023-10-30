@@ -6,22 +6,18 @@ import '../styles/Home.css';
 
 function Home() {
   return (
-    // <div className='home' style={{backgroundImage: `url(${BannerImage})`}}>
-        <div className='home'>
+    <div className='home'>
       <video autoPlay loop muted playsInline className="backvideo">
-            <source src={Video} type="video/mp4"/>
-        </video>
+        <source src={Video} type="video/mp4"/>
+      </video>
+
       <div className='headerContainer'>
         <h1>Pizza Craze</h1>
         <br/>
         <p>We serve the most cheesiest pizzas</p>
-
         <Link to={'/menu'}>
         <button>Order Now</button></Link>
-
-        
-
-      </div>
+      </div> 
     </div>
   )
 }

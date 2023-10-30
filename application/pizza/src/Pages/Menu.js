@@ -1,12 +1,14 @@
 // import React from 'react'
 import Menuitem from './Menuitem'
-import Pizzaimg from '../Assests/pizza.jpeg';
 import '../styles/menuitem.css';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Menu() {
-  const [menuItems, setmenu] = useState( [] )
+  const [menuItems, setmenu] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect( () => {
     const fetchMentuDetails = async () => {
@@ -21,60 +23,35 @@ function Menu() {
     fetchMentuDetails()
   }, [])
 
+  const CheckLogin = async () => {
+    try{
+      const urlCurrentUser = "/api/UserController/CurrentUser";
+      const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlCurrentUser), {withCredentials: true});
+
+      if(response.data.Status === "Success"){
+        const user = response.data.userID;
+        const url = `/mycart/${user}`;
+        navigate(url);
+      }
+      else{
+        alert("Please log in");
+      }
+    }catch(err){
+      console.log(err);
+    }
+  }
   return (
     <div>
-      
-      {/* <h2 style={{marginTop: "10px"}}>
-        Menu List
-      </h2> */}
-      <hr></hr>
-
-      <table style={{marginLeft: "10px"}}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Calories</th>
-            <th>Ingredients</th>
-            <th>Veg</th>
-            <th>Vegan</th>
-            <th>Non Veg</th>
-          </tr>
-        </thead>
-        <tbody>
-          {menuItems.map(eachItem => (
-            <tr key={eachItem.menu_id}>
-              <td>{eachItem.name}</td>
-              <td>{eachItem.category}</td>
-              <td>{eachItem.description}</td>
-              <td>{eachItem.price}</td>
-              <td>{eachItem.calories}</td>
-              <td>{eachItem.ingredients}</td>
-              <td>{eachItem.is_veg}</td>
-              <td>{eachItem.is_vegan}</td>
-              <td>{eachItem.is_nonveg}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <hr></hr>
-
       <div className='container my-4' >
-        
         <div className='row'>
-        {menuItems.map(eachItem => (
-            <div className='col-md-4' key={eachItem.menu_id} >
-          <Menuitem name = {eachItem.name} price = {eachItem.price} image_url = {eachItem.image_url} description = {eachItem.description}></Menuitem>
-          </div>
-            
+          {menuItems.map(eachItem => (
+          <div className='col-md-4' key={eachItem.menu_id} >
+            <Menuitem itemID = {eachItem.menu_id} name = {eachItem.name} price = {eachItem.price} image_url = {eachItem.image_url} description = {eachItem.description}></Menuitem>
+          </div> 
           ))}
-          
         </div>
       </div>
-      
-      
+      <button className="btn btn-primary custom-button" onClick={CheckLogin}>Go to Cart</button>
     </div>
   )
 }

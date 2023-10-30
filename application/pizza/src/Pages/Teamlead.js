@@ -7,7 +7,7 @@ function Teamlead() {
         <h1>Team Lead : Monisha </h1>
         <br></br>
         
-        <img src={Pic} height={300}/>
+        <img src={Pic} height={300} alt = "Hey Monisha Here"/>
 
         <br/>
         <br/>
