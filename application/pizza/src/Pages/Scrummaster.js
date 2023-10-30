@@ -7,7 +7,7 @@ function Scrummaster() {
         <h1>Scrum Master : Malieka</h1>
         <br></br>
 
-        <img src={Pic} height={300}/>
+        <img src={Pic} height={300} alt = "Malieka"/>
 
         <br/>
         <br/>
