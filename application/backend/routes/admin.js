@@ -14,6 +14,16 @@ router.get('/GetUsers', async (request, response) => {
     response.status(200).send(results[0]);
 });
 
+router.get('/GetMenu', async (request, response) => {
+    // const q = "SELECT * FROM FoodOrderSys.MenuTable";
+    // db.query(q, (err, data) =>{
+    //     if(err) return res.json(err)
+    //     return res.json(data)
+    // })
+    const results = await db.promise().query('SELECT * FROM FoodOrderSys.MenuTable');
+    response.status(200).send(results[0]);
+});
+
 router.post('/login',async (request, response) => {
     
     const email = request.body.email.toLowerCase(); 
