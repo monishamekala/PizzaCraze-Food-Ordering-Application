@@ -20,7 +20,6 @@ router.get('/GetMenu', async (request, response) => {
 });
 
 router.post('/login',async (request, response) => {
-    
     const email = request.body.email.toLowerCase(); 
     const password = request.body.password;
 
