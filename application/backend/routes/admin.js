@@ -35,7 +35,6 @@ router.post('/login',async (request, response) => {
             if(emailExists > 0) 
             {
                 // query to update the login status of a user 
-
                 return response.status(200).json({message: "Login successful"});
             }
             else
