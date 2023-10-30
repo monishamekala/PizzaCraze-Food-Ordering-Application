@@ -53,23 +53,17 @@ function AdminLogin() {
   }; 
 
     return (
-        <div className='contact'>
-            <div className='leftSide' style={{ backgroundImage: `url(${BannerImage})` }}>
-
-            </div>
-            <div className='rightSide'>
+            <div className='Center'>
             <form onSubmit = {handleClick}>
               <h1>Admin Login</h1>
                 <label htmlFor='email'>Email</label>
                 <input id='email' placeholder='Enter Email' onChange={handleChange} type = 'email' required></input>
                 <label htmlFor='password'>Password</label>
                 <input type = 'password' id='password' placeholder='Enter Password' onChange={handleChange} required></input>
-                <button type='submit'>Submit</button>  
+                <button type='submit'>Login</button>  
             </form>
             <div id="success-message"></div>
-
             </div>
-        </div>
     )
 }
 
