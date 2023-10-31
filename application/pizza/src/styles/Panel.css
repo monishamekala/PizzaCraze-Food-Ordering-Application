@@ -1,0 +1,7 @@
+.center-table {
+    margin: 0 auto; /* Horizontally center the table */
+}
+
+.center-text {
+    text-align: center; /* Center the text within the table cells */
+}

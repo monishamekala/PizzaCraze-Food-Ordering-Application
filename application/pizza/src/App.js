@@ -2,10 +2,20 @@ import React from 'react'
 import logo from './logo.svg';
 import './App.css';
 import Navbar from './Components/Navbar';
+import Admin from './Pages/Admin';
+import AdminLogin from './Pages/AdminLogin';
+import AdminPanel from './Pages/AdminPanel';
+import AdminUsers from './Pages/AdminUsers';
+import AdminMenu from './Pages/AdminMenu';
+import AdminOrders from './Pages/AdminOrders';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
+import ForgotPassword from './Pages/ForgotPassword';
+import ProfilePage from './Pages/ProfilePage';
+import Contact from './Pages/Contact';
 import Signup from './Pages/Signup';
 import Menu from './Pages/Menu';
+import Cart from './Pages/Cart';
 import About from './Pages/About';
 import SearchMenu from './Pages/searchmenu';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
@@ -23,12 +33,22 @@ function App() {
       <Router>
       <Navbar/>
       <Routes>
+        <Route path='/admin' exact Component = {Admin}/>
         <Route path='/' exact Component = {Home}/>
+        <Route path='/adminlogin' exact Component = {AdminLogin}/>
+        <Route path='/adminpanel' exact Component = {AdminPanel}/>
+        <Route path='/adminusers' exact Component = {AdminUsers}/>
+        <Route path='/adminmenu' exact Component = {AdminMenu}/>
+        <Route path='/adminorders' exact Component = {AdminOrders}/>
         <Route path='/menu' exact Component = {Menu}/>
+        <Route path='/contact' exact Component = {Contact}/>
         <Route path='/about' exact Component = {About}/>
         <Route path='/signup' exact Component = {Signup}/>
         <Route path='/login' exact Component = {Login}/>
+        <Route path='/forgotpassword' exact Component={ForgotPassword}/>
+        <Route path='/profile/:userID' exact Component = {ProfilePage}/>
         <Route path='/searchmenu/:searchTerm' exact Component = {SearchMenu}/>
+        <Route path='/mycart/:userID' exact Component={Cart}/>
         <Route path='/about/teamlead' exact Component = {Teamlead}/>
         <Route path='/about/frontendlead' exact Component={Frontendlead}/>
         <Route path='/about/backendlead' exact Component={Backendlead}/>

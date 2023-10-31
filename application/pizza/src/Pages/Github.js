@@ -7,7 +7,7 @@ function Github() {
         <h1>Github Master : Joey</h1>
         <br></br>
 
-        <img src={Pic} height={300}/>
+        <img src={Pic} height={300} alt = "Joey" />
 
         <br/>
         <br/>

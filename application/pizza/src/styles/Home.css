@@ -13,7 +13,7 @@
   
   .headerContainer {
     width: auto;
-    margin-left: 50px;
+    /* margin-right: 850px; */
   }
   
   .headerContainer h1 {
@@ -33,7 +33,7 @@
   }
   
   .headerContainer button {
-    color: black;
+    /* color: black; */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -43,22 +43,27 @@
     width: 180px;
     color: white;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 22px;
+    font-weight:550;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s,  box-shadow 0.3s; /* Add transitions for smooth animation */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
   }
   
   .headerContainer button:hover {
-    background-color: #07090a;
+    /* background-color: #07090a;
     cursor: pointer;
-    transition: 0.3s ease-in;
+    transition: 0.3s ease-in; */
+
+    background-color: white;
+    color: #cb2929dd;
+    transform: scale(1.07); /*Slightly scale up on hover */
+    box-shadow: 0px 15px 30px rgba(7, 7, 7, 0.4);
   }
   
   @media only screen and (max-width: 650px) {
     .home {
       justify-content: center;
       align-items: center;
-    }
-    .headerContainer h1,
-    .headerContainer p {
     }
   
     .headerContainer {
@@ -86,14 +91,25 @@
     }
   
     .headerContainer button {
-      background-color: white;
-      color: #121619;
-      margin-bottom: 30px;
+      /* background-color: white; */
+      /* color: #121619;
+      margin-bottom: 30px; */
+
+      transition: transform 0.3s, background-color 0.3s, color 0.3s,  box-shadow 0.3s; /* Add transitions for smooth animation */
+      box-shadow: 0px 5px 15px rgba(248, 247, 247, 0.2); /* Add a subtle box shadow */
     }
   
     .headerContainer button:hover {
-      background-color: rgb(225, 225, 225);
-      color: #121619;
+      background-color: white;
+      color: #cb2929dd;
+      transform: scale(1.07); /*Slightly scale up on hover */
+      box-shadow: 0px 15px 30px rgba(255, 254, 254, 0.4);
     }
   }
-  
+
+  .backvideo{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }

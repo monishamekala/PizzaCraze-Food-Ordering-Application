@@ -7,7 +7,7 @@ function Frontendlead() {
         <h1>Frontend Lead : Aishwarya</h1>
         <br></br>
         
-        <img src={Pic} height={300}/>
+        <img src={Pic} height={300}alt = "Aishwarya"/>
 
         <br/>
         <br/>
