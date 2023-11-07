@@ -3,6 +3,10 @@ import axios from 'axios';
 import '../styles/menuitem.css';
 import deleteIcon from '../Assests/deleteIcon.svg';
 import { useParams } from 'react-router-dom';
+import Cartitem from './Cartitem';
+
+
+
 
 function Cart() {
     let { userID } = useParams();
@@ -50,7 +54,7 @@ function Cart() {
 
   return (  
     <div>
-    {cartItems.length === 0 ? (
+    {/* {cartItems.length === 0 ? (
       <p id="EmptyCart-message">Your cart is empty</p>
     ) : (
       <div>
@@ -88,8 +92,23 @@ function Cart() {
           </tbody>
         </table>
         <p>Total: {total}</p>
+        
       </div>
-    )}
+    )} */}
+    {/* <cartitems></cartitems> */}
+    <div className='container my-1' >
+        <div className='row'>
+          {cartItems.map(eachItem => (
+          <div className='col-md-30' key={eachItem.cart_itemID} >
+            <Cartitem itemID = {eachItem.cart_itemID} name = {eachItem.name} price = {eachItem.price} cheese = {cheeseLevel[0][eachItem.cheese_level]} sauce = {sauceLevel[0][eachItem.sauce_level]} meat = {meatLevel[0][eachItem.meat_level]} spice = {spiceLevel[0][eachItem.spice_level]} image_url = {eachItem.image_url}></Cartitem>
+          </div> 
+          ))}
+        </div>
+      </div>
+      <button className="btn btn-primary custom-button" >CheckOut</button>
+   {/* <Cartitem></Cartitem>
+   <Cartitem></Cartitem>
+   <Cartitem></Cartitem> */}
     </div>
 
   )
