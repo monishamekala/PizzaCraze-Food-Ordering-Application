@@ -44,7 +44,7 @@ function Menuitem(props) {
   };
 
   return (
-    <div className="card my-3" style={{width: "20rem"}}>
+    <div className="card my-3 border" style={{width: "20rem"}}>
 
       <img src={props.image_url} className="card-img-top" alt="Pzza Image" style={{height: "200px"}}/>
       <div className="card-body">
