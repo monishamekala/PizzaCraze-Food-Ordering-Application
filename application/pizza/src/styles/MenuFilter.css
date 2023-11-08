@@ -1,0 +1,18 @@
+.custom-button-filter-container {
+    display: flex; /* Make the container a flex container */
+    justify-content: center; /* Center the buttons horizontally */
+}
+
+.custom-button-filter {
+    background: #020202; /* Set the background color */
+    border: none; /* Remove the button border */
+    margin: 5px; /* Add some margin for spacing */
+    color: #ffffff; /* Set the font color to white */
+    text-align: center; /* Center the text inside the button */
+    transition: background 0.3s; /* Add a transition for a smooth hover effect on the background color */
+    font-size: 22px; /* Adjust the font size as needed */
+}
+
+.custom-button-filter:hover {
+    background: #cb2929dd; /* Change background color on hover */
+}

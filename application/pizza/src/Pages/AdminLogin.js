@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import BannerImage from '../Assests/pizza.jpeg';
 import '../styles/Login.css';
 import { useNavigate } from 'react-router-dom';
 
