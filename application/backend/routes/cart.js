@@ -80,4 +80,20 @@ router.get('/get-cart-items/:query', async (request, response) => {
     // response.status(200).send(results[0]);
 });
 
+router.post("/remove-from-cart", async (request, response) => {
+    const itemID = request.body.itemID;
+    const itemName = request.body.name;
+    
+    // removing item from cart using the cart_itemID
+    const removeItem = `DELETE FROM FoodOrderSys.cartItemsTable WHERE cart_itemID = '${itemID}'`;
+    
+    try {
+        await db.promise().query(removeItem);
+        return response.status(200).json({ message: `Removed '${itemName}' from your cart`, success: "Yes"});
+    } catch (error) {
+        console.log(error);
+        return response.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
 module.exports = router;

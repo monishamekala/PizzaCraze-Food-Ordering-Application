@@ -16,6 +16,7 @@ import Contact from './Pages/Contact';
 import Signup from './Pages/Signup';
 import Menu from './Pages/Menu';
 import Cart from './Pages/Cart';
+import CheckOut from './Pages/Checkout';
 import About from './Pages/About';
 import SearchMenu from './Pages/searchmenu';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
@@ -49,6 +50,7 @@ function App() {
         <Route path='/profile/:userID' exact Component = {ProfilePage}/>
         <Route path='/searchmenu/:searchTerm' exact Component = {SearchMenu}/>
         <Route path='/mycart/:userID' exact Component={Cart}/>
+        <Route path='/checkout/:userID' exact Component={CheckOut}/>
         <Route path='/about/teamlead' exact Component = {Teamlead}/>
         <Route path='/about/frontendlead' exact Component={Frontendlead}/>
         <Route path='/about/backendlead' exact Component={Backendlead}/>
