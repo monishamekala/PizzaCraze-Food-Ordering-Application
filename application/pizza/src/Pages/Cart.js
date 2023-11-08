@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/menuitem.css';
+import '../styles/Cartitem.css';
 import deleteIcon from '../Assests/deleteIcon.svg';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import Cartitem from './Cartitem';
+
+
+
 
 function Cart() {
     let { userID } = useParams();
@@ -26,9 +30,7 @@ function Cart() {
           }
         }else{
           setCart(res.data);
-        }
-        console.log(res.data);
-        
+        }        
       }catch(err){
         console.log(err);
       }
@@ -50,48 +52,29 @@ function Cart() {
 
   return (  
     <div>
-    {cartItems.length === 0 ? (
-      <p id="EmptyCart-message">Your cart is empty</p>
-    ) : (
-      <div>
-        <h1>Your cart</h1>
-        <table style={{ marginLeft: "10px" }}>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Calories</th>
-              <th>quantity</th>
-              <th>cheese</th>
-              <th>Sauce</th>
-              <th>Meat</th>
-              <th>Spice</th>
-              <th>Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cartItems.map((eachItem) => (
-              <tr key={eachItem.cart_itemID}>
-                <td>{eachItem.name}</td>
-                <td>{eachItem.price}</td>
-                <td>{eachItem.calories}</td>
-                <td>{eachItem.quantity}</td>
-                <td>{cheeseLevel[0][eachItem.cheese_level]}</td>
-                <td>{sauceLevel[0][eachItem.sauce_level]}</td>
-                <td>{meatLevel[0][eachItem.meat_level]}</td>
-                <td>{spiceLevel[0][eachItem.spice_level]}</td>
-                <td>
-                  <img src={deleteIcon} alt="Delete" />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <p>Total: {total}</p>
-      </div>
-    )}
-    </div>
+      {cartItems.length === 0 ? (
+        <div className='noItems'>
+          <h1 id="EmptyCart-message">Your cart is empty</h1>
 
+          <Link to={'/menu'}>
+          <button>Add Items</button>
+          </Link>
+        </div>
+  ) : (
+      <div>
+      <div className='container my-1' >
+        <div className='row'>
+          {cartItems.map(eachItem => (
+          <div className='col-md-30' key={eachItem.cart_itemID} >
+            <Cartitem itemID = {eachItem.cart_itemID} name = {eachItem.name} price = {eachItem.price} cheese = {cheeseLevel[0][eachItem.cheese_level]} sauce = {sauceLevel[0][eachItem.sauce_level]} meat = {meatLevel[0][eachItem.meat_level]} spice = {spiceLevel[0][eachItem.spice_level]} image_url = {eachItem.image_url} CIid = {eachItem.cart_itemID} quan = {eachItem.quantity}></Cartitem>
+          </div> 
+          ))}
+        </div>
+      </div>
+      <Link to = {`/checkout/${userID}`}><button className="btn btn-primary custom-button">CheckOut</button></Link>
+    </div>
+  )}
+    </div>
   )
 }
 

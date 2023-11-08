@@ -44,41 +44,39 @@ function Menuitem(props) {
   };
 
   return (
-    <div>
-      <div className="card my-3" style={{width: "20rem"}}>
+    <div className="card my-3 border" style={{width: "20rem"}}>
 
-        <img src={props.image_url} className="card-img-top" alt="Pzza Image" style={{height: "200px"}}/>
-        <div className="card-body">
+      <img src={props.image_url} className="card-img-top" alt="Pzza Image" style={{height: "200px"}}/>
+      <div className="card-body">
 
-          <h5 className="card-title">{props.name}</h5>
-          {/* <p className="card-text">{props.description}</p> */}
+        <h5 className="card-title">{props.name}</h5>
+        {/* <p className="card-text">{props.description}</p> */}
 
-          <div className="slidecontainer">
-            <label htmlFor="spice">Spice</label>
-            <input type="range" min="1" max="3" className="slider" id='spice' defaultValue="2" onChange={handleChange}/>
-          </div>
-
-          <div className="slidecontainer">
-            <label htmlFor="cheese">Cheese</label>
-            <input type="range" min="1" max="3" className="slider" id="cheese" defaultValue="2" onChange={handleChange}/>
-          </div>
-
-          <div className="slidecontainer">
-            <label htmlFor="sauce">Sauce</label>
-            <input type="range" min="1" max="3" className="slider" id="sauce" defaultValue="2" onChange={handleChange}/>
-          </div>
-
-          <div className="slidecontainer">
-            <label htmlFor="meat">Meat</label>
-            <input type="range" min="1" max="3" className="slider" id="meat"  defaultValue="2" onChange={handleChange}/>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-          <b className="slidecontainer" id='price'>$ {props.price}</b>
-          <button className="btn btn-primary custom-button" onClick = {checkAuth}>Add to Cart</button> 
-          </div>
-              
+        <div className="slidecontainer">
+          <label htmlFor="spice">Spice</label>
+          <input type="range" min="1" max="3" className="slider" id='spice' defaultValue="2" onChange={handleChange}/>
         </div>
+
+        <div className="slidecontainer">
+          <label htmlFor="cheese">Cheese</label>
+          <input type="range" min="1" max="3" className="slider" id="cheese" defaultValue="2" onChange={handleChange}/>
+        </div>
+
+        <div className="slidecontainer">
+          <label htmlFor="sauce">Sauce</label>
+          <input type="range" min="1" max="3" className="slider" id="sauce" defaultValue="2" onChange={handleChange}/>
+        </div>
+
+        <div className="slidecontainer">
+          <label htmlFor="meat">Meat</label>
+          <input type="range" min="1" max="3" className="slider" id="meat"  defaultValue="2" onChange={handleChange}/>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <b className="slidecontainer" id='price'>$ {props.price}</b>
+        <button className="btn btn-primary custom-button" onClick = {checkAuth}>Add to Cart</button> 
+        </div>
+            
       </div>
     </div>
   )

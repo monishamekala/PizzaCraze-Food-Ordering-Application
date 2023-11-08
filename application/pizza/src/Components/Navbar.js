@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import logo from '../Assests/pizzaLogo.png';
 import serachlogo from '../Assests/search-icon.svg';
 import cartlogo from '../Assests/cart-fill.svg';
 import userlogo from '../Assests/person-circle.svg';
@@ -75,10 +74,13 @@ function Navbar() {
             </Link>
 
           </div>
-          <div className='rightbuttons'>
-            {auth ? <Link to={`/mycart/${userID}`}><img src={cartlogo} alt={username}/></Link> : <Link to= '/'> <img onClick = {AskToLogin} src={cartlogo} alt='profile'/></Link> }
 
-            {auth ? <Link to={`/profile/${userID}`}><img src={userlogo} alt={username}/></Link> : <Link to="/login"> <img src={loginlogo} alt='profile'/></Link> }
+          <div className='rightbuttons'>
+            {auth ? <Link to={`/mycart/${userID}`}><img src={cartlogo} alt={username}/></Link> : <Link to= '/login'> <img onClick = {AskToLogin} src={cartlogo} alt='profile'/></Link> }
+          </div>
+          
+          <div className='rightbuttons'>
+          {auth ? <Link to={`/profile/${userID}`}><img src={userlogo} alt={username}/></Link> : <Link to="/login"> <img src={loginlogo} alt='profile'/></Link> }
           </div>
        
         </div>
