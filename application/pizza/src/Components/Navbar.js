@@ -74,10 +74,13 @@ function Navbar() {
             </Link>
 
           </div>
+
           <div className='rightbuttons'>
             {auth ? <Link to={`/mycart/${userID}`}><img src={cartlogo} alt={username}/></Link> : <Link to= '/login'> <img onClick = {AskToLogin} src={cartlogo} alt='profile'/></Link> }
-
-            {auth ? <Link to={`/profile/${userID}`}><img src={userlogo} alt={username}/></Link> : <Link to="/login"> <img src={loginlogo} alt='profile'/></Link> }
+          </div>
+          
+          <div className='rightbuttons'>
+          {auth ? <Link to={`/profile/${userID}`}><img src={userlogo} alt={username}/></Link> : <Link to="/login"> <img src={loginlogo} alt='profile'/></Link> }
           </div>
        
         </div>
