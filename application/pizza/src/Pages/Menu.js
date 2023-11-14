@@ -79,7 +79,7 @@ function Menu() {
           </div>
         ))}
       </div>
-      <button className="btn btn-primary custom-button" onClick={CheckLogin}>Go to Cart</button>
+      <button className="btn btn-primary custom-button" onClick={CheckLogin} style={{width: "15rem",height: "3rem", marginRight: "2rem"}}>Go to Cart</button>
     </div>
   )
 }
