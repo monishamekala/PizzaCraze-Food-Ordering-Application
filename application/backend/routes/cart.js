@@ -39,7 +39,6 @@ router.post("/add-to-cart", async (request, response) => {
             const InsertItems = `INSERT INTO FoodOrderSys.cartItemsTable (cartID, cart_menuID, cheese_level, sauce_level, meat_level, spice_level) VALUES ('${cartID}', '${item.itemID}', '${item.cheese}', '${item.sauce}', '${item.meat}', '${item.spice}')`;
 
             await db.promise().query(InsertItems);
-            request.flash("success", "Added to cart");
             return response.status(200).json({ message: "Inserted new cart" });
 
         }
@@ -77,7 +76,6 @@ router.get('/get-cart-items/:query', async (request, response) => {
     }catch(error){
         return response.status(505).json({Message: "Internal server error"});
     }
-    // response.status(200).send(results[0]);
 });
 
 router.post("/remove-from-cart", async (request, response) => {
