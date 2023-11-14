@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import BannerImage from '../Assests/pizza.jpeg';
 import axios from "axios";
-import '../styles/Login.css';
+import '../styles/Signup.css';
 // import { useNavigate } from 'react-router-dom';
+import loginlogo from '../Assests/eye.svg';
 
 function Signup() {
   const [user, setUser] = useState({
@@ -117,23 +118,28 @@ function Signup() {
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
                 <label for ='email'>Email</label>
-                <input id='email' type = 'email' placeholder='Enter Email' onChange={handleChange} required></input>
+                <input id='email' type = 'email'  onChange={handleChange} required></input>
 
                 <label for ='username'>Full Name</label>
-                <input id='username' type = 'text' placeholder='Enter Full Name' onChange={handleChange} required></input>
+                <input id='username' type = 'text'  onChange={handleChange} required></input>
 
                 <label for='phone'>Phone Number</label>
-                <input id='phone' placeholder='Enter Phone Number' onChange={handleChange} required></input>
+                <input id='phone' onChange={handleChange} required></input>
 
                 <label for ='password'>Password</label>
-                <input type={showPassword ? 'text' : 'password'} id='password' placeholder='Enter Password' onChange={handleChangeForPassword} required></input>
+                <div className='password'>
+                <input type={showPassword ? 'text' : 'password'} id='password'  onChange={handleChange} required></input>
+                <button onClick={togglePasswordVisibility}><img src={loginlogo}></img></button>
 
-                <input type="checkbox" onChange={togglePasswordVisibility}></input>Show Password
+                </div>
+                {/* <input type={showPassword ? 'text' : 'password'} id='password' placeholder='Enter Password' onChange={handleChangeForPassword} required></input>
+
+                <input type="checkbox" onChange={togglePasswordVisibility}></input>Show Password */}
                 <div id="password-error" style={{ color: 'red' }}></div>
 
                 <br></br>
                 
-                <button type='submit'>Submit</button>
+                <button id='submit' type='submit'>Submit</button>
 
                 <div id="success-message"></div>
             </form>

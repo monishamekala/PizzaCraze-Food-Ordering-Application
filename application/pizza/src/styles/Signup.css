@@ -40,13 +40,12 @@
   } 
   
   form input {
-    height: 40px;
-    width: 90%;
-    border: none;
-    /* border: 1px solid grey; */
-    color: rgb(16, 11, 11);
+    width: 600px;
+    height: 45px;
+    /* border: solid 1px; */
+
   }
-#email{
+#email ,#username, #phone{
   width: 600px;
   height: 45px;
   border: solid 1px;
@@ -78,7 +77,7 @@
     margin-bottom: 10px;
   }
   
-.normalbutton{
+#submit{
     /* margin-top: 40px; */
     width: 100px;
     height: 40px;
@@ -127,8 +126,8 @@
     width: 100px;
     height: 40px;
     border: solid 1px;
-    background-color: whitesmoke;
-    color: #121619;
+    background-color: #121619;;
+    color: whitesmoke;
     font-size: 15px;
     cursor: pointer;
 }
