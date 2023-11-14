@@ -68,31 +68,26 @@ function Login() {
         <div className='rightSide'>
             <form onSubmit = {handleClick}>
               <h1>Login</h1>
-                <label htmlFor='email'>Email</label>
-                <input id='email'  onChange={handleChange} type = 'email' required></input>
-                <label htmlFor='password'>Password</label>
-                <div className='password'>
-                <input type={showPassword ? 'text' : 'password'} id='password'  onChange={handleChange} required></input>
-                <button onClick={togglePasswordVisibility}><img src={loginlogo}></img></button>
+              <label htmlFor='email'>Email</label>
+              <input id='email'  onChange={handleChange} type = 'email' required></input>
 
-                </div>
-                
-                {/* <input type="checkbox" onChange={togglePasswordVisibility}></input>Show Password */}
-                <div className='submitsection'>
+              <label htmlFor='password'>Password</label>
+              <div className='password'>
+                <input type={showPassword ? 'text' : 'password'} id='password'  onChange={handleChange} required></input>
+                <button type = 'button' onClick={togglePasswordVisibility}><img src={loginlogo}></img></button>
+              </div>
+              
+              {/* <input type="checkbox" onChange={togglePasswordVisibility}></input>Show Password */}
+              <div className='submitsection'>
                 <button className='normalbutton' type='submit'>Log In</button> 
                 <Link to = '/forgotPassword'>Forgot Password?</Link>
-                
+              </div>
 
-                </div>
-                <div className='newaccount'>
+              <div className='newaccount'>
                 <h1>Need an account?</h1>
-                <Link to = '/signup'><button>Sign Up</button></Link>
+                <Link to = '/signup'><button type='button'>Sign Up</button></Link>
+              </div>
                 
-
-                </div>
-                
-                 
-                {/* <Link to = '/signup'>Create an account?</Link> */}
             </form>
             
             <div id="success-message"></div>
