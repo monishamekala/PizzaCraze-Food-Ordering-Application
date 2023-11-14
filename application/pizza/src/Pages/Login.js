@@ -3,6 +3,7 @@ import axios from 'axios';
 import BannerImage from '../Assests/pizza.jpeg';
 import '../styles/Login.css';
 import { Link, useNavigate } from 'react-router-dom';
+import loginlogo from '../Assests/eye.svg';
 
 function Login() {
 
@@ -68,14 +69,32 @@ function Login() {
             <form onSubmit = {handleClick}>
               <h1>Login</h1>
                 <label htmlFor='email'>Email</label>
-                <input id='email' placeholder='Enter Email' onChange={handleChange} type = 'email' required></input>
+                <input id='email'  onChange={handleChange} type = 'email' required></input>
                 <label htmlFor='password'>Password</label>
-                <input type={showPassword ? 'text' : 'password'} id='password' placeholder='Enter Password' onChange={handleChange} required></input>
-                <input type="checkbox" onChange={togglePasswordVisibility}></input>Show Password
+                <div className='password'>
+                <input type={showPassword ? 'text' : 'password'} id='password'  onChange={handleChange} required></input>
+                <button onClick={togglePasswordVisibility}><img src={loginlogo}></img></button>
+
+                </div>
+                
+                {/* <input type="checkbox" onChange={togglePasswordVisibility}></input>Show Password */}
+                <div className='submitsection'>
+                <button className='normalbutton' type='submit'>Log In</button> 
                 <Link to = '/forgotPassword'>Forgot Password?</Link>
-                <button type='submit'>Submit</button>  
+                
+
+                </div>
+                <div className='newaccount'>
+                <h1>Need an account?</h1>
+                <Link to = '/signup'><button>Sign Up</button></Link>
+                
+
+                </div>
+                
+                 
+                {/* <Link to = '/signup'>Create an account?</Link> */}
             </form>
-            <Link to = '/signup'>Create an account?</Link>
+            
             <div id="success-message"></div>
 
 
