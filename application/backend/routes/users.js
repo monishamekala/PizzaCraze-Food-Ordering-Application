@@ -115,9 +115,21 @@ router.post('/login',async (request, response) => {
 
 router.get("/profile/:userID", async (request, response) => {
     const user = request.params.userID;
-    const q = `SELECT * FROM FoodOrderSys.LoginDetails WHERE userID = '${user}'`;
-    const results = await db.promise().query(q);
-    response.status(200).send(results[0][0]);
+    //user details
+    const userDetails = `SELECT * FROM FoodOrderSys.LoginDetails WHERE userID = '${user}'`;
+
+    //user address
+    const userAddress = `SELECT * FROM FoodOrderSys.AddressBook WHERE address_userID = '${user}'`;
+
+    try{
+        const Userresults = await db.promise().query(userDetails);
+        const addressResults = await db.promise().query(userAddress);
+        console.log(addressResults[0]);
+        response.status(200).send({user: Userresults[0][0], address: addressResults[0]});
+    }catch (error){
+
+    }
+    
 });
 
 router.post("/forgot-password", async (request, response) => {

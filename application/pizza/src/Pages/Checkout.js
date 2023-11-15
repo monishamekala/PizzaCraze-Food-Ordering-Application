@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 function CheckOut() {
 
@@ -27,6 +27,8 @@ function CheckOut() {
     address:"",
     paymentmethod: ""
   });
+
+  const navigte = useNavigate();
 
   useEffect( () => {
     const fetchCartItems = async () => {
@@ -98,7 +100,8 @@ function CheckOut() {
 
   const CardDetailsAdded = () => {
     setaddedCard(true);
-  }
+    alert("Payment successful");
+  };
 
   const PlaceOrderNow = async () => {
     console.log(orderdetails);
@@ -106,7 +109,8 @@ function CheckOut() {
       const urladdress = `/api/OrderController/confirm-order`;
       const res = await axios.post(process.env.REACT_APP_API_URL.concat(urladdress), {userID, orderdetails}, {withCredentials: true});
       if(res.data.Message === "Added successfully"){
-          alert("Added");
+          // alert("Added");
+          navigte("/orderconfirm");
       }else{
         alert("Try again");
       }        
@@ -170,12 +174,12 @@ function CheckOut() {
         {selectedOption === 'card' && (
         <div>
           <h2>Enter Card Details</h2>
-          <form>
-            <input type='text' id = 'cardNumber' required/>Card Number
-            <input type='text' id = 'CardHolderName' required/>Card Holder Name
-            <input type='text' id = 'CVV' required/>CVV
-            <input type='date' id = 'exp' required/>Expiry Date
-            <button type = 'submit' onClick={CardDetailsAdded}>Add</button>
+          <form className="form-group">
+            <input type='text' id = 'cardNumber' className="form-control" required/>Card Number
+            <input type='text' id = 'CardHolderName' className="form-control" required/>Card Holder Name
+            <input type='text' id = 'CVV' className="form-control" required/>CVV
+            <input type='date' id = 'exp' className="form-control" required/>Expiry Date
+            <button type = 'button' className="btn btn-primary" onClick={CardDetailsAdded}>Add</button>
           </form>
         </div>
       )}

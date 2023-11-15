@@ -19,6 +19,7 @@ import Cart from './Pages/Cart';
 import CheckOut from './Pages/Checkout';
 import About from './Pages/About';
 import SearchMenu from './Pages/searchmenu';
+import OrderConfirm from './Pages/OrderConfirm';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Footer from './Components/Footer';
 import Teamlead from './Pages/Teamlead';
@@ -51,6 +52,7 @@ function App() {
         <Route path='/searchmenu/:searchTerm' exact Component = {SearchMenu}/>
         <Route path='/mycart/:userID' exact Component={Cart}/>
         <Route path='/checkout/:userID' exact Component={CheckOut}/>
+        <Route path='/orderconfirm' exact Component={OrderConfirm}/>
         <Route path='/about/teamlead' exact Component = {Teamlead}/>
         <Route path='/about/frontendlead' exact Component={Frontendlead}/>
         <Route path='/about/backendlead' exact Component={Backendlead}/>

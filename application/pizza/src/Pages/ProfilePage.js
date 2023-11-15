@@ -6,6 +6,7 @@ function ProfilePage() {
     let { userID } = useParams();
 
     const [currentUser, setUser] = useState( [] );
+    const [addressList, setAddress] = useState( [] );
 
     const navigte = useNavigate();
 
@@ -14,14 +15,15 @@ function ProfilePage() {
             try{
                 const urlForuser = `/api/UserController/profile/${userID}`;
                 const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlForuser), {withCredentials:true});
-                setUser(response.data);
+                setUser(response.data.user);
+                setAddress(response.data.address);
             }
             catch(err){
                 console.log(err);
             }
         }
         fetchUser();
-    }, [userID]);
+    }, []);
 
     const handleLogout = async e => {
         e.preventDefault()
@@ -44,9 +46,23 @@ function ProfilePage() {
     return(
         <div>
             <h1>Hi {currentUser.username}!</h1>
-            <h2>Your Password: {currentUser.password}</h2>
             <h3>Phone Number: {currentUser.phone}</h3>
             <h4>Addresses</h4>
+            {addressList.length === 0 ? (
+                <p>No addresses added</p>
+            ) : (
+                <ul>
+                    {addressList.map((address) => (
+                        <li key={address.addressID}>
+                            <p>Address Line 1: {address.line1}</p>
+                            <p>Address Line 2: {address.line2}</p>
+                            <p>Apt: {address.apt}</p>
+                            <p>Zipcode: {address.zipcode}</p>
+                            <p>Added On: {new Date(address.addedOn).toLocaleString()}</p>
+                        </li>
+                    ))}
+                </ul>
+            )}
             <h5>Order history</h5>
 
             <button type='button' className = "btn btn-primary" onClick={handleLogout}>Logout</button>
