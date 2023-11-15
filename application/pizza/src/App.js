@@ -34,6 +34,7 @@ function App() {
     <div className="App">
       <Router>
       <Navbar/>
+      <div className='middle'>
       <Routes>
         <Route path='/admin' exact Component = {Admin}/>
         <Route path='/' exact Component = {Home}/>
@@ -59,6 +60,9 @@ function App() {
         <Route path='/about/github' exact Component={Github}/>
         <Route path='/about/scrummaster' exact Component={Scrummaster}/>
       </Routes>
+
+      </div>
+      
       <Footer/>
       </Router>
     </div>
