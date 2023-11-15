@@ -121,11 +121,35 @@ router.get("/profile/:userID", async (request, response) => {
     //user address
     const userAddress = `SELECT * FROM FoodOrderSys.AddressBook WHERE address_userID = '${user}'`;
 
+    //orders
+    // const OrderTable = `SELECT * FROM FoodOrderSys.OrderTable WHERE order_userID = '${user}'`;
+
     try{
         const Userresults = await db.promise().query(userDetails);
         const addressResults = await db.promise().query(userAddress);
-        console.log(addressResults[0]);
-        response.status(200).send({user: Userresults[0][0], address: addressResults[0]});
+        // const Orders = await db.promise().query(OrderTable);
+
+        // const ToGetorderItems = `SELECT * FROM FoodOrderSys.cartItemsTable WHERE cartID IN (SELECT cartID_order FROM FoodOrderSys.OrderTable WHERE order_userID = '${user}')`;
+
+        const ToGetorderItems = `SELECT 
+                                    cartItemsTable.*, 
+                                    MenuTable.name as MenuName, 
+                                    OrderTable.*
+                                FROM 
+                                    FoodOrderSys.cartItemsTable 
+                                JOIN 
+                                    FoodOrderSys.MenuTable ON cartItemsTable.cart_menuID = MenuTable.menu_ID
+                                JOIN 
+                                    FoodOrderSys.OrderTable ON cartItemsTable.cartID = OrderTable.cartID_order
+                                WHERE 
+                                    OrderTable.order_userID = '${user}'
+                                ORDER BY 
+                                    OrderTable.order_date`;
+
+        const orderItems = await db.promise().query(ToGetorderItems);
+        console.log(orderItems[0]);
+
+        response.status(200).send({user: Userresults[0][0], address: addressResults[0], orderItems: orderItems[0]});
     }catch (error){
 
     }

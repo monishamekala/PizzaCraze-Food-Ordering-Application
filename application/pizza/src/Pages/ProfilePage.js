@@ -7,6 +7,7 @@ function ProfilePage() {
 
     const [currentUser, setUser] = useState( [] );
     const [addressList, setAddress] = useState( [] );
+    const [orderlIST, setorderlIST] = useState( [] );
 
     const navigte = useNavigate();
 
@@ -17,6 +18,7 @@ function ProfilePage() {
                 const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlForuser), {withCredentials:true});
                 setUser(response.data.user);
                 setAddress(response.data.address);
+                setorderlIST(response.data.orderItems);
             }
             catch(err){
                 console.log(err);
@@ -64,7 +66,7 @@ function ProfilePage() {
                 </ul>
             )}
             <h5>Order history</h5>
-
+            {/* <orderItem></orderItem> */}
             <button type='button' className = "btn btn-primary" onClick={handleLogout}>Logout</button>
         </div>
     )
