@@ -71,7 +71,7 @@ function Cart() {
           ))}
         </div>
       </div>
-      <Link to = {`/checkout/${userID}`}><button className="btn btn-primary custom-button">CheckOut</button></Link>
+      <Link to = {`/checkout/${userID}`}><button className="btn btn-primary custom-button" style={{width: "15rem",height: "3rem", marginRight: "2rem"}}>CheckOut</button></Link>
     </div>
   )}
     </div>
