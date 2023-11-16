@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import serachlogo from '../Assests/search-icon.svg';
 import cartlogo from '../Assests/cart-fill.svg';
 import userlogo from '../Assests/person-circle.svg';
 import loginlogo from '../Assests/add-profile.svg';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Navbar.css';
+
 
 function Navbar() {
   
@@ -47,10 +50,12 @@ function Navbar() {
   }, []);
 
   const AskToLogin = () => {
-    alert("Please log in");
+    toast.error("Please log in");
   };
 
   return (
+    <>
+      <ToastContainer />
     <div className='navbar'>
 
         <div className='leftSide'>
@@ -85,7 +90,8 @@ function Navbar() {
        
         </div>
     </div>
-  )
+    </>
+  );
 }
 
 export default Navbar;

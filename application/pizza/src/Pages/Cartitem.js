@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/Cartitem.css';
 import BannerImage from '../Assests/pizza.jpeg';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Cartitem(props) {
   const [quantity, setQuantity] = useState(1);
@@ -30,19 +32,25 @@ function Cartitem(props) {
     }
   };
 
-  const RemoveItem = async e =>{
+  const RemoveItem = async (e) => {
     e.preventDefault();
     console.log(props.name);
     const confirm = window.confirm("Remove item" + item.name + "?");
-    if (confirm){
-      try{
+    if (confirm) {
+      try {
         const urlRemoveItem = "/api/CartController/remove-from-cart";
-        const response = await axios.post(process.env.REACT_APP_API_URL.concat(urlRemoveItem),item, {withCredentials: true});
-        if (response.data.success === "Yes"){
-          alert(response.data.message);
+        const response = await axios.post(
+          process.env.REACT_APP_API_URL.concat(urlRemoveItem),
+          item,
+          { withCredentials: true }
+        );
+        if (response.data.success === "Yes") {
+          toast.success(response.data.message);
+        } else {
+          toast.error(response.data.message);
         }
         window.location.reload();
-      }catch(error){
+      } catch (error) {
         console.log(error);
       }
     }
@@ -51,6 +59,7 @@ function Cartitem(props) {
 
   return (
     <div>
+      <ToastContainer/>
         <div class="card-CID">
     <div class="card-header">
       <div className='leftside'>

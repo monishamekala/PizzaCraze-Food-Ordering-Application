@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function CheckOut() {
 
@@ -58,7 +60,7 @@ function CheckOut() {
       if(res.data.Message === "Added successfully"){
           window.location.reload();
       }else{
-        alert("Try again");
+        toast.error("Try again");
       }        
     }catch(err){
       console.log(err);
@@ -100,27 +102,32 @@ function CheckOut() {
 
   const CardDetailsAdded = () => {
     setaddedCard(true);
-    alert("Payment successful");
+    toast.success("Payment successful");
   };
 
   const PlaceOrderNow = async () => {
     console.log(orderdetails);
-    try{
+    try {
       const urladdress = `/api/OrderController/confirm-order`;
-      const res = await axios.post(process.env.REACT_APP_API_URL.concat(urladdress), {userID, orderdetails}, {withCredentials: true});
-      if(res.data.Message === "Added successfully"){
-          // alert("Added");
-          navigte("/orderconfirm");
-      }else{
-        alert("Try again");
-      }        
-    }catch(err){
+      const res = await axios.post(
+        process.env.REACT_APP_API_URL.concat(urladdress),
+        { userID, orderdetails },
+        { withCredentials: true }
+      );
+      if (res.data.Message === "Added successfully") {
+        toast.success("Order placed successfully");
+        navigte("/orderconfirm");
+      } else {
+        toast.error("Try again");
+      }
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   return (  
     <div>
+      <ToastContainer/>
       {AddAddressButton && (
         <button type='button' className='btn btn-primary' onClick={ShowAddressForm}>Add Address</button>
       )}

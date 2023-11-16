@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Menuitem from './Menuitem';
 import '../styles/MenuFilter.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Menu() {
   const [menuItems, setMenu] = useState([]);
@@ -33,7 +35,7 @@ function Menu() {
         navigate(url);
       }
       else {
-        alert("Please log in");
+        toast.error("Please log in");
       }
     } catch (err) {
       console.log(err);
@@ -79,7 +81,8 @@ function Menu() {
           </div>
         ))}
       </div>
-      <button className="btn btn-primary custom-button" onClick={CheckLogin} style={{width: "15rem",height: "3rem", marginRight: "2rem"}}>Go to Cart</button>
+      <button className="btn btn-primary custom-button" onClick={CheckLogin} style={{ width: "15rem", height: "3rem", marginRight: "2rem" }}>Go to Cart</button>
+      <ToastContainer />
     </div>
   )
 }
