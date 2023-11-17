@@ -1,51 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ProfilePage() {
     let { userID } = useParams();
 
-    const [currentUser, setUser] = useState( [] );
-    const [addressList, setAddress] = useState( [] );
-    const [orderlIST, setorderlIST] = useState( [] );
-
+    const [currentUser, setUser] = useState([]);
+    const [addressList, setAddress] = useState([]);
+    const [orderlIST, setorderlIST] = useState([]);
     const navigte = useNavigate();
 
     useEffect(() => {
-        const fetchUser = async() =>{
-            try{
+        const fetchUser = async () => {
+            try {
                 const urlForuser = `/api/UserController/profile/${userID}`;
-                const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlForuser), {withCredentials:true});
+                const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlForuser), { withCredentials: true });
                 setUser(response.data.user);
                 setAddress(response.data.address);
                 setorderlIST(response.data.orderItems);
-            }
-            catch(err){
+            } catch (err) {
                 console.log(err);
             }
         }
         fetchUser();
     }, []);
 
-    const handleLogout = async e => {
+    const handleLogout = async (e) => {
         e.preventDefault()
-        try{
+        try {
             const urlLogout = "/api/UserController/logout"
-            const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlLogout), {withCredentials: true});
-            
+            const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlLogout), { withCredentials: true });
+
             if (response.data.Message === "Logged out successfully") {
+                // Replace alert with toast.success
+                toast.success("Logged out successfully");
                 navigte("/");
                 window.location.reload();
-            }else{
-                alert("Error");
+            } else {
+                // Replace alert with toast.error
+                toast.error("Error");
             }
-        }
-        catch(err){
+        } catch (err) {
             console.log(err);
         }
-    }; 
+    };
 
-    return(
+    return (
         <div>
             <h1>Hi {currentUser.username}!</h1>
             <h3>Phone Number: {currentUser.phone}</h3>
@@ -66,10 +68,10 @@ function ProfilePage() {
                 </ul>
             )}
             <h5>Order history</h5>
-            {/* <orderItem></orderItem> */}
-            <button type='button' className = "btn btn-primary" onClick={handleLogout}>Logout</button>
+            <button type='button' className="btn btn-primary" onClick={handleLogout}>Logout</button>
+            <ToastContainer />
         </div>
     )
 }
 
-export default ProfilePage
+export default ProfilePage;
