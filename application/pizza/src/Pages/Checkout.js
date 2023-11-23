@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+<<<<<<< Updated upstream
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+=======
+import '../styles/Checkout.css';
+import Cash from '../Assests/cash.svg';
+import Card from '../Assests/card.svg';
+>>>>>>> Stashed changes
 
 function CheckOut() {
 
@@ -127,13 +133,20 @@ function CheckOut() {
 
   return (  
     <div>
+<<<<<<< Updated upstream
       <ToastContainer/>
+=======
+    <div className='backgrey'> 
+    <div className='address'>
+      <h2><b>Shipping Address</b></h2>
+>>>>>>> Stashed changes
       {AddAddressButton && (
-        <button type='button' className='btn btn-primary' onClick={ShowAddressForm}>Add Address</button>
+        <button type='button' className="btn btn-dark" onClick={ShowAddressForm}>Add Address</button>
       )}
       {AddressForm && (
         <div>
         <form onSubmit={addAddress}>
+          <div className='addressline'>
           <div>
             <label htmlFor='addressinput'>Address Line 1</label>
             <input type='text'id = 'line1' className='form-control' onChange={handleInputChange} required/>
@@ -142,6 +155,8 @@ function CheckOut() {
             <label htmlFor='addressinput'>Address Line 2</label>
             <input type='text'id = 'line2' className='form-control' onChange={handleInputChange}/>
           </div>
+          </div>
+          <div className='aptzip'>
           <div>
             <label htmlFor='apt'>Apt. building landmark</label>
             <input type='text'id = 'apt' className='form-control' onChange={handleInputChange}/>
@@ -150,7 +165,8 @@ function CheckOut() {
             <label htmlFor='addressinput'>Zipcode</label>
             <input type='text'id = 'zipcode' className='form-control' pattern="[0-9]{5}" onChange={handleInputChange} required/>
           </div>
-          <button type='submit' className='btn btn-primary'>submit</button>
+          </div>
+          <button type='submit' className='btn btn-dark' style={{marginTop:10,marginBottom: 20,marginLeft:460, width:400, height:50}}>submit</button>
         </form>  
       </div>
       )}
@@ -161,7 +177,7 @@ function CheckOut() {
         </div>
       ):(
         <div>
-          <h2>Your existing address</h2>
+          <h3>Existing address</h3>
           {address.map((eachItem, index) => (
             <div className='col-md-30' key={eachItem.addressID} >
               <label htmlFor='address'></label>
@@ -170,28 +186,62 @@ function CheckOut() {
           ))}
         </div>
       )}
-      <div>
-        <h1>Choose payment method</h1>
-        <input type="radio" id="cash" name = "paymenthmethod" value="cash" checked = {selectedOption === 'cash'} onChange={handlePaymentOption}/>
-        <label htmlFor="cash">Cash</label>
+      
+    </div>
 
+      <div className='payment'>
+        <h2><b>Payment Method</b></h2>
+        <div className='cardcash'>
+        <input type="radio" id="cash" name = "paymenthmethod" value="cash" checked = {selectedOption === 'cash'} onChange={handlePaymentOption}/>
+        <label htmlFor="cash"><img src={Cash} style={{width:50}}></img>Cash</label>
+        </div>
+        <div className='cardcash'>
         <input type="radio" id="card" name = "paymenthmethod" value="card" checked = {selectedOption === 'card'} onChange={handlePaymentOption}/>
-        <label htmlFor="card">Card</label>
+        <label htmlFor="card"><img src={Card} style={{width:50}}></img>Card</label>
+        </div>
+        
 
         {selectedOption === 'card' && (
         <div>
-          <h2>Enter Card Details</h2>
+          <h2><b>Enter Card Details</b></h2>
           <form className="form-group">
-            <input type='text' id = 'cardNumber' className="form-control" required/>Card Number
-            <input type='text' id = 'CardHolderName' className="form-control" required/>Card Holder Name
-            <input type='text' id = 'CVV' className="form-control" required/>CVV
-            <input type='date' id = 'exp' className="form-control" required/>Expiry Date
-            <button type = 'button' className="btn btn-primary" onClick={CardDetailsAdded}>Add</button>
+            <div className='carddet'>
+              <div>
+              <label htmlFor='cardNumber'>Card Number</label>
+            <input type='text' id = 'cardNumber' className="form-control" required/>
+            </div>
+            <div>
+            <label>Card Holder Name</label>
+            <input type='text' id = 'CardHolderName' className="form-control" required/>
+
+              </div>
+
+
+            </div>
+            <div className='cardnum'>
+              <div>
+              <label>CVV</label>
+            <input type='text' id = 'CVV' className="form-control" required/>
+
+              </div>
+              <div>
+              <label>Expiry Date</label>
+            <input type='date' id = 'exp' className="form-control" required/>
+
+              </div>
+
+
+
+            </div>
+
+            <button type = 'button' className="btn btn-dark" onClick={CardDetailsAdded} style={{marginTop:20,marginBottom: 20, marginLeft:460, width:400, height:50}}>Add</button>
           </form>
         </div>
       )}
+      <button type = 'submit' className='btn btn-dark' onClick={PlaceOrderNow} style={{marginTop:10,marginBottom: 20, width:400, height:50}} disabled = {!selectedAddress || !selectedPayment || !addedCard}>Place order</button>
       </div>
-      <button type = 'submit' className='btn btn-primary' onClick={PlaceOrderNow} disabled = {!selectedAddress || !selectedPayment || !addedCard}>Place order</button>
+      
+    </div>
     </div>
   )
 }
