@@ -16,3 +16,10 @@
 .custom-button-filter:hover {
     background: #cb2929dd; /* Change background color on hover */
 }
+
+#addtocartbutton{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+
+}

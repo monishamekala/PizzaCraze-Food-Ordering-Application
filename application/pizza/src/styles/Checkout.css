@@ -1,0 +1,75 @@
+.backgrey{
+    background: rgb(240, 238, 238);
+    padding: 20px;
+    min-height: 100vh;
+}
+.address{
+    background: white;
+    
+
+}
+.address h2{
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.address button{
+    width: 400px;
+    height: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.address h3{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.addressline{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.addressline input{
+    width: 400px;
+}
+
+.aptzip{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.aptzip input{
+    width: 400px;
+}
+
+.payment{
+    background: white;
+}
+.payment h2{
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.cardcash input label{
+    width: 30px;
+    height: 15px;
+    margin: 10px;
+}
+
+.carddet{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.carddet input{
+    width: 400px;
+}
+
+.cardnum{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.cardnum input{
+    width: 400px;
+}

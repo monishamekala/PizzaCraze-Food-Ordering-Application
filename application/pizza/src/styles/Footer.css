@@ -1,0 +1,7 @@
+.footer{
+    text-align: center;
+    padding: 10px;
+    /* Position the footer at the bottom of the page */
+    flex-shrink: 0;
+    width: 100%;
+}
