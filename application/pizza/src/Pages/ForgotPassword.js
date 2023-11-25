@@ -43,8 +43,15 @@ function ForgotPassword() {
     <div className="my-3 about">
       <div className='aboutTop' style={{ backgroundImage: `url(${BannerImage})` }}></div>
       <div className='my-3 aboutBottom'>
-        <input id='email' placeholder='Enter Email' type='email' onChange={handleChange} required></input>
-        <button onClick={handleVerify}>Verify</button>
+        <div>
+        <label htmlFor='email'><b style={{fontSize:20}}>Enter email address</b></label>
+        <br></br>
+        <input id='email'  type='email' onChange={handleChange} style={{margin:10}} required></input>
+        <br></br>
+        <button className="btn btn-dark" onClick={handleVerify} style={{margin:10}}>Verify</button>
+
+        </div>
+        
         <ToastContainer />
       </div>
     </div>
