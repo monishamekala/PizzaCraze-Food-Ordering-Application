@@ -4,11 +4,8 @@ import BannerImage from '../Assests/pizza.jpeg';
 import '../styles/Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import loginlogo from '../Assests/eye.svg';
-<<<<<<< Updated upstream
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-=======
->>>>>>> Stashed changes
 
 function Login() {
   const navigte = useNavigate();

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-<<<<<<< Updated upstream
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-=======
 import '../styles/Checkout.css';
 import Cash from '../Assests/cash.svg';
 import Card from '../Assests/card.svg';
->>>>>>> Stashed changes
 
 function CheckOut() {
 
@@ -133,13 +130,10 @@ function CheckOut() {
 
   return (  
     <div>
-<<<<<<< Updated upstream
       <ToastContainer/>
-=======
     <div className='backgrey'> 
     <div className='address'>
       <h2><b>Shipping Address</b></h2>
->>>>>>> Stashed changes
       {AddAddressButton && (
         <button type='button' className="btn btn-dark" onClick={ShowAddressForm}>Add Address</button>
       )}
