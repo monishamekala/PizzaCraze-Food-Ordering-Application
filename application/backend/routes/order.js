@@ -56,7 +56,6 @@ router.post("/confirm-order", async (request, response) => {
     
     try {
         const Q_cartID = await db.promise().query(getCartID);
-        console.log(Q_cartID[0][0].cartID);
 
         //Insert the order details to orderTable
         const InsertOrderDetails = `INSERT INTO FoodOrderSys.OrderTable (order_userID, order_addressID, paymethod, cartID_order) VALUES ('${userID}', '${addressID}', '${paymethod}', '${Q_cartID[0][0].cartID}')`;

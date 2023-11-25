@@ -41,9 +41,10 @@ function Menuitem(props) {
 
         // Replace alert with toast.success
         toast.success(responseAddToCart.data.message);
-      } else {
+      } 
+      else {
         // Replace alert with toast.error
-        toast.error('Please Login');
+        toast.error('Please login');
       }
     } catch (err) {
       console.error(err);
@@ -122,7 +123,7 @@ function Menuitem(props) {
           </button>
         </div>
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </div>
   );
 }

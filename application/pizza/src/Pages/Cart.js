@@ -5,9 +5,6 @@ import deleteIcon from '../Assests/deleteIcon.svg';
 import { Link, useParams } from 'react-router-dom';
 import Cartitem from './Cartitem';
 
-
-
-
 function Cart() {
     let { userID } = useParams();
     const [cartItems, setCart] = useState([]);
@@ -36,7 +33,7 @@ function Cart() {
       }
     }
     fetchCartItems()
-  }, [])
+  }, [cartItems])
 
   useEffect( () => {
     const CalTotal = async () => {
@@ -66,7 +63,7 @@ function Cart() {
         <div className='row'>
           {cartItems.map(eachItem => (
           <div className='col-md-30' key={eachItem.cart_itemID} >
-            <Cartitem itemID = {eachItem.cart_itemID} name = {eachItem.name} price = {eachItem.price} cheese = {cheeseLevel[0][eachItem.cheese_level]} sauce = {sauceLevel[0][eachItem.sauce_level]} meat = {meatLevel[0][eachItem.meat_level]} spice = {spiceLevel[0][eachItem.spice_level]} image_url = {eachItem.image_url} CIid = {eachItem.cart_itemID} quan = {eachItem.quantity}></Cartitem>
+            <Cartitem name = {eachItem.name} price = {eachItem.price} cheese = {cheeseLevel[0][eachItem.cheese_level]} sauce = {sauceLevel[0][eachItem.sauce_level]} meat = {meatLevel[0][eachItem.meat_level]} spice = {spiceLevel[0][eachItem.spice_level]} image_url = {eachItem.image_url} CIid = {eachItem.cart_itemID} quan = {eachItem.quantity}></Cartitem>
           </div> 
           ))}
         </div>
