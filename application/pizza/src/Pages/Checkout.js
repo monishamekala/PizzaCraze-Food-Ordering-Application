@@ -182,7 +182,6 @@ function CheckOut() {
             ))}
           </div>
         )}
-        
       </div>
 
       <div className='payment'>

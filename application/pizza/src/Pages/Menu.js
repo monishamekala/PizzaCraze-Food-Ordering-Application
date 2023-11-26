@@ -85,7 +85,6 @@ function Menu() {
       <div className='gotocart-footer'>
         <button id="addtocartbutton" className="btn btn-primary custom-button" onClick={CheckLogin} style={{ width: "10rem", height: "3rem" }}>Go to Cart</button>
       </div>
-      {/* <ToastContainer /> */}
     </div>
   )
 }
