@@ -4,8 +4,11 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import loginlogo from '../Assests/eye.svg';
+import '../styles/Login.css';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: '',
     username: '',
@@ -78,9 +81,12 @@ function Signup() {
         const response = await axios.post(process.env.REACT_APP_API_URL.concat(urlHI), user);
 
         // To display the result of registration
-        if (response.data.message) {
+        if (response.data.result === "Success") {
           // Replace alert with toast.success
           toast.success(response.data.message);
+          navigate('/login');
+        }else{
+          toast.error(response.data.message);
         }
       } catch (err) {
         if (err.response && err.response.data && err.response.data.error) {
@@ -128,16 +134,15 @@ function Signup() {
             </button>
           </div>
 
-          {/* <input type={showPassword ? 'text' : 'password'} id='password' placeholder='Enter Password' onChange={handleChangeForPassword} required></input>
-
-                <input type="checkbox" onChange={togglePasswordVisibility}></input>Show Password */}
           <div id='password-error' style={{ color: 'red' }}></div>
 
           <br></br>
 
-          <button id='submit' type='submit'>
-            Submit
-          </button>
+          <div className='signup-submit'>
+            <button id='submit' type='submit'>
+              Submit
+            </button>
+          </div>
 
           <div id='success-message'></div>
         </form>

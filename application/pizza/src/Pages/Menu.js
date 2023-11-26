@@ -50,9 +50,9 @@ function Menu() {
     : menuItems.filter(item => item.category === selectedCategory);
 
   return (
-    <div>
+    <div className='menu-div'>
       <div className='container my-4'>
-        <div>
+        <div className='filter-buttons'>
           <button className='custom-button-filter' onClick={() => setSelectedCategory('All')}>All</button>
           {categories.map(category => (
             <button className='custom-button-filter' key={category} onClick={() => setSelectedCategory(category)}>{category}</button>
@@ -60,8 +60,9 @@ function Menu() {
         </div>
 
         {categories.map(category => (
-          <div key={category}>
+          <div key={category} className='menu-category'>
             <h2>{category}</h2>
+            <div className='line'></div>
             <div className='row'>
               {filteredMenuItems
                 .filter(item => item.category === category)
@@ -81,8 +82,9 @@ function Menu() {
           </div>
         ))}
       </div>
-      <button id="addtocartbutton" className="btn btn-primary custom-button" onClick={CheckLogin} style={{ width: "10rem", height: "3rem" }}>Go to Cart</button>
-      <ToastContainer />
+      <div className='gotocart-footer'>
+        <button id="addtocartbutton" className="btn btn-primary custom-button" onClick={CheckLogin} style={{ width: "10rem", height: "3rem" }}>Go to Cart</button>
+      </div>
     </div>
   )
 }

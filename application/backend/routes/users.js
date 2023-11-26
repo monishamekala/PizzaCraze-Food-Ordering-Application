@@ -58,12 +58,12 @@ router.post("/PostUsers", async (request, response) => {
         if (countNum === 0){
 
             const insertUser = await db.promise().query(q);
-            response.status(200).json({ message: "You have registered successfully" });
+            response.status(200).json({ message: "You have registered successfully", result: "Success" });
 
         }
         //if email is already there in the database then say so to the user
         else{
-            response.status(200).json({ message: "Email is already used." });
+            response.status(200).json({ message: "Email is already used.", result: "Error"  });
             return;
         }
 

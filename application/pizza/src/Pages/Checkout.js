@@ -132,56 +132,57 @@ function CheckOut() {
     <div>
       <ToastContainer/>
     <div className='backgrey'> 
-    <div className='address'>
-      <h2><b>Shipping Address</b></h2>
-      {AddAddressButton && (
-        <button type='button' className="btn btn-dark" onClick={ShowAddressForm}>Add Address</button>
-      )}
-      {AddressForm && (
-        <div>
-        <form onSubmit={addAddress}>
-          <div className='addressline'>
+      <div className='address'>
+        <h2><b>Shipping Address</b></h2>
+        {AddAddressButton && (
+          <button type='button' className="addAddressBtn" onClick={ShowAddressForm}>Add Address</button>
+        )}
+        {AddressForm && (
           <div>
-            <label htmlFor='addressinput'>Address Line 1</label>
-            <input type='text'id = 'line1' className='form-control' onChange={handleInputChange} required/>
-          </div>
-          <div>
-            <label htmlFor='addressinput'>Address Line 2</label>
-            <input type='text'id = 'line2' className='form-control' onChange={handleInputChange}/>
-          </div>
-          </div>
-          <div className='aptzip'>
-          <div>
-            <label htmlFor='apt'>Apt. building landmark</label>
-            <input type='text'id = 'apt' className='form-control' onChange={handleInputChange}/>
-          </div>
-          <div>
-            <label htmlFor='addressinput'>Zipcode</label>
-            <input type='text'id = 'zipcode' className='form-control' pattern="[0-9]{5}" onChange={handleInputChange} required/>
-          </div>
-          </div>
-          <button type='submit' className='btn btn-dark' style={{marginTop:10,marginBottom: 20,marginLeft:460, width:400, height:50}}>submit</button>
-        </form>  
-      </div>
-      )}
+          <form onSubmit={addAddress}>
+            <div className='addressline'>
+            <div>
+              <label htmlFor='addressinput'>Address Line 1</label>
+              <input type='text'id = 'line1' className='form-control' onChange={handleInputChange} required/>
+            </div>
+            <div>
+              <label htmlFor='addressinput'>Address Line 2</label>
+              <input type='text'id = 'line2' className='form-control' onChange={handleInputChange}/>
+            </div>
+            </div>
+            <div className='aptzip'>
+            <div>
+              <label htmlFor='apt'>Apt. building landmark</label>
+              <input type='text'id = 'apt' className='form-control' onChange={handleInputChange}/>
+            </div>
+            <div>
+              <label htmlFor='addressinput'>Zipcode</label>
+              <input type='text'id = 'zipcode' className='form-control' pattern="[0-9]{5}" onChange={handleInputChange} required/>
+            </div>
+            </div>
+            <button type='submit' className='submitAddressBtn'>Submit</button>
+          </form>  
+        </div>
+        )}
 
-      {address.length === 0 ? (
-        <div>
-          <h1>Please add adress</h1>
-        </div>
-      ):(
-        <div>
-          <h3>Existing address</h3>
-          {address.map((eachItem, index) => (
-            <div className='col-md-30' key={eachItem.addressID} >
-              <label htmlFor='address'></label>
-              <input className = 'form-check-input mt-0' type="radio" value={eachItem.addressID} name='addresses' id={`address-${index}`} onChange={handleAddressSelection}/> {eachItem.line1 + eachItem.line2 + eachItem.apt + eachItem.zipcode}
-            </div> 
-          ))}
-        </div>
-      )}
-      
-    </div>
+        {address.length === 0 ? (
+          <div>
+            <h1>Please add adress</h1>
+          </div>
+        ):(
+          <div>
+            <h2><b>Existing address</b></h2>
+            {address.map((eachItem, index) => (
+              <div className='col-md-30' key={eachItem.addressID} >
+                <div className="address-container">
+                  <input className='form-check-input mt-0 address-check' type="radio" value={eachItem.addressID} name='addresses' id={`address-${index}`} onChange={handleAddressSelection}/>
+                  <label htmlFor={`address-${index}`}>{`${eachItem.line1}, ${eachItem.line2}, ${eachItem.apt}, ${eachItem.zipcode}`}</label>
+                </div>
+              </div> 
+            ))}
+          </div>
+        )}
+      </div>
 
       <div className='payment'>
         <h2><b>Payment Method</b></h2>

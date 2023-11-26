@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/Cartitem.css';
-import deleteIcon from '../Assests/deleteIcon.svg';
 import { Link, useParams } from 'react-router-dom';
 import Cartitem from './Cartitem';
-
-
-
 
 function Cart() {
     let { userID } = useParams();
@@ -36,7 +32,7 @@ function Cart() {
       }
     }
     fetchCartItems()
-  }, [])
+  }, [cartItems])
 
   useEffect( () => {
     const CalTotal = async () => {
@@ -51,13 +47,12 @@ function Cart() {
   }, [cartItems]);
 
   return (  
-    <div>
+    <div className='cart-page'>
       {cartItems.length === 0 ? (
         <div className='noItems'>
           <h1 id="EmptyCart-message">Your cart is empty</h1>
-
           <Link to={'/menu'}>
-          <button>Add Items</button>
+            <button>Add Items</button>
           </Link>
         </div>
   ) : (
@@ -66,12 +61,12 @@ function Cart() {
         <div className='row'>
           {cartItems.map(eachItem => (
           <div className='col-md-30' key={eachItem.cart_itemID} >
-            <Cartitem itemID = {eachItem.cart_itemID} name = {eachItem.name} price = {eachItem.price} cheese = {cheeseLevel[0][eachItem.cheese_level]} sauce = {sauceLevel[0][eachItem.sauce_level]} meat = {meatLevel[0][eachItem.meat_level]} spice = {spiceLevel[0][eachItem.spice_level]} image_url = {eachItem.image_url} CIid = {eachItem.cart_itemID} quan = {eachItem.quantity}></Cartitem>
+            <Cartitem name = {eachItem.name} price = {eachItem.price} cheese = {cheeseLevel[0][eachItem.cheese_level]} sauce = {sauceLevel[0][eachItem.sauce_level]} meat = {meatLevel[0][eachItem.meat_level]} spice = {spiceLevel[0][eachItem.spice_level]} image_url = {eachItem.image_url} CIid = {eachItem.cart_itemID} quan = {eachItem.quantity}></Cartitem>
           </div> 
           ))}
         </div>
       </div>
-      <Link to = {`/checkout/${userID}`}><button className="btn btn-primary custom-button" style={{width: "15rem",height: "3rem", marginRight: "2rem"}}>CheckOut</button></Link>
+      <Link to = {`/checkout/${userID}`}><button className="Checkout">CheckOut</button></Link>
     </div>
   )}
     </div>

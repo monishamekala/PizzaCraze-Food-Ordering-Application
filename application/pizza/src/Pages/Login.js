@@ -65,7 +65,7 @@ function Login() {
           <label htmlFor='password'>Password</label>
           <div className='password'>
             <input type={showPassword ? 'text' : 'password'} id='password' onChange={handleChange} required></input>
-            <button onClick={togglePasswordVisibility}><img src={loginlogo} alt="eye icon"></img></button>
+            <button type = 'button' onClick={togglePasswordVisibility}><img src={loginlogo} alt="eye icon"></img></button>
           </div>
           <div className='submitsection'>
             <button className='normalbutton' type='submit'>
@@ -81,7 +81,7 @@ function Login() {
           </div>
         </form>
         <div id="success-message"></div>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
       </div>
     </div>
   );
