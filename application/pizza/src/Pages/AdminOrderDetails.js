@@ -6,21 +6,53 @@ import '../styles/AdminLogin.css';
 function AdminOrderDetails(){
     let {orderID} = useParams();
     const [orders, setorderdetails] = useState([]);
+    const [selectedStatus, setStatus] = useState();
+    const [CurrentStatus, setCurrentStatus] = useState(" ");
+
+    const isDelivered = CurrentStatus === 'Delivered';
 
     useEffect(() => {
         const getOrderDetails = async() => {
             try{
                 const urlgetOrderDetails = `/api/AdminController/get-order-details/${orderID}`;
                 const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlgetOrderDetails), {withCredentials: true});
-
                 setorderdetails(response.data);
-
             }catch(err){
-
+                console.log(err);
             }
         }
         getOrderDetails();
     }, []);
+
+    useEffect(() => {
+        const getOrderStatus = async() =>{
+            try{
+                const urlGetStatus = `/api/AdminController/get-status/${orderID}`;
+                const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlGetStatus), {withCredentials: true});
+                setCurrentStatus(response.data);
+            }catch(err){
+                console.log(err);
+            }
+        }
+        getOrderStatus();
+    }, [CurrentStatus]);
+
+    const handleStatusChange = (e) => {
+        setStatus(e.target.value);
+    };
+
+    const handleStatus = async(e) => {
+        e.preventDefault();
+        try{
+            const UrlupdateOrderStatus = `/api/AdminController/update-order-status`;
+            const response = await axios.post(process.env.REACT_APP_API_URL.concat(UrlupdateOrderStatus),{orderID, selectedStatus}, {withCredentials: true})
+            if(response.data.message = "Success"){
+                window.location.reload();
+            }
+        }catch(err){
+            console.log(err);
+        }
+    }
     return(
         <div className="orderdetail-tableContainer">
             <table className="orderdetail-table">
@@ -57,19 +89,26 @@ function AdminOrderDetails(){
                     ))}
                 </tbody>
             </table>  
-
-            <div class="custom-select-container">
-                <label htmlFor="status">Change Status: </label>
-                <select id="status" class="custom-select">
-                    <option value="waiting">Waiting for confirmation</option>
-                    <option value="confirmed">Confirmed</option>
-                    <option value="shipped">Preparing your food</option>
-                    <option value="delivered">On its way</option>
-                    <option value="delivered">Delivered</option>
-                </select>
-                <div class="dropdown-icon">&#9660;</div>
-            </div>
-
+            {!isDelivered && (
+            <form onSubmit={handleStatus}>
+                <div class="custom-select-container">
+                    <label htmlFor="status">Change Status: </label>
+                    <div class="custom-select-wrapper">
+                    <select id="status" class="custom-select" value={selectedStatus} onChange={handleStatusChange}>
+                        <option></option>
+                        <option value="Waiting for confirmation">Waiting for confirmation</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Preparing your food">Preparing your food</option>
+                        <option value="On its way">On its way</option>
+                        <option value="Delivered">Delivered</option>
+                    </select>
+                    <div class="dropdown-icon">&#9660;</div>
+                    </div>
+                </div>
+                <button type="submit">Update Status</button>
+            </form>
+            )}
+            <p>Current Status: {CurrentStatus}</p>
         </div>
     )
 }

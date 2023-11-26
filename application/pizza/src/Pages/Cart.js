@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/Cartitem.css';
-import deleteIcon from '../Assests/deleteIcon.svg';
 import { Link, useParams } from 'react-router-dom';
 import Cartitem from './Cartitem';
 
@@ -48,13 +47,12 @@ function Cart() {
   }, [cartItems]);
 
   return (  
-    <div>
+    <div className='cart-page'>
       {cartItems.length === 0 ? (
         <div className='noItems'>
           <h1 id="EmptyCart-message">Your cart is empty</h1>
-
           <Link to={'/menu'}>
-          <button>Add Items</button>
+            <button>Add Items</button>
           </Link>
         </div>
   ) : (
@@ -68,7 +66,7 @@ function Cart() {
           ))}
         </div>
       </div>
-      <Link to = {`/checkout/${userID}`}><button className="btn btn-primary custom-button" style={{width: "15rem",height: "3rem", marginRight: "2rem"}}>CheckOut</button></Link>
+      <Link to = {`/checkout/${userID}`}><button className="Checkout">CheckOut</button></Link>
     </div>
   )}
     </div>

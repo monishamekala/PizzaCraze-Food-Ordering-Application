@@ -4,6 +4,7 @@ import '../styles/Cartitem.css';
 import BannerImage from '../Assests/pizza.jpeg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 function Cartitem(props) {
 
@@ -76,16 +77,16 @@ function Cartitem(props) {
       <div class="card-CID">
 
         <div class="card-header">
-          <div className='leftside'>
-            <img src={props.image_url} className="card-img-top" alt="Pizza Image" style={{height: "50px", width: "50px", marginRight: "10px"}}/>
-            <b style={{fontSize: "20px"}}>{props.name}</b>
+          <div className='cartItemName'>
+            <img src={props.image_url} className="card-img-top" alt="Pizza Image" style={{height: "70px", width: "70px", marginRight: "10px"}}/>
+            <b>{props.name}</b>
           </div>
-          <div className='rightside'>
+          <div className='cartItemPrice'>
             <p>$ {props.price}</p>
           </div>
         </div>
 
-        <div class="card-body">
+        <div class="specifications">
           <p>Cheese : {props.cheese}, </p>
           <p>Sauce : {props.sauce}, </p>
           <p>Meat : {props.meat}, </p>
@@ -94,7 +95,7 @@ function Cartitem(props) {
 
         <div className='card-footer'>
           <div className='left'>
-            <button type="button" class="btn removebutton" onClick={RemoveItem}>Remove</button>
+            <Link onClick={RemoveItem} style={{ color: 'black', fontSize: '16px' }} >Remove</Link>
           </div>
           <div className='right-quantity'>
               <span className='minus' onClick={handleDecrement}>-</span>

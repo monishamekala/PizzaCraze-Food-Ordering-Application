@@ -4,7 +4,7 @@ import '../styles/AdminLogin.css';
 
 function AdminPanel() {
   return (
-    <div className='tocenter'>
+    <div className='adminPanel'>
       <Link to="/AdminUsers">
         <button>Users</button>
       </Link>

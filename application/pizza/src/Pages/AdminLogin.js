@@ -41,24 +41,20 @@ function AdminLogin() {
   };
 
   return (
-    <>
-      <ToastContainer />
+    <div className='tocenter'>
+      <form onSubmit={handleClick}>
+        <h1>Admin Login</h1>
 
-      <div className='tocenter'>
-        <form onSubmit={handleClick}>
-          <h1>Admin Login</h1>
+        <label htmlFor='email'>Email</label>
+        <input id='email' placeholder='Enter Email' onChange={handleChange} type='email' required></input>
 
-          <label htmlFor='email'>Email</label>
-          <input id='email' placeholder='Enter Email' onChange={handleChange} type='email' required></input>
+        <label htmlFor='password'>Password</label>
+        <input type='password' id='password' placeholder='Enter Password' onChange={handleChange} required></input>
 
-          <label htmlFor='password'>Password</label>
-          <input type='password' id='password' placeholder='Enter Password' onChange={handleChange} required></input>
-
-          <button type='submit'>Login</button>
-        </form>
-        <div id='success-message'></div>
-      </div>
-    </>
+        <button type='submit'>Login</button>
+      </form>
+      <div id='success-message'></div>
+    </div>
   );
 }
 

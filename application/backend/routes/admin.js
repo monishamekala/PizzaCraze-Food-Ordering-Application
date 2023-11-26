@@ -57,6 +57,39 @@ router.post('/login',async (request, response) => {
 
 });
 
+router.post('/update-order-status',async (request, response) => {
+    const orderID = request.body.orderID; 
+    const newStatus = request.body.selectedStatus;
+
+    console.log(orderID);
+    console.log(newStatus);
+
+    //query to update the order status with order ID = orderID from request
+    const UpdateStatus = `UPDATE FoodOrderSys.OrderTable SET order_status = '${newStatus}' WHERE orderID = '${orderID}'`;
+        try
+        {    
+            await db.promise().query(UpdateStatus);
+            return response.status(200).json({message: "Success"});
+        }
+        catch (error)
+        {
+            return response.status(500).json({ error: "Internal Server Error" });
+        }            
+
+});
+
+router.get('/get-status/:orderID', async (request, response) => {
+    const orderID = request.params.orderID;
+    const getOrderStatus = `SELECT OrderTable.order_status FROM FoodOrderSys.OrderTable WHERE OrderTable.orderID = ${orderID}`;
+    try{
+        const orderStatus = await db.promise().query(getOrderStatus);
+        return response.status(200).json(orderStatus[0][0].order_status);
+    }catch(err){
+        response.status(500).json({ error: "Internal Server Error" });
+    }
+    
+})
+
 router.get('/get-order-details/:orderID', async (request, response) => {
     const orderID = request.params.orderID;
     const getOrderDetails = `SELECT 
@@ -78,7 +111,6 @@ router.get('/get-order-details/:orderID', async (request, response) => {
                                 OrderTable.orderID = ${orderID}`;
 
     const orderDetails = await db.promise().query(getOrderDetails);
-    console.log(orderDetails[0]);
     return response.status(200).json(orderDetails[0]);
 })
 
