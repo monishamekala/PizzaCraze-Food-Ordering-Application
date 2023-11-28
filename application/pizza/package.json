@@ -55,5 +55,5 @@
     "eslint": "^8.54.0",
     "eslint-plugin-import": "^2.29.0",
     "tsconfig-paths": "^4.2.0"
-  }
+}
 }
