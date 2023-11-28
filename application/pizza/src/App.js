@@ -32,6 +32,7 @@ import NotFound from './Pages/NotFound404';
 function App() {
 
   const [auth, setAuth] = useState(false);
+  const [userID, setUserID] = useState();
 
   const lookForAuth = async () => {
     try{
@@ -40,9 +41,10 @@ function App() {
       if (response.data.Status === "Success"){
         //if the token is created (i.e., user is autherised then set auth to true)
         setAuth(true);
+        setUserID(response.data.userID);
       }
     }catch(err){
-      console.error(err);
+      console.log(err);
     } 
   };
 
@@ -67,7 +69,12 @@ function App() {
           <Route path='/contact' element={<> <Navbar /> <Contact /> <Footer /> </>} />
           <Route path='/about' element={<> <Navbar /> <About /> <Footer /> </>}/>
           <Route path='/signup' element={<> <Navbar /> <Signup /> <Footer /> </>}/>
-          <Route path='/login' element={<> <Navbar /> <Login /> <Footer /> </>}/>
+
+          <Route 
+            path='/login' 
+            element={auth ? <> <Navigate to={`/profile/${userID}`}/> </> : <><Navbar /> <Login /> <Footer/></>}
+          />
+
           <Route path='/forgotpassword' element={<> <Navbar /> <ForgotPassword /> <Footer /> </>}/>
           
           <Route 
