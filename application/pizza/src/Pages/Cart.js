@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/Cartitem.css';
+import '../styles/cart.css';
 import { Link, useParams } from 'react-router-dom';
 import Cartitem from './Cartitem';
 
@@ -8,6 +9,8 @@ function Cart() {
     let { userID } = useParams();
     const [cartItems, setCart] = useState([]);
     const [total, setTotal] = useState(0);
+    const tax = ((total*18)/100).toFixed(2);
+    const finaltotal = total*1 + tax*1;
 
     let spiceLevel = [{1: 'Less', 2: 'Medium', 3: 'Spicy'}];
     let cheeseLevel = [{1: 'Less', 2: 'Medium', 3: 'Extra Cheese'}];
@@ -56,7 +59,8 @@ function Cart() {
           </Link>
         </div>
   ) : (
-      <div>
+      <div className='main'>
+        <div className='left'>
       <div className='container my-1' >
         <div className='row'>
           {cartItems.map(eachItem => (
@@ -66,7 +70,17 @@ function Cart() {
           ))}
         </div>
       </div>
-      <Link to = {`/checkout/${userID}`}><button className="Checkout">CheckOut</button></Link>
+      
+      </div> 
+      
+      <div className='right'>
+        <div className='element'><b>Sub Total</b><b>$ {total}</b></div>
+        <div className='element'><b>Tax</b><b>$ {tax}</b></div>
+        <hr></hr>
+        <div className='element'><b>Total</b><b>$ {finaltotal}</b></div>
+        <br></br>
+        <Link to = {`/checkout/${userID}`}><button className="Checkout">CheckOut</button></Link>
+      </div>
     </div>
   )}
     </div>
