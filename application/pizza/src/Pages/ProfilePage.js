@@ -64,57 +64,49 @@ function ProfilePage() {
     };
 
     return (
-        <div>
-            <h1>Hi {currentUser.username}!</h1>
+        <div className="container mt-4">
+            <h1>Welcome, {currentUser.username}!</h1>
             <h3>Phone Number: {currentUser.phone}</h3>
-            <h4>Addresses</h4>
-            {addressList.length === 0 ? (
-                <p>No addresses added</p>
-            ) : (
-                <ul>
-                    {addressList.map((address) => (
-                        <li key={address.addressID}>
-                            <p>Address Line 1: {address.line1}</p>
-                            <p>Address Line 2: {address.line2}</p>
-                            <p>Apt: {address.apt}</p>
-                            <p>Zipcode: {address.zipcode}</p>
-                            <p>Added On: {new Date(address.addedOn).toLocaleString()}</p>
-                        </li>
-                    ))}
-                </ul>
-            )}
-            <h5>Order history</h5>
-
-            <select onChange={handleOrderChange}>
-                <option value="">Select an order</option>
-                {orderList.map((order) => (
-                    <option key={order.orderID} value={order.orderID}>
-                        {`Order ID: ${order.orderID} - Order Date: ${new Date(order.order_date).toLocaleString()}`}
-                    </option>
-                ))}
-            </select>
-
-            {selectedOrder && (
-                <div>
-                    <h6>Details for selected order (Order ID: {selectedOrder.orderID}):</h6>
-                    <ul>
-                        <li>Address: {selectedOrder.order_addressID}</li>
-                        <li>Payment Method: {selectedOrder.paymethod}</li>
-                        <li>Order Date: {new Date(selectedOrder.order_date).toLocaleString()}</li>
-                        <li>Order Status: {selectedOrder.order_status}</li>
-                        <li>Cart Items:</li>
-                        <ul>
-                            {selectedOrder.cartItems.map((cartItem) => (
-                                <li key={cartItem.cart_itemID}>
-                                    {`Menu Name: ${cartItem.MenuName}, Quantity: ${cartItem.quantity}`}
-                                </li>
-                            ))}
-                        </ul>
+            <div className="mb-4">
+                <h4>Your Addresses</h4>
+                {addressList.length === 0 ? (
+                    <p>No addresses added</p>
+                ) : (
+                    <ul className="list-group">
+                        {addressList.map((address) => (
+                            <li key={address.addressID} className="list-group-item">
+                                <p>Address Line 1: {address.line1}</p>
+                                <p>Address Line 2: {address.line2}</p>
+                                <p>Apt: {address.apt}</p>
+                                <p>Zipcode: {address.zipcode}</p>
+                                <p>Added On: {new Date(address.addedOn).toLocaleString()}</p>
+                            </li>
+                        ))}
                     </ul>
-                </div>
-            )}
-
-            <button type='button' className="btn btn-primary" onClick={handleLogout}>
+                )}
+            </div>
+            <div>
+                <h4>Your Order History</h4>
+                <select className="form-select mb-3" onChange={handleOrderChange}>
+                    <option value="">Select an order</option>
+                    {orderList.map((order) => (
+                        <option key={order.orderID} value={order.orderID}>
+                            {`Order ID: ${order.orderID} - Order Date: ${new Date(order.order_date).toLocaleString()}`}
+                        </option>
+                    ))}
+                </select>
+                {selectedOrder && (
+                    <div>
+                        <h5>Details for Selected Order (Order ID: {selectedOrder.orderID}):</h5>
+                        <ul className="list-group">
+                            <li className="list-group-item">Address: {selectedOrder.order_addressID}</li>
+                            <li className="list-group-item">Payment Method: {selectedOrder.paymethod}</li>
+                            <li className="list-group-item">Order Date: {new Date(selectedOrder.order_date).toLocaleString()}</li>
+                        </ul>
+                    </div>
+                )}
+            </div>
+            <button type='button' className="btn btn-primary mt-3" onClick={handleLogout}>
                 Logout
             </button>
             <ToastContainer />
