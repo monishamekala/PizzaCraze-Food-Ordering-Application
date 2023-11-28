@@ -6,45 +6,61 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function ProfilePage() {
     let { userID } = useParams();
+    const navigate = useNavigate();
 
     const [currentUser, setUser] = useState([]);
     const [addressList, setAddress] = useState([]);
-    const [orderlIST, setorderlIST] = useState([]);
-    const navigte = useNavigate();
+    const [orderList, setOrderList] = useState([]);
+    const [selectedOrder, setSelectedOrder] = useState(null);
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const urlForuser = `/api/UserController/profile/${userID}`;
-                const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlForuser), { withCredentials: true });
+                const urlForUser = `/api/UserController/profile/${userID}`;
+                const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlForUser), { withCredentials: true });
                 setUser(response.data.user);
                 setAddress(response.data.address);
-                setorderlIST(response.data.orderItems);
             } catch (err) {
                 console.log(err);
             }
-        }
+        };
+
+        const fetchOrders = async () => {
+            try {
+                const urlForOrders = `/api/order/get-orders/${userID}`;
+                const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlForOrders), { withCredentials: true });
+                setOrderList(response.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
         fetchUser();
-    }, []);
+        fetchOrders();
+    }, [userID]);
 
     const handleLogout = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
-            const urlLogout = "/api/UserController/logout"
+            const urlLogout = "/api/UserController/logout";
             const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlLogout), { withCredentials: true });
 
             if (response.data.Message === "Logged out successfully") {
-                // Replace alert with toast.success
                 toast.success("Logged out successfully");
-                navigte("/");
+                navigate("/");
                 window.location.reload();
             } else {
-                // Replace alert with toast.error
                 toast.error("Error");
             }
         } catch (err) {
             console.log(err);
         }
+    };
+
+    const handleOrderChange = (e) => {
+        const selectedOrderID = e.target.value;
+        const selectedOrderData = orderList.find((order) => order.orderID === selectedOrderID);
+        setSelectedOrder(selectedOrderData);
     };
 
     return (
@@ -68,10 +84,42 @@ function ProfilePage() {
                 </ul>
             )}
             <h5>Order history</h5>
-            <button type='button' className="btn btn-primary" onClick={handleLogout}>Logout</button>
+
+            <select onChange={handleOrderChange}>
+                <option value="">Select an order</option>
+                {orderList.map((order) => (
+                    <option key={order.orderID} value={order.orderID}>
+                        {`Order ID: ${order.orderID} - Order Date: ${new Date(order.order_date).toLocaleString()}`}
+                    </option>
+                ))}
+            </select>
+
+            {selectedOrder && (
+                <div>
+                    <h6>Details for selected order (Order ID: {selectedOrder.orderID}):</h6>
+                    <ul>
+                        <li>Address: {selectedOrder.order_addressID}</li>
+                        <li>Payment Method: {selectedOrder.paymethod}</li>
+                        <li>Order Date: {new Date(selectedOrder.order_date).toLocaleString()}</li>
+                        <li>Order Status: {selectedOrder.order_status}</li>
+                        <li>Cart Items:</li>
+                        <ul>
+                            {selectedOrder.cartItems.map((cartItem) => (
+                                <li key={cartItem.cart_itemID}>
+                                    {`Menu Name: ${cartItem.MenuName}, Quantity: ${cartItem.quantity}`}
+                                </li>
+                            ))}
+                        </ul>
+                    </ul>
+                </div>
+            )}
+
+            <button type='button' className="btn btn-primary" onClick={handleLogout}>
+                Logout
+            </button>
             <ToastContainer />
         </div>
-    )
+    );
 }
 
 export default ProfilePage;
