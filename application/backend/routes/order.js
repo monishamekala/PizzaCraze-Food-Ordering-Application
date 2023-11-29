@@ -69,5 +69,23 @@ router.post("/confirm-order", async (request, response) => {
         return response.status(500).json({ error: "Internal Server Error" });
     }
 });
+router.get('/get-orders/:userID', async (request, response) => {
+    const userID = request.params.userID;
+
+    const getOrdersQuery = `
+        SELECT * 
+        FROM FoodOrderSys.OrderTable 
+        WHERE order_userID = '${userID}'
+        ORDER BY order_date DESC;
+    `;
+
+    try {
+        const orders = await db.promise().query(getOrdersQuery);
+        return response.status(200).json(orders[0]);
+    } catch (error) {
+        console.log(error);
+        return response.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 module.exports = router;
