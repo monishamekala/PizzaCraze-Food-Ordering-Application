@@ -59,7 +59,7 @@ function Login() {
       <div className='leftSide' style={{ backgroundImage: `url(${BannerImage})` }}></div>
       <div className='rightSide'>
         <form onSubmit={handleClick}>
-          <h1>Login</h1>
+          <h1 data-testid = "loginHeading">Login</h1>
           <label htmlFor='email'>Email</label>
           <input id='email' onChange={handleChange} type='email' required></input>
           <label htmlFor='password'>Password</label>
