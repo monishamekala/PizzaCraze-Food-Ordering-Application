@@ -147,7 +147,7 @@ router.get("/profile/:userID", async (request, response) => {
                                     OrderTable.order_date`;
 
         const orderItems = await db.promise().query(ToGetorderItems);
-        console.log(orderItems[0]);
+        // console.log(orderItems[0]);
 
         response.status(200).send({user: Userresults[0][0], address: addressResults[0], orderItems: orderItems[0]});
     }catch (error){

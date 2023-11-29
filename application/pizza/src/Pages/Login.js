@@ -8,7 +8,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
-  const navigte = useNavigate();
+  const navigate = useNavigate();
 
   const [users, setusers] = useState({
     email: "",
@@ -22,7 +22,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
+    setShowPassword(!showPassword);
   };
 
   const handleClick = async (e) => {
@@ -36,17 +36,19 @@ function Login() {
       );
 
       if (response.data.message === "Login successful") {
-        toast.success("Login successful");
-        const successMessageElement = document.getElementById("success-message");
-        navigte("/menu");
+        navigate('/menu');
         window.location.reload();
       } else {
+        const FailMessage = document.getElementById("fail-message");
+        FailMessage.textContent = "Either Email or Password is incorrect";
         toast.error(response.data.Failmessage);
       }
     } catch (err) {
       if (err.response && err.response.data && err.response.data.error) {
         // The error message is in err.response.data.error
         toast.error(err.response.data.error);
+      } else if (err.message === "Network Error"){
+        toast.error("Network Error: Unable to connect to the server.");
       } else {
         // If there's any other type of error
         console.error(err);
@@ -60,19 +62,25 @@ function Login() {
       <div className='rightSide'>
         <form onSubmit={handleClick}>
           <h1 data-testid = "loginHeading">Login</h1>
+
           <label htmlFor='email'>Email</label>
-          <input id='email' onChange={handleChange} type='email' required></input>
+          <input id='email' onChange={handleChange} type='email' data-testid="email-input" required></input>
+
           <label htmlFor='password'>Password</label>
           <div className='password'>
-            <input type={showPassword ? 'text' : 'password'} id='password' onChange={handleChange} required></input>
+            <input type={showPassword ? 'text' : 'password'} id='password' onChange={handleChange} data-testid="password-input" required></input>
             <button type = 'button' onClick={togglePasswordVisibility}><img src={loginlogo} alt="eye icon"></img></button>
           </div>
+
+          <div id="fail-message" data-testid = "LoginfailMessage"></div>
+
           <div className='submitsection'>
-            <button className='normalbutton' type='submit'>
+            <button className='normalbutton' type='submit' name='Log in'>
               Log In
             </button>
             <Link to='/forgotPassword'>Forgot Password?</Link>
           </div>
+
           <div className='newaccount'>
             <h1>Need an account?</h1>
             <Link to='/signup'>
@@ -80,8 +88,6 @@ function Login() {
             </Link>
           </div>
         </form>
-        <div id="success-message"></div>
-        {/* <ToastContainer /> */}
       </div>
     </div>
   );
