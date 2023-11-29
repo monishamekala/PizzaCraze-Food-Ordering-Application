@@ -121,4 +121,9 @@ form label {
   font-size: 15px;
   cursor: pointer;
 }
-   
+
+.forgotPassword #password{
+  border: solid 1px;
+  width: 100px;
+  height: 30px;
+}
