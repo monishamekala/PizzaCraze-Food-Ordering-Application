@@ -25,7 +25,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
+    setShowPassword(!showPassword);
   };
 
   const handleClick = async (e) => {
@@ -53,6 +53,8 @@ function Login() {
       if (err.response && err.response.data && err.response.data.error) {
         // The error message is in err.response.data.error
         toast.error(err.response.data.error);
+      } else if (err.message === "Network Error"){
+        toast.error("Network Error: Unable to connect to the server.");
       } else {
         // If there's any other type of error
         console.error(err);
@@ -66,6 +68,7 @@ function Login() {
       <div className='rightSide'>
         <form onSubmit={handleClick}>
           <h1 data-testid = "loginHeading">Login</h1>
+
           <label htmlFor='email'>Email</label>
           <input data-testid='email-input' id='email' value={users.email} onChange={handleChange} type='email' required></input>
           
@@ -85,6 +88,7 @@ function Login() {
             </button>
             <Link to='/forgotPassword' data-testid = "forgotPasswordLink">Forgot Password?</Link>
           </div>
+
           <div className='newaccount'>
             <h1>Need an account?</h1>
             <Link to='/signup' data-testid = "SignUpButton">
