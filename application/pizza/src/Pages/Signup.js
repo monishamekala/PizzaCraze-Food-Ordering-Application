@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BannerImage from '../Assests/pizza.jpeg';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import loginlogo from '../Assests/eye.svg';
 import '../styles/Login.css';
@@ -84,9 +84,11 @@ function Signup() {
         if (response.data.result === "Success") {
           // Replace alert with toast.success
           toast.success(response.data.message);
-          navigate('/login');
+          setTimeout(() => {
+            navigate('/login');
+          }, 3500);
         }else{
-          toast.error(response.data.message);
+          toast.error(response.data.message, { toastId: 'signup-error-toast' });
         }
       } catch (err) {
         if (err.response && err.response.data && err.response.data.error) {
@@ -98,15 +100,15 @@ function Signup() {
           console.error(err);
         }
       }
-    } else if (!checkPhone) {
-      // Replace alert with toast.error
-      toast.error('Please enter a valid phone number');
     } else if (!checkName) {
       // Replace alert with toast.error
-      toast.error('Please provide a valid name');
+      toast.error('Please provide a valid name', { toastId: 'name-error-toast' });
+    }else if (!checkPhone) {
+      // Replace alert with toast.error
+      toast.error('Please enter a valid phone number', { toastId: 'phone-error-toast' });
     } else {
       // Replace alert with toast.error
-      toast.error('Password does not meet the required criteria.');
+      toast.error('Password does not meet the required criteria.', { toastId: 'password-error-toast' });
     }
   };
 
@@ -115,21 +117,22 @@ function Signup() {
       <div className='leftSide' style={{ backgroundImage: `url(${BannerImage})` }}></div>
       <div className='rightSide'>
         <form onSubmit={handleClick}>
-          <h1>Sign Up</h1>
+          <h1 data-testid = "signupheading">Sign Up</h1>
           <p>Please fill in this form to create an account.</p>
+
           <label htmlFor='email'>Email</label>
-          <input id='email' type='email' onChange={handleChange} required></input>
+          <input value = {user.email} id='email' type='email' onChange={handleChange} data-testid = 'email-input' required></input>
 
           <label htmlFor='username'>Full Name</label>
-          <input id='username' type='text' onChange={handleChange} required></input>
+          <input value = {user.username} id='username' type='text' onChange={handleChange} data-testid = 'name-input' required></input>
 
           <label htmlFor='phone'>Phone Number</label>
-          <input id='phone' onChange={handleChange} required></input>
+          <input value = {user.phone} id='phone' onChange={handleChange} data-testid = 'phone-input' required></input>
 
           <label htmlFor='password'>Password</label>
           <div className='password'>
-            <input type={showPassword ? 'text' : 'password'} id='password' onChange={handleChange} required></input>
-            <button onClick={togglePasswordVisibility}>
+            <input  value = {user.password} type={showPassword ? 'text' : 'password'} id='password' onChange={handleChange} data-testid = 'password-input' required></input>
+            <button onClick={togglePasswordVisibility} type = 'button'>
               <img src={loginlogo} alt='Show/Hide Password'></img>
             </button>
           </div>
@@ -139,14 +142,13 @@ function Signup() {
           <br></br>
 
           <div className='signup-submit'>
-            <button id='submit' type='submit'>
-              Submit
+            <button id='submit' type='submit' data-testid = "SignUpsubmitbutton">
+              Sign Up
             </button>
           </div>
-
-          <div id='success-message'></div>
         </form>
       </div>
+      <ToastContainer autoClose={8000} />
     </div>
   );
 }
