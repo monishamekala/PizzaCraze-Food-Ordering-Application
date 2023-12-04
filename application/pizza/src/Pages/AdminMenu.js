@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../styles/AdminLogin.css';
+import { Link } from 'react-router-dom';
 
 function AdminMenu() {
   const [menuItems, setMenuItems] = useState([]);
@@ -18,28 +20,36 @@ function AdminMenu() {
   }, []);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
-      <div style={{ width: "80%", maxWidth: "800px", background: "#f0f0f0", padding: "20px", borderRadius: "10px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}>
-        <table style={{ marginLeft: "10px" }}>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Description</th>
-              <th>Price</th>
+    <div>
+      <div className='menu-tableContainer'>
+      <table className='menu-table'>
+        <thead>
+          <tr>
+            <th>Item ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {menuItems.map(eachItem => (
+            <tr key={eachItem.menu_id}>
+              <td>{eachItem.menu_id}</td>
+              <td>{eachItem.name}</td>
+              <td>{eachItem.category}</td>
+              <td>{eachItem.description}</td>
+              <td>{eachItem.price}</td>
             </tr>
-          </thead>
-          <tbody>
-            {menuItems.map(eachItem => (
-              <tr key={eachItem.menu_id}>
-                <td>{eachItem.name}</td>
-                <td>{eachItem.category}</td>
-                <td>{eachItem.description}</td>
-                <td>{eachItem.price}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          ))}
+        </tbody>
+      </table>
+      </div>
+
+      <div className='addmenu-btn-container'>
+        <Link to = "/addmenuitem">
+          <button>Add Menu Item</button>
+        </Link>
       </div>
     </div>
   );

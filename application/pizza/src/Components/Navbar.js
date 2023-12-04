@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import serachlogo from '../Assests/search-icon.svg';
 import cartlogo from '../Assests/cart-fill.svg';
 import userlogo from '../Assests/person-circle.svg';
 import loginlogo from '../Assests/add-profile.svg';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Navbar.css';
+
 
 function Navbar() {
   
@@ -47,10 +50,12 @@ function Navbar() {
   }, []);
 
   const AskToLogin = () => {
-    alert("Please log in");
+    toast.error("Please log in");
   };
 
   return (
+    <>
+      <ToastContainer />
     <div className='navbar'>
 
         <div className='leftSide'>
@@ -69,9 +74,21 @@ function Navbar() {
 
             <input type="text" placeholder="Search.." ref={searchFor} value={inputValue} onChange={handleChange}/>
 
-            <Link to={`/searchmenu/${inputValue}`}>
-            <button onClick={handleSearch}><img src={serachlogo}/></button>
-            </Link>
+            {inputValue.trim() === '' ? (
+              // If the search term is empty, render a button with a direct link to /menu
+              <Link to="/menu">
+                <button>
+                  <img src={serachlogo} alt="Search" />
+                </button>
+              </Link>
+            ) : (
+              // If the search term is not empty, render a button with an onClick handler
+              <Link to = {`/searchmenu/${inputValue}`}>
+                <button onClick={handleSearch}>
+                  <img src={serachlogo} alt="Search" />
+                </button>
+              </Link>
+            )}
 
           </div>
 
@@ -85,7 +102,8 @@ function Navbar() {
        
         </div>
     </div>
-  )
+    </>
+  );
 }
 
 export default Navbar;

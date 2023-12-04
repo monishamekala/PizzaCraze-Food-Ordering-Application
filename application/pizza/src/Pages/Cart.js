@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/Cartitem.css';
-import deleteIcon from '../Assests/deleteIcon.svg';
+import '../styles/cart.css';
 import { Link, useParams } from 'react-router-dom';
 import Cartitem from './Cartitem';
-
-
-
 
 function Cart() {
     let { userID } = useParams();
     const [cartItems, setCart] = useState([]);
     const [total, setTotal] = useState(0);
+    const tax = ((total*18)/100).toFixed(2);
+    const finaltotal = total*1 + tax*1;
 
     let spiceLevel = [{1: 'Less', 2: 'Medium', 3: 'Spicy'}];
     let cheeseLevel = [{1: 'Less', 2: 'Medium', 3: 'Extra Cheese'}];
@@ -36,13 +35,13 @@ function Cart() {
       }
     }
     fetchCartItems()
-  }, [])
+  }, [cartItems])
 
   useEffect( () => {
     const CalTotal = async () => {
       let totalPrice = 0;
       cartItems.forEach(eachItem=> {
-        totalPrice += parseFloat(eachItem.price);
+        totalPrice += parseFloat(eachItem.price * eachItem.quantity);
       });
 
       setTotal(totalPrice.toFixed(2));
@@ -51,27 +50,37 @@ function Cart() {
   }, [cartItems]);
 
   return (  
-    <div>
+    <div className='cart-page'>
       {cartItems.length === 0 ? (
         <div className='noItems'>
           <h1 id="EmptyCart-message">Your cart is empty</h1>
-
           <Link to={'/menu'}>
-          <button>Add Items</button>
+            <button>Add Items</button>
           </Link>
         </div>
   ) : (
-      <div>
+      <div className='main'>
+        <div className='left'>
       <div className='container my-1' >
         <div className='row'>
           {cartItems.map(eachItem => (
           <div className='col-md-30' key={eachItem.cart_itemID} >
-            <Cartitem itemID = {eachItem.cart_itemID} name = {eachItem.name} price = {eachItem.price} cheese = {cheeseLevel[0][eachItem.cheese_level]} sauce = {sauceLevel[0][eachItem.sauce_level]} meat = {meatLevel[0][eachItem.meat_level]} spice = {spiceLevel[0][eachItem.spice_level]} image_url = {eachItem.image_url} CIid = {eachItem.cart_itemID} quan = {eachItem.quantity}></Cartitem>
+            <Cartitem name = {eachItem.name} price = {eachItem.price * eachItem.quantity} cheese = {cheeseLevel[0][eachItem.cheese_level]} sauce = {sauceLevel[0][eachItem.sauce_level]} meat = {meatLevel[0][eachItem.meat_level]} spice = {spiceLevel[0][eachItem.spice_level]} image_url = {eachItem.image_url} CIid = {eachItem.cart_itemID} quan = {eachItem.quantity}></Cartitem>
           </div> 
           ))}
         </div>
       </div>
-      <Link to = {`/checkout/${userID}`}><button className="btn btn-primary custom-button">CheckOut</button></Link>
+      
+      </div> 
+      
+      <div className='right'>
+        <div className='element'><b>Sub Total</b><b>$ {total}</b></div>
+        <div className='element'><b>Tax</b><b>$ {tax}</b></div>
+        <hr></hr>
+        <div className='element'><b>Total</b><b>$ {finaltotal}</b></div>
+        <br></br>
+        <Link to = {`/checkout/${userID}`}><button className="Checkout">CheckOut</button></Link>
+      </div>
     </div>
   )}
     </div>

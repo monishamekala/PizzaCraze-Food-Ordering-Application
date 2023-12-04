@@ -5,3 +5,73 @@
 .center-text {
     text-align: center; /* Center the text within the table cells */
 }
+
+.dropdown {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown select{
+    margin-right: 25px;
+    border: 1px solid;
+    border-radius: 2px; 
+    height: 30px;
+    padding: 2px;
+    width: 150px;
+}
+h1{
+    margin-bottom: 30px;
+}
+.AddMenuItemform {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.AddMenuItemform input{
+    border: 1px solid;
+    border-radius: 2px; 
+    padding: 5px;
+    display: flex;
+    width: 500px;
+}
+
+.AddMenuItemform button{
+    margin-top: 20px;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    font-size: 17px;
+    width: 150px;
+}
+
+.eachinput-foritem{
+    flex-direction: row;
+    display: flex;
+}
+
+.eachinput-foritem label{
+    padding: none;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.eachinput-forContains label{
+    padding: none;
+    width: 70px;
+    margin-right: 10px;
+    margin-top: none !important;
+    margin-left: 15px;
+}
+
+.eachinput-forContains{
+    margin-top: 20px;
+    flex-direction: row;
+    display: flex;
+}
+
+.eachinput-forContains input {
+    width: 20px !important;
+}
