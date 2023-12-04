@@ -74,9 +74,21 @@ function Navbar() {
 
             <input type="text" placeholder="Search.." ref={searchFor} value={inputValue} onChange={handleChange}/>
 
-            <Link to={`/searchmenu/${inputValue}`}>
-            <button onClick={handleSearch}><img src={serachlogo}/></button>
-            </Link>
+            {inputValue.trim() === '' ? (
+              // If the search term is empty, render a button with a direct link to /menu
+              <Link to="/menu">
+                <button>
+                  <img src={serachlogo} alt="Search" />
+                </button>
+              </Link>
+            ) : (
+              // If the search term is not empty, render a button with an onClick handler
+              <Link to = {`/searchmenu/${inputValue}`}>
+                <button onClick={handleSearch}>
+                  <img src={serachlogo} alt="Search" />
+                </button>
+              </Link>
+            )}
 
           </div>
 

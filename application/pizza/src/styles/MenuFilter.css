@@ -69,3 +69,33 @@
     margin-right: 250px;
 }
 
+@media only screen and (max-width: 768px) {
+    .custom-button-filter-container {
+        flex-direction: column;
+    }
+
+    .custom-button-filter {
+        width: 100%; 
+    }
+
+    #addtocartbutton {
+        position: static;
+        margin-top: 10px; 
+    }
+    
+    .gotocart-footer {
+        height: auto; 
+    }
+
+    .filter-buttons button {
+        width: 100%; 
+        margin-bottom: 5px; 
+    }
+
+    .line{
+        transform: translateX(-50%);
+        width: 250px;
+        margin-right: 30px;
+    }
+}
+
