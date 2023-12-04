@@ -114,5 +114,60 @@ router.get('/get-order-details/:orderID', async (request, response) => {
     return response.status(200).json(orderDetails[0]);
 })
 
+router.post('/AddMenu', async(request, response) => {
+    const name = request.body.itemName;
+    const category = request.body.category;
+    const description = request.body.description;
+    const price = parseFloat(request.body.price);
+    const calories = parseInt(request.body.calories);
+    const ingredients = request.body.ingredients;
+    const image_url= request.body.imageURL;
+
+    const contains = request.body.contains;
+
+    var is_vegan = 0;
+    var is_veg = 0;
+    var is_nonveg = 0;
+
+    if(contains == "vegan"){
+        is_nonveg = 0;
+        is_veg = 0;
+        is_vegan = 1;
+    };
+
+    if(contains == "vegetarian"){
+        is_veg = 1;
+        is_vegan = 0;
+        is_nonveg = 0;
+    }        
+
+    if(contains == "non"){
+        is_veg = 0;
+        is_vegan = 0;
+        is_nonveg = 1;
+    }  
+
+    const add = `
+    INSERT INTO FoodOrderSys.MenuTable (
+      name, category, description, price, calories, ingredients, is_veg, is_vegan, is_nonveg, image_url
+    ) VALUES (
+      ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+    )
+  `;
+    
+    try
+        {    
+            await db.promise().execute(add, [
+                name, category, description, price, calories, ingredients, is_veg, is_vegan, is_nonveg, image_url
+              ]);
+            return response.status(200).json({message: "Success"});
+        }
+        catch (error)
+        {
+            console.log(error);
+            return response.status(500).json({ error: "Internal Server Error" });
+        }   
+});
+
 
 module.exports = router;

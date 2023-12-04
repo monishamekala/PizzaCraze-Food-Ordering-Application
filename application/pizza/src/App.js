@@ -8,6 +8,7 @@ import AdminUsers from './Pages/AdminUsers';
 import AdminMenu from './Pages/AdminMenu';
 import AdminOrders from './Pages/AdminOrders';
 import AdminOrderDetails from './Pages/AdminOrderDetails';
+import AddMenuItem from './Pages/AddMenuItem';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import ForgotPassword from './Pages/ForgotPassword';
@@ -64,6 +65,7 @@ function App() {
           <Route path='/adminmenu' element={<> <AdminMenu /> </>}/>
           <Route path='/adminorders' element={<> <AdminOrders /> </>}/>
           <Route path='/order-details/:orderID' element={<> <AdminOrderDetails /> </>} />
+          <Route path='/addmenuitem' element={<> <AddMenuItem /> </>} />
 
           <Route path='/menu' element={<> <Navbar /> <Menu /> <Footer /> </>} />
           <Route path='/contact' element={<> <Navbar /> <Contact /> <Footer /> </>} />

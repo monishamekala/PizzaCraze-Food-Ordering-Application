@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/AdminLogin.css';
+import { Link } from 'react-router-dom';
 
 function AdminMenu() {
   const [menuItems, setMenuItems] = useState([]);
@@ -46,7 +47,9 @@ function AdminMenu() {
       </div>
 
       <div className='addmenu-btn-container'>
-        <button>Add Menu Item</button>
+        <Link to = "/addmenuitem">
+          <button>Add Menu Item</button>
+        </Link>
       </div>
     </div>
   );
