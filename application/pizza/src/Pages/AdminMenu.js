@@ -19,7 +19,8 @@ function AdminMenu() {
   }, []);
 
   return (
-    <div className='menu-tableContainer'>
+    <div>
+      <div className='menu-tableContainer'>
       <table className='menu-table'>
         <thead>
           <tr>
@@ -42,6 +43,11 @@ function AdminMenu() {
           ))}
         </tbody>
       </table>
+      </div>
+
+      <div className='addmenu-btn-container'>
+        <button>Add Menu Item</button>
+      </div>
     </div>
   );
 }
