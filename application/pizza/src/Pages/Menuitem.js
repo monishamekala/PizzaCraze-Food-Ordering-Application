@@ -11,7 +11,7 @@ function Menuitem(props) {
     spice: 2,
     cheese: 2,
     sauce: 2,
-    meat: 2,
+    meat: 1,
   });
 
   const [CurrentuserID, setUserID] = useState();
