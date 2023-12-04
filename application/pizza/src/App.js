@@ -84,15 +84,9 @@ function App() {
 
           <Route path='/searchmenu/:searchTerm' element={<> <Navbar /> <SearchMenu /> <Footer /> </>}/>
 
-          <Route
-            path='/mycart/:userID'
-            element={auth ? <><Navbar /><Cart /><Footer /></> : <Navigate to='/not-found' />}
-          />
+          <Route path='/mycart/:userID' element={<> <Navbar /> <Cart /> <Footer /> </>}/>
 
-          <Route 
-            path='/checkout/:userID' 
-            element={auth ? <><Navbar /><CheckOut /><Footer /></> : <Navigate to='/login' />}
-          />
+          <Route path='/checkout/:userID' element={<> <Navbar /> <CheckOut /> <Footer /> </>}/>
 
           <Route 
             path='/orderconfirm' 
