@@ -26,8 +26,6 @@ function AdminLogin() {
       if (response.data.message === 'Login successful') {
         const url = `/adminpanel/${response.data.id}`;
         navigate(url);
-        window.location.reload();
-        toast.success(response.data.message);
       } else {
         toast.error(response.data.Failmessage);
       }
