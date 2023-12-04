@@ -36,7 +36,6 @@ function SearchMenu() {
           )))}
         </div>
       </div>
-      {/* <button className="btn btn-primary custom-button" onClick={CheckLogin}>Go to Cart</button> */}
     </div>
 
   )
