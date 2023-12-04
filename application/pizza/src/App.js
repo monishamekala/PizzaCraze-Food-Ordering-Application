@@ -53,7 +53,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" data-testid = "app">
       <Router>
         <Routes>
           <Route path='/' element={<> <Navbar /> <Home /> <Footer /> </>} />

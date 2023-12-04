@@ -18,7 +18,13 @@ function Menu() {
         const res = await axios.get(process.env.REACT_APP_API_URL.concat(urlMenu));
         setMenu(res.data);
       } catch (err) {
-        console.log(err);
+        if (axios.isAxiosError(err)) {
+          // Axios error (e.g., network error, HTTP status code outside 2xx range)
+          console.error('Axios error:', err.message);
+        } else {
+          // Other types of errors
+          console.error('Error:', err.message);
+        }
       }
     }
     fetchMenuDetails()
@@ -55,13 +61,13 @@ function Menu() {
         <div className='filter-buttons'>
           <button className='custom-button-filter' onClick={() => setSelectedCategory('All')}>All</button>
           {categories.map(category => (
-            <button className='custom-button-filter' key={category} onClick={() => setSelectedCategory(category)}>{category}</button>
+            <button test-dataid = {category} className='custom-button-filter' key={category} onClick={() => setSelectedCategory(category)}>{category}</button>
           ))}
         </div>
 
         {categories.map(category => (
           <div key={category} className='menu-category'>
-            <h2>{category}</h2>
+            <h2 data-testid = 'categoryhead'>{category}</h2>
             <div className='line'></div>
             <div className='row'>
               {filteredMenuItems
