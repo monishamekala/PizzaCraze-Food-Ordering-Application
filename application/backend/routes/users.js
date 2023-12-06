@@ -133,7 +133,7 @@ router.get("/profile/:userID", async (request, response) => {
 
         const ToGetorderItems = `SELECT 
                                     cartItemsTable.*, 
-                                    MenuTable.name as MenuName,
+                                    MenuTable.name as MenuName, 
                                     MenuTable.menu_id as menuID, 
                                     OrderTable.*
                                 FROM 

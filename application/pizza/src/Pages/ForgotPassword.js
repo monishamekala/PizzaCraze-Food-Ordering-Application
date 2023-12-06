@@ -55,7 +55,7 @@ function ForgotPassword() {
         <br></br>
         <input id='password'  onChange={handleChange} style={{margin:10, width:600, height:40}} required></input>
         <br></br>
-        <button className="btn btn-dark" onClick={handleVerify} style={{margin:10}}>Verify</button>
+        <button className="FP-Verifybtn" onClick={handleVerify} style={{margin:10}}>Verify</button>
         </div>
         
         <ToastContainer />

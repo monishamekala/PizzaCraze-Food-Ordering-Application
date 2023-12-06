@@ -1,5 +1,6 @@
 import React from 'react'
 import Pic from '../Assests/Joey.png';
+import '../styles/About.css';
 
 function Github() {
   return (
@@ -12,7 +13,7 @@ function Github() {
         <br/>
         <br/>
         
-        <p>
+        <p className='about-member'>
         Howdy, I'm Joey, and I'm a 5th year Computer Science student at San Francisco State. I’m also in charge of the GitHub repository keeping this site together. When I'm not studying, I mostly prefer to play video games or watch reality TV shows.
         </p>
       

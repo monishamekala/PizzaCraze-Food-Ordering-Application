@@ -88,10 +88,10 @@ function ProfilePage() {
 
                                 <li className="list-group-item">
                             
-                                            <p><b>Address Line 1: </b>{address.line1}</p>
-                                            <p><b>Address Line 2:</b> {address.line2}</p>
-                                            <p><b>Apt:</b> {address.apt}</p>
-                                            <p style={{marginLeft: 25}}><b>Zipcode:</b> {address.zipcode}</p>
+                                    <p><b>Address Line 1: </b>{address.line1}</p>
+                                    <p><b>Address Line 2:</b> {address.line2}</p>
+                                    <p><b>Apt:</b> {address.apt}</p>
+                                    <p style={{marginLeft: 25}}><b>Zipcode:</b> {address.zipcode}</p>
                                     
                                 </li>
                         </div>
@@ -123,7 +123,7 @@ function ProfilePage() {
                     ))}
                     </div>
             </div>
-            <button type='button' className="btn btn-primary mt-3" onClick={handleLogout}>
+            <button type='button' className="logout-btn" onClick={handleLogout}>
                 Logout
             </button>
             <ToastContainer />
