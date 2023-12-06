@@ -133,7 +133,8 @@ router.get("/profile/:userID", async (request, response) => {
 
         const ToGetorderItems = `SELECT 
                                     cartItemsTable.*, 
-                                    MenuTable.name as MenuName, 
+                                    MenuTable.name as MenuName,
+                                    MenuTable.menu_id as menuID, 
                                     OrderTable.*
                                 FROM 
                                     FoodOrderSys.cartItemsTable 
@@ -147,11 +148,10 @@ router.get("/profile/:userID", async (request, response) => {
                                     OrderTable.order_date`;
 
         const orderItems = await db.promise().query(ToGetorderItems);
-        // console.log(orderItems[0]);
 
         response.status(200).send({user: Userresults[0][0], address: addressResults[0], orderItems: orderItems[0]});
     }catch (error){
-
+        console.log(error);
     }
     
 });

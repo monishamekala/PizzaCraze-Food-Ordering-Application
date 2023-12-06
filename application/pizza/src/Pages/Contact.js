@@ -16,28 +16,39 @@ function Contact() {
             <Link to={'https://twitter.com'}>
             <button type="button" className="btn btn-dark">Twitter</button></Link>
             </div>
-            <div className="my-3 d-flex justify-content-around">
-              FAQ<br></br>
-              What types of pizza do you offer?<br></br>
-              Can I customize my own pizza with specific toppings?<br></br>
-              Do you offer gluten-free crust options?<br></br>
-              What sizes of pizzas are available?<br></br>
-              Is there a menu for sides and beverages?<br></br>
-              Do you have vegetarian or vegan pizza options?<br></br>
-              What are your delivery areas and charges?<br></br>
-              How can I place an order online?<br></br>
-              What are your business hours?<br></br>
-              Are there any current promotions or discounts?<br></br>
-              Do you offer catering services for events?<br></br>
-              What payment methods do you accept?<br></br>
-              How do I track my delivery order?<br></br>
-              Can I order in advance or schedule a future delivery?<br></br>
-              What is your policy on returns or refunds?<br></br>
-              Are nutritional information and allergen details available for your menu items?<br></br>
-              Do you offer contactless delivery or pickup options?<br></br>
-              Can I join a loyalty or rewards program?<br></br>
-              Are there any special deals for large group orders?<br></br>
-              How do I contact customer support for any issues with my order?<br></br>
+            <div className="FAQ">
+              <p style={{fontSize: 40}}>FAQ</p><br></br>
+              <div className='card'>
+              <p style={{fontSize: 30}}> What types of pizza do you offer?</p><br></br>
+
+              <p>We offer a diverse range of pizza options, including classic favorites like Margherita, Pepperoni, and Hawaiian, as well as unique specialty pizzas such as BBQ Chicken, Veggie Delight, and Meat Lovers. Our menu is designed to cater to a variety of tastes and preferences.</p>
+              </div>
+              <div className='card'>
+              <p style={{fontSize: 30}}> Can I customize my own pizza with specific toppings?</p><br></br>
+
+              <p>Absolutely! You have the flexibility to create your own custom pizza with a variety of toppings. Choose from a selection of fresh vegetables, meats, cheeses, and more to tailor your pizza to your liking. Our goal is to provide a personalized and enjoyable dining experience.</p>
+              </div>
+              <div className='card'>
+              <p style={{fontSize: 30}}> Do you offer gluten-free crust options?</p><br></br>
+
+              <p>Yes, we understand the importance of catering to different dietary needs. We offer gluten-free crust options for those with gluten sensitivities or preferences. Enjoy your favorite pizza with a crust that suits your dietary requirements.</p>
+              </div>
+              <div className='card'>
+              <p style={{fontSize: 30}}> What sizes of pizzas are available?</p><br></br>
+
+              <p><b>Answer: </b>Our pizzas come in various sizes to accommodate different appetites. You can choose from personal-sized pizzas for an individual meal, medium-sized pizzas for sharing with a friend, or large-sized pizzas for larger gatherings. Our size options ensure there's something for everyone.</p>
+              </div>
+              <div className='card'>
+              <p style={{fontSize: 30}}> Is there a menu for sides and beverages?</p><br></br>
+
+              <p>Yes, our menu extends beyond pizzas to include a variety of delicious sides and refreshing beverages. Whether you're craving appetizers like garlic knots or looking for the perfect drink to complement your meal, our menu has a diverse selection to enhance your dining experience.</p>
+              </div>
+              
+              
+             
+              
+              
+              
             </div>
             
         </div>
