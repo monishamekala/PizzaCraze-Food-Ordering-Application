@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Confetti from 'react-confetti';
+import BannerImage from '../Assests/12.png';
 
 function OrderConfirm(){
 
@@ -36,6 +37,12 @@ function OrderConfirm(){
                     numberOfPieces={150}
                     recycle={false}
                     />
+                    <div>
+                      <img src={BannerImage} height={250} style={{margin: 50}}></img>
+                      <br></br>
+                      <a href={BannerImage} download="React Image" className='btn' style={{fontSize: 30}}>Download</a>
+      
+    </div>
                 </div>
             : <h1>Please log in</h1>}
         </div>

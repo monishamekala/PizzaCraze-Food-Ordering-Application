@@ -171,16 +171,49 @@ function CheckOut() {
           </div>
         ):(
           <div>
-            <h2><b>Existing address</b></h2>
-            {address.map((eachItem, index) => (
-              <div className='col-md-30' key={eachItem.addressID} >
-                <div className="address-container">
-                  <input className='form-check-input mt-0 address-check' type="radio" value={eachItem.addressID} name='addresses' id={`address-${index}`} onChange={handleAddressSelection}/>
-                  <label htmlFor={`address-${index}`}>{`${eachItem.line1}, ${eachItem.line2}, ${eachItem.apt}, ${eachItem.zipcode}`}</label>
-                </div>
-              </div> 
-            ))}
-          </div>
+  <h2><b>Existing addresses</b></h2>
+  <table className='table'>
+    {/* <thead>
+      <tr>
+        <th>Select</th>
+        <th>Address</th>
+      </tr>
+    </thead> */}
+    <tbody>
+      {address.map((eachItem, index) => (
+        <tr className='address-row' key={eachItem.addressID}>
+          <td className='tdclass'>
+            <input
+              className='form-check-input mt-0 address-check'
+              type="radio"
+              value={eachItem.addressID}
+              name='addresses'
+              id={`address-${index}`}
+              onChange={handleAddressSelection}
+            />
+          </td>
+          <td className='tdclass2'>
+            <p>{`${eachItem.line1}, ${eachItem.line2}, ${eachItem.apt}, ${eachItem.zipcode}`}</p>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+          // <div>
+          //   <h2><b>Existing address</b></h2>
+          //   {address.map((eachItem, index) => (
+          //     <div className='col-md-30' key={eachItem.addressID} >
+          //       <div className="address-container">
+          //         <div className='eaddress'>
+          //         <input className='form-check-input mt-0 address-check' type="radio" value={eachItem.addressID} name='addresses' id={`address-${index}`} onChange={handleAddressSelection}/>
+          //         <label htmlFor={`address-${index}`}>{`${eachItem.line1}, ${eachItem.line2}, ${eachItem.apt}, ${eachItem.zipcode}`}</label>
+          //         </div>
+          //       </div>
+          //     </div> 
+          //   ))}
+          // </div>
         )}
       </div>
 

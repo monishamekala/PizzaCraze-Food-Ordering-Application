@@ -134,3 +134,27 @@
     box-shadow: 0 0 5px 0 #000000; 
     border-color: #000000;
 }
+
+.eaddress{
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    width: 400px;
+}
+.eaddress input{
+    /* width: 15px;
+    height: 15px;
+    margin-top: 5px;
+    padding-top: 5px; */
+}
+.address-row input{
+    /* margin-left: 400px; */
+  }
+.tdclass input{
+    margin-left: 530px;
+}
+.tdclass2 p{
+    margin-right: 530px;
+
+}
+  
