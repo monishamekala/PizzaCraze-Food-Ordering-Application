@@ -10,7 +10,7 @@ function Cart() {
     const [cartItems, setCart] = useState([]);
     const [total, setTotal] = useState(0);
     const tax = ((total*18)/100).toFixed(2);
-    const finaltotal = total*1 + tax*1;
+    const finaltotal = (total*1 + tax*1).toFixed(2);
 
     let spiceLevel = [{1: 'Less', 2: 'Medium', 3: 'Spicy'}];
     let cheeseLevel = [{1: 'Less', 2: 'Medium', 3: 'Extra Cheese'}];
