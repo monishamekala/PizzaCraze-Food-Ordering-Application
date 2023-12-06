@@ -24,26 +24,6 @@
     margin-bottom: 20;
   }
 
-
-  
-  /* last minute css */
-  .card {
-    width: 100%; 
-    margin-bottom: 20px;
-  }
-  .card p {
-    margin-left: 10px;
-  }
-
-  .FAQ
-  {
-    text-align: center;
-    font-size: 23px;
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-bottom: 20;
-  }
-
 .dropdown {
     margin-top: 20px;
     display: flex;
