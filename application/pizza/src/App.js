@@ -8,6 +8,7 @@ import AdminUsers from './Pages/AdminUsers';
 import AdminMenu from './Pages/AdminMenu';
 import AdminOrders from './Pages/AdminOrders';
 import AdminOrderDetails from './Pages/AdminOrderDetails';
+import AddMenuItem from './Pages/AddMenuItem';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import ForgotPassword from './Pages/ForgotPassword';
@@ -53,7 +54,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" data-testid = "app">
       <Router>
         <Routes>
           <Route path='/' element={<> <Navbar /> <Home /> <Footer /> </>} />
@@ -64,6 +65,7 @@ function App() {
           <Route path='/adminmenu' element={<> <AdminMenu /> </>}/>
           <Route path='/adminorders' element={<> <AdminOrders /> </>}/>
           <Route path='/order-details/:orderID' element={<> <AdminOrderDetails /> </>} />
+          <Route path='/addmenuitem' element={<> <AddMenuItem /> </>} />
 
           <Route path='/menu' element={<> <Navbar /> <Menu /> <Footer /> </>} />
           <Route path='/contact' element={<> <Navbar /> <Contact /> <Footer /> </>} />
@@ -84,15 +86,9 @@ function App() {
 
           <Route path='/searchmenu/:searchTerm' element={<> <Navbar /> <SearchMenu /> <Footer /> </>}/>
 
-          <Route
-            path='/mycart/:userID'
-            element={auth ? <><Navbar /><Cart /><Footer /></> : <Navigate to='/not-found' />}
-          />
+          <Route path='/mycart/:userID' element={<> <Navbar /> <Cart /> <Footer /> </>}/>
 
-          <Route 
-            path='/checkout/:userID' 
-            element={auth ? <><Navbar /><CheckOut /><Footer /></> : <Navigate to='/login' />}
-          />
+          <Route path='/checkout/:userID' element={<> <Navbar /> <CheckOut /> <Footer /> </>}/>
 
           <Route 
             path='/orderconfirm' 

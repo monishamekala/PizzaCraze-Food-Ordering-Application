@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/AdminLogin.css';
+import { Link } from 'react-router-dom';
 
 function AdminMenu() {
   const [menuItems, setMenuItems] = useState([]);
@@ -19,7 +20,8 @@ function AdminMenu() {
   }, []);
 
   return (
-    <div className='menu-tableContainer'>
+    <div>
+      <div className='menu-tableContainer'>
       <table className='menu-table'>
         <thead>
           <tr>
@@ -42,6 +44,13 @@ function AdminMenu() {
           ))}
         </tbody>
       </table>
+      </div>
+
+      <div className='addmenu-btn-container'>
+        <Link to = "/addmenuitem">
+          <button>Add Menu Item</button>
+        </Link>
+      </div>
     </div>
   );
 }

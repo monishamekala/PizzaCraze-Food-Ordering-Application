@@ -10,7 +10,7 @@ function Cart() {
     const [cartItems, setCart] = useState([]);
     const [total, setTotal] = useState(0);
     const tax = ((total*18)/100).toFixed(2);
-    const finaltotal = total*1 + tax*1;
+    const finaltotal = (total*1 + tax*1).toFixed(2);
 
     let spiceLevel = [{1: 'Less', 2: 'Medium', 3: 'Spicy'}];
     let cheeseLevel = [{1: 'Less', 2: 'Medium', 3: 'Extra Cheese'}];
@@ -41,7 +41,7 @@ function Cart() {
     const CalTotal = async () => {
       let totalPrice = 0;
       cartItems.forEach(eachItem=> {
-        totalPrice += parseFloat(eachItem.price);
+        totalPrice += parseFloat(eachItem.price * eachItem.quantity);
       });
 
       setTotal(totalPrice.toFixed(2));
@@ -65,7 +65,7 @@ function Cart() {
         <div className='row'>
           {cartItems.map(eachItem => (
           <div className='col-md-30' key={eachItem.cart_itemID} >
-            <Cartitem name = {eachItem.name} price = {eachItem.price} cheese = {cheeseLevel[0][eachItem.cheese_level]} sauce = {sauceLevel[0][eachItem.sauce_level]} meat = {meatLevel[0][eachItem.meat_level]} spice = {spiceLevel[0][eachItem.spice_level]} image_url = {eachItem.image_url} CIid = {eachItem.cart_itemID} quan = {eachItem.quantity}></Cartitem>
+            <Cartitem name = {eachItem.name} price = {eachItem.price * eachItem.quantity} cheese = {cheeseLevel[0][eachItem.cheese_level]} sauce = {sauceLevel[0][eachItem.sauce_level]} meat = {meatLevel[0][eachItem.meat_level]} spice = {spiceLevel[0][eachItem.spice_level]} image_url = {eachItem.image_url} CIid = {eachItem.cart_itemID} quan = {eachItem.quantity}></Cartitem>
           </div> 
           ))}
         </div>

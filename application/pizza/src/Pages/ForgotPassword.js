@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BannerImage from '../Assests/pizza.jpeg';
+import '../styles/Login.css';
 
 function ForgotPassword() {
   const [users, setUsers] = useState({
@@ -23,8 +24,9 @@ function ForgotPassword() {
         { withCredentials: true }
       );
 
-      if (response.data.message === "Please register/Sign up") {
+      if (response.data.message === "Valid Email") {
         toast.success(response.data.message);
+        window.location.replace("Login");
       } else {
         toast.error(response.data.Failmessage);
       }
@@ -42,14 +44,18 @@ function ForgotPassword() {
   return (
     <div className="my-3 about">
       <div className='aboutTop' style={{ backgroundImage: `url(${BannerImage})` }}></div>
-      <div className='my-3 aboutBottom'>
+      <div className='my-3 forgotPassword'>
         <div>
         <label htmlFor='email'><b style={{fontSize:20}}>Enter email address</b></label>
         <br></br>
-        <input id='email'  type='email' onChange={handleChange} style={{margin:10}} required></input>
+        <input id='email'  type='email'  placeholder='Enter Your Email' onChange={handleChange} style={{margin:10}} required></input>
+        <br></br>
+        <br></br>
+        <label htmlFor='password'><b style={{fontSize:20} }>Enter New Password</b></label>
+        <br></br>
+        <input id='password' placeholder='Enter New Password' onChange={handleChange} style={{margin:10}} required></input>
         <br></br>
         <button className="btn btn-dark" onClick={handleVerify} style={{margin:10}}>Verify</button>
-
         </div>
         
         <ToastContainer />
