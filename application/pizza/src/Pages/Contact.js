@@ -16,7 +16,7 @@ function Contact() {
             <Link to={'https://twitter.com'}>
             <button type="button" className="btn btn-dark">Twitter</button></Link>
             </div>
-            <div className="FAQ">
+            <div className="FAQ text-center">
               <p style={{fontSize: 40}}>FAQ</p><br></br>
               <div className='card'>
               <p style={{fontSize: 30}}> What types of pizza do you offer?</p><br></br>

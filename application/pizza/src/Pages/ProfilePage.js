@@ -106,8 +106,8 @@ function ProfilePage() {
                     {orderList.map((order) => (
                             <div className="card" style = {{marginBottom: 10, fontSize: '20px'}} key={order.orderID} value={order.orderID}>
                                <div className="row">
-                                <div className="col-md-6">
-                                <p><b>Order ID: {order.orderID}</b></p>
+                                <div className="col-md-6 text-start">
+                                <p ><b>Order ID: {order.orderID}</b></p>
                                 <br></br>
                                 <br></br>
                                 <p>Items: {order.MenuName}</p>
