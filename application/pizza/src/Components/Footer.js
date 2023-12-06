@@ -8,7 +8,7 @@ function Footer() {
         {/* Your page content goes here */}
       </div>
       <div className='footer'>
-        <p>&copy; PizzaCraze.com</p>
+        <p></p>
       </div>
     </div>
   )

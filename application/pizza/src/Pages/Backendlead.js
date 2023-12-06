@@ -1,5 +1,6 @@
 import React from 'react';
 import Pic from '../Assests/Nick.jpg';
+import '../styles/About.css';
 
 function Backendlead() {
   return (
@@ -12,7 +13,7 @@ function Backendlead() {
         <br/>
         <br/>
         
-        <p>
+        <p className='about-member'>
         Hello, my name is Nicholas Pagcanlungan. I am a senior computer science student attending San Francisco State University with a minor in video game studies. On my free time I like to either play video games or draw.
         </p>
       

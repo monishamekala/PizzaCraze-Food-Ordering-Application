@@ -91,9 +91,10 @@ function App() {
           <Route path='/checkout/:userID' element={<> <Navbar /> <CheckOut /> <Footer /> </>}/>
 
           <Route 
-            path='/orderconfirm' 
-            element={auth ? <><Navbar /><OrderConfirm /><Footer /></> : <Navigate to='/not-found'/>}
-          />
+            path='/orderconfirm/:CartID' 
+            element={<> <Navbar /> <OrderConfirm /> <Footer /> </>}/>
+            {/* element={auth ? <><Navbar /><OrderConfirm /><Footer /></> : <Navigate to='/not-found'/>}
+          /> */}
 
           <Route path='/about/teamlead' element={<> <Navbar /> <Teamlead /> <Footer /> </>}/>
           <Route path='/about/frontendlead' element={<> <Navbar /> <Frontendlead /> <Footer /> </>}/>

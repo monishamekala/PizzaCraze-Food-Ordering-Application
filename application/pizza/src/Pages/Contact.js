@@ -1,47 +1,53 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import BannerImage from '../Assests/pizza.jpeg';
+import '../styles/Contact.css';
 
 function Contact() {
   return (
     <div className= "my-3 about">
         <div className='aboutTop' style={{backgroundImage: `url(${BannerImage})`}}></div>
-        <div className='my-3 aboutBottom'>
+        <div className='my-3'>
             <h1>Contact US</h1>
-            <div className="my-5 d-flex justify-content-between">
+            <div className="my-5 d-flex justify-content-between contact-btns">
               <Link to={'https://instagram.com'}>
-            <button type="button" className="btn btn-dark">Instagram</button></Link>
-            <Link to={'mailto:pizzacrazesf@gmail.com'}>
-            <button type="button" className="btn btn-dark">Mail</button></Link>
-            <Link to={'https://twitter.com'}>
-            <button type="button" className="btn btn-dark">Twitter</button></Link>
-            </div>
-            <div className="FAQ text-center">
-              <p style={{fontSize: 40}}>FAQ</p><br></br>
-              <div className='card'>
-              <p style={{fontSize: 30}}> What types of pizza do you offer?</p><br></br>
+                <button type="button">Instagram</button>
+              </Link>
 
+              <Link to={'mailto:pizzacrazesf@gmail.com'}>
+                <button type="button">Mail</button>
+              </Link>
+              
+              <Link to={'https://twitter.com'}>
+              <button type="button">Twitter</button>
+              </Link>
+            </div>
+
+            <h1>FAQ</h1>
+            <div className="div-que">
+              <div className='card-contact'>
+              <p className='question'> What types of pizza do you offer?</p><br></br>
               <p>We offer a diverse range of pizza options, including classic favorites like Margherita, Pepperoni, and Hawaiian, as well as unique specialty pizzas such as BBQ Chicken, Veggie Delight, and Meat Lovers. Our menu is designed to cater to a variety of tastes and preferences.</p>
               </div>
-              <div className='card'>
-              <p style={{fontSize: 30}}> Can I customize my own pizza with specific toppings?</p><br></br>
 
-              <p>Absolutely! You have the flexibility to create your own custom pizza with a variety of toppings. Choose from a selection of fresh vegetables, meats, cheeses, and more to tailor your pizza to your liking. Our goal is to provide a personalized and enjoyable dining experience.</p>
+              <div className='card-contact'>
+              <p className='question'> How can I customize my pizza order?</p><br></br>
+              <p>Our pizza customization options allow you to tailor your pizza to your liking. Choose your preferred spiciness level, cheesiness, type of sauce, and adjust the quantity of meat. Simply click on the customization options during the ordering process to create the perfect pizza for you.</p>
               </div>
-              <div className='card'>
-              <p style={{fontSize: 30}}> Do you offer gluten-free crust options?</p><br></br>
 
-              <p>Yes, we understand the importance of catering to different dietary needs. We offer gluten-free crust options for those with gluten sensitivities or preferences. Enjoy your favorite pizza with a crust that suits your dietary requirements.</p>
+              <div className='card-contact'>
+              <p className='question'> Is there a delivery fee for my order?</p><br></br>
+              <p>Yes, a delivery fee may apply based on your location. The delivery fee helps cover the cost of bringing your delicious pizza right to your doorstep. You can view the delivery fee for your specific area during the checkout process.</p>
               </div>
-              <div className='card'>
-              <p style={{fontSize: 30}}> What sizes of pizzas are available?</p><br></br>
 
-              <p><b>Answer: </b>Our pizzas come in various sizes to accommodate different appetites. You can choose from personal-sized pizzas for an individual meal, medium-sized pizzas for sharing with a friend, or large-sized pizzas for larger gatherings. Our size options ensure there's something for everyone.</p>
+              <div className='card-contact'>
+              <p className='question'> Can I track the status of my pizza delivery?</p><br></br>
+              <p><b></b>Absolutely! We offer order tracking services to keep you informed about the status of your pizza delivery. Once your order is placed, you can track its progress in real-time, from preparation to delivery, ensuring you know exactly when to expect your mouth-watering pizza.</p>
               </div>
-              <div className='card'>
-              <p style={{fontSize: 30}}> Is there a menu for sides and beverages?</p><br></br>
 
-              <p>Yes, our menu extends beyond pizzas to include a variety of delicious sides and refreshing beverages. Whether you're craving appetizers like garlic knots or looking for the perfect drink to complement your meal, our menu has a diverse selection to enhance your dining experience.</p>
+              <div className='card-contact'>
+              <p className='question'> Are there any promotions or discounts available?</p><br></br>
+              <p>Yes, we regularly offer promotions and discounts to make your pizza experience even more enjoyable. Keep an eye on our website, social media pages, and newsletters for the latest deals. Additionally, signing up for our loyalty program may provide you with exclusive discounts and rewards.</p>
               </div>
               
               
