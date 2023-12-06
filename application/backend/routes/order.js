@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const db = require('../database');
 const flash = require('express-flash');
-const { Console } = require('console');
+const { TwitterApi } = require('twitter-api-v2');
 
 const router = Router();
 router.use(flash());
@@ -69,6 +69,7 @@ router.post("/confirm-order", async (request, response) => {
         return response.status(500).json({ error: "Internal Server Error" });
     }
 });
+
 router.get('/get-orders/:userID', async (request, response) => {
     const userID = request.params.userID;
 
@@ -86,6 +87,43 @@ router.get('/get-orders/:userID', async (request, response) => {
         console.log(error);
         return response.status(500).json({ error: "Internal Server Error" });
     }
+});
+
+router.post("/tweet-order", async (request, response) => {
+
+    const client = new TwitterApi({
+        appKey: "ABhMRzAcyrNSVzeefOtxOcmwa",
+        appSecret: "dpfCohIMk8cC2jr2oz7BREIkj8W2ekO7eHqxxWhatPe9G5Glr5",
+        accessToken: "1729735088072757248-PpcAKarhBmj1vx0NBjBpJGRga148hC",
+        accessSecret: "AEE45u6OygnhwzxRnwHJokDj0Oc3n0vPlJ3IvJqgkylyM",
+    });
+    
+    const rwClient = client.readWrite; 
+
+    try { 
+  
+        // Use .tweet() method and pass the 
+        // text you want to post 
+        await rwClient.v2.tweet("This tweet has been created using nodejs"); 
+        console.log("success"); 
+
+        // const mediaId = await client.v1.uploadMedia( 
+  
+        //     // Put path of image you wish to post 
+        //     "https://i.imgur.com/BZBHsauh.jpg"
+        // ); 
+  
+        // Use tweet() method and pass object with text  
+        // in text feild and media items in media feild 
+        await rwClient.v2.tweet({ 
+            text:  "Twitter is a fantastic social network. Look at this:", 
+            media: { media_ids: [mediaId] }, 
+        }); 
+        console.log("success"); 
+
+    } catch (error) { 
+        console.log(error); 
+    } 
 });
 
 module.exports = router;

@@ -8,6 +8,17 @@ function OrderConfirm(){
     const [auth, setAuth] = useState(false);
     const [userID, setUserID] = useState(null);
 
+    const mediaTweet = async () => { 
+      const tweetMsg = "Hi there";
+      try { 
+        const urladdress = `/api/OrderController/tweet-order`;
+        const res = await axios.post(process.env.REACT_APP_API_URL.concat(urladdress), tweetMsg, {withCredentials: true});
+        console.log('success'); 
+      } catch (error) { 
+          console.log(error); 
+      } 
+  }; 
+
     const lookForAuth = async () => {
         try{
           const urlCurrentUser = "/api/UserController/CurrentUser";
@@ -45,6 +56,8 @@ function OrderConfirm(){
     </div>
                 </div>
             : <h1>Please log in</h1>}
+
+            <button onClick={mediaTweet}>Post now</button>
         </div>
     )
 }
