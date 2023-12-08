@@ -96,7 +96,6 @@ function AdminOrderDetails(){
                     <div class="custom-select-wrapper">
                     <select id="status" class="custom-select" value={selectedStatus} onChange={handleStatusChange}>
                         <option></option>
-                        <option value="Waiting for confirmation">Waiting for confirmation</option>
                         <option value="Confirmed">Confirmed</option>
                         <option value="Preparing your food">Preparing your food</option>
                         <option value="On its way">On its way</option>

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/Panel.css';
 
 function ProfilePage() {
     let { userID } = useParams();
@@ -13,6 +14,23 @@ function ProfilePage() {
     const [orderList, setOrderList] = useState([]);
     const [selectedOrder, setSelectedOrder] = useState(null);
 
+    const condenseOrders = (orders) => {
+        const condensedOrders = [...orders];
+    
+        for (let i = 0; i < condensedOrders.length - 1; i++) {
+          for (let j = i + 1; j < condensedOrders.length; j++) {
+            if (condensedOrders[i].orderID === condensedOrders[j].orderID) {
+              console.log("condensed");
+              condensedOrders[i].MenuName += `, ${condensedOrders[j].MenuName}`;
+              condensedOrders.splice(j, 1);
+              j--;
+            }
+          }
+        }
+    
+        return condensedOrders;
+      };
+
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -20,23 +38,15 @@ function ProfilePage() {
                 const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlForUser), { withCredentials: true });
                 setUser(response.data.user);
                 setAddress(response.data.address);
+                const condensedOrders = condenseOrders(response.data.orderItems);
+                setOrderList(condensedOrders);
+              
+                console.log(orderList);
             } catch (err) {
                 console.log(err);
             }
         };
-
-        const fetchOrders = async () => {
-            try {
-                const urlForOrders = `/api/order/get-orders/${userID}`;
-                const response = await axios.get(process.env.REACT_APP_API_URL.concat(urlForOrders), { withCredentials: true });
-                setOrderList(response.data);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-
-        fetchUser();
-        fetchOrders();
+        fetchUser();;
     }, [userID]);
 
     const handleLogout = async (e) => {
@@ -74,39 +84,46 @@ function ProfilePage() {
                 ) : (
                     <ul className="list-group">
                         {addressList.map((address) => (
-                            <li key={address.addressID} className="list-group-item">
-                                <p>Address Line 1: {address.line1}</p>
-                                <p>Address Line 2: {address.line2}</p>
-                                <p>Apt: {address.apt}</p>
-                                <p>Zipcode: {address.zipcode}</p>
-                                <p>Added On: {new Date(address.addedOn).toLocaleString()}</p>
-                            </li>
+                            <div className="card" style = {{fontSize: '20px'}} key={address.addressID}>
+
+                                <li className="list-group-item">
+                            
+                                    <p><b>Address Line 1: </b>{address.line1}</p>
+                                    <p><b>Address Line 2:</b> {address.line2}</p>
+                                    <p><b>Apt:</b> {address.apt}</p>
+                                    <p style={{marginLeft: 25}}><b>Zipcode:</b> {address.zipcode}</p>
+                                    
+                                </li>
+                        </div>
                         ))}
                     </ul>
                 )}
             </div>
             <div>
                 <h4>Your Order History</h4>
-                <select className="form-select mb-3" onChange={handleOrderChange}>
-                    <option value="">Select an order</option>
+                  
+                    <div value="">
                     {orderList.map((order) => (
-                        <option key={order.orderID} value={order.orderID}>
-                            {`Order ID: ${order.orderID} - Order Date: ${new Date(order.order_date).toLocaleString()}`}
-                        </option>
+                            <div className="card" style = {{marginBottom: 10, fontSize: '20px'}} key={order.orderID} value={order.orderID}>
+                               <div className="row">
+                                <div className="col-md-6 text-start">
+                                <p ><b>Order ID: {order.orderID}</b></p>
+                                <br></br>
+                                <br></br>
+                                <p>Items: {order.MenuName}</p>
+                                </div>
+                                <div className="col-md-6 text-md-end">
+                                <p>Order Status: <b>{order.order_status}</b></p>
+                                <br></br>
+                                <br></br>
+                                <p>Order Date: {new Date(order.order_date).toLocaleString()}</p>
+                                </div>
+                                </div>
+                            </div>
                     ))}
-                </select>
-                {selectedOrder && (
-                    <div>
-                        <h5>Details for Selected Order (Order ID: {selectedOrder.orderID}):</h5>
-                        <ul className="list-group">
-                            <li className="list-group-item">Address: {selectedOrder.order_addressID}</li>
-                            <li className="list-group-item">Payment Method: {selectedOrder.paymethod}</li>
-                            <li className="list-group-item">Order Date: {new Date(selectedOrder.order_date).toLocaleString()}</li>
-                        </ul>
                     </div>
-                )}
             </div>
-            <button type='button' className="btn btn-primary mt-3" onClick={handleLogout}>
+            <button type='button' className="logout-btn" onClick={handleLogout}>
                 Logout
             </button>
             <ToastContainer />

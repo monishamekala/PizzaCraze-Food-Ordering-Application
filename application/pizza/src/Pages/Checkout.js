@@ -28,6 +28,8 @@ function CheckOut() {
   const [selectedAddress, setForAddress] = useState(false);
   const [addedCard, setaddedCard] = useState(false);
 
+  const [CartID, setCartID] = useState(null);
+
   const [orderdetails, setorderdetails] = useState({
     address:"",
     paymentmethod: ""
@@ -109,17 +111,24 @@ function CheckOut() {
   };
 
   const PlaceOrderNow = async () => {
-    console.log(orderdetails);
     try {
       const urladdress = `/api/OrderController/confirm-order`;
-      const res = await axios.post(
+      const response = await axios.post(
         process.env.REACT_APP_API_URL.concat(urladdress),
         { userID, orderdetails },
         { withCredentials: true }
       );
-      if (res.data.Message === "Added successfully") {
+      if (response.data.Message === "Added successfully") {
+        setCartID(response.data.id);
+        
+        const url = `/orderconfirm/${response.data.id}`;
+
         toast.success("Order placed successfully");
-        navigte("/orderconfirm");
+
+        setTimeout(() => {
+          navigte(url);
+        }, 1500);
+        
       } else {
         toast.error("Try again");
       }
@@ -171,16 +180,29 @@ function CheckOut() {
           </div>
         ):(
           <div>
-            <h2><b>Existing address</b></h2>
-            {address.map((eachItem, index) => (
-              <div className='col-md-30' key={eachItem.addressID} >
-                <div className="address-container">
-                  <input className='form-check-input mt-0 address-check' type="radio" value={eachItem.addressID} name='addresses' id={`address-${index}`} onChange={handleAddressSelection}/>
-                  <label htmlFor={`address-${index}`}>{`${eachItem.line1}, ${eachItem.line2}, ${eachItem.apt}, ${eachItem.zipcode}`}</label>
-                </div>
-              </div> 
-            ))}
-          </div>
+  <h2><b>Existing addresses</b></h2>
+  <table className='table'>
+    <tbody>
+      {address.map((eachItem, index) => (
+        <tr className='address-row' key={eachItem.addressID}>
+          <td className='tdclass'>
+            <input
+              className='form-check-input mt-0 address-check'
+              type="radio"
+              value={eachItem.addressID}
+              name='addresses'
+              id={`address-${index}`}
+              onChange={handleAddressSelection}
+            />
+          </td>
+          <td className='tdclass2'>
+            <p>{`${eachItem.line1}, ${eachItem.line2}, ${eachItem.apt}, ${eachItem.zipcode}`}</p>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
         )}
       </div>
 

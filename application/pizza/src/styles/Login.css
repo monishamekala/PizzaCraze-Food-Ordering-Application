@@ -127,3 +127,18 @@ form label {
   width: 100px;
   height: 30px;
 }
+
+.FP-Verifybtn{
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  width: 150px;
+  height: 40px;
+  font-weight: 500;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.FP-Verifybtn:hover{
+  transform: scale(1.02); /* Slightly scale up on hover */
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.5);
+}
