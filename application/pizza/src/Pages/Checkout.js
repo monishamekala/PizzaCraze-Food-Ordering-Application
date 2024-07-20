@@ -176,7 +176,7 @@ function CheckOut() {
 
         {address.length === 0 ? (
           <div>
-            <h1>Please add adress</h1>
+            <h1>Please add address</h1>
           </div>
         ):(
           <div>

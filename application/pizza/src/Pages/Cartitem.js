@@ -86,12 +86,14 @@ function Cartitem(props) {
           </div>
         </div>
 
-        <div class="specifications">
-          <p>Cheese : {props.cheese}, </p>
-          <p>Sauce : {props.sauce}, </p>
-          <p>Meat : {props.meat}, </p>
-          <p>Spice : {props.spice}</p>
-        </div>
+        {props.category !== 'Dessert' && (
+          <div className="specifications">
+            <p>Cheese : {props.cheese}, </p>
+            <p>Sauce : {props.sauce}, </p>
+            <p>Meat : {props.meat}, </p>
+            <p>Spice : {props.spice}</p>
+          </div>
+        )}
 
         <div className='card-footer'>
           <div className='left'>
