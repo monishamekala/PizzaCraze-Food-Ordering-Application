@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.23d3f790.css",
+    "main.js": "/static/js/main.359f2f65.js",
+    "static/js/787.f0dcdead.chunk.js": "/static/js/787.f0dcdead.chunk.js",
+    "static/media/video.mp4": "/static/media/video.04f5da7e6a3b1995d591.mp4",
+    "static/media/Joey.png": "/static/media/Joey.626aaf1eb3d7b754d986.png",
+    "static/media/TeamLead.jpeg": "/static/media/TeamLead.d32c445c96770a0d4407.jpeg",
+    "static/media/pizza.jpeg": "/static/media/pizza.21a1098fa87e28d80f37.jpeg",
+    "static/media/Malieka.jpeg": "/static/media/Malieka.0cc29e51a2ac93bfa034.jpeg",
+    "static/media/Aishwarya.jpeg": "/static/media/Aishwarya.86e75baea8fc6bb521ad.jpeg",
+    "static/media/Nick.jpg": "/static/media/Nick.9d5c1454f128d0fba4fd.jpg",
+    "static/media/pizza.svg": "/static/media/pizza.46bafaefbebdb9162f53d65caf0dea0e.svg",
+    "static/media/cash.svg": "/static/media/cash.26bd92133fd2ceddf92c642e964a359b.svg",
+    "static/media/cart-fill.svg": "/static/media/cart-fill.c076c0d5deaa870a6f6f1ce282b2d3b9.svg",
+    "static/media/search-icon.svg": "/static/media/search-icon.4a7c28d18d79a025b4bd47879c939291.svg",
+    "static/media/add-profile.svg": "/static/media/add-profile.a9e09eeae54b2ee409bfab91a944c0bb.svg",
+    "static/media/card.svg": "/static/media/card.aa12cc751141de34f82f20988a3a2276.svg",
+    "static/media/twitter.svg": "/static/media/twitter.12197ca753877d6c7a8620aa71768e25.svg",
+    "index.html": "/index.html",
+    "static/media/eye.svg": "/static/media/eye.e8983346820bbc2537b258db440c092c.svg",
+    "static/media/person-circle.svg": "/static/media/person-circle.25643ee09f28b52edada529c29be3f44.svg",
+    "main.23d3f790.css.map": "/static/css/main.23d3f790.css.map",
+    "main.359f2f65.js.map": "/static/js/main.359f2f65.js.map",
+    "787.f0dcdead.chunk.js.map": "/static/js/787.f0dcdead.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.23d3f790.css",
+    "static/js/main.359f2f65.js"
+  ]
+}
